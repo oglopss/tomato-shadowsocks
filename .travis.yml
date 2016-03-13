@@ -38,7 +38,7 @@ before_install:
     
 # Building crosstool-NG core
 install:
-    - cd crosstools-ng
+    - cd crosstool-ng
     - ./bootstrap
     - ./configure --enable-local
     - make
