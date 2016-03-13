@@ -8,7 +8,7 @@ language: bash
 # Only build the master branch
 branches:
     only:
-        - master
+        - ss-only
 
 # Caching the downloaded src packages between several builds to save travis-ci
 # download time and bandwidth
