@@ -15,6 +15,7 @@ branches:
 cache:
     directories:
         - $HOME/src
+        - $HOME/x-tools
 
 # Installing needed dependencies
 addons:
@@ -26,6 +27,8 @@ addons:
             - libncurses5-dev
             - texinfo
             - help2man
+            - openssl
+            - zlib
             
 # Handle git submodules yourself
 git:
@@ -42,17 +45,20 @@ install:
     - ./bootstrap
     - ./configure --enable-local
     - make
+    - make install
 
 # Here is the list of all the standard samples tracked
 # by the continuous integration system
 env:
     - CT_SAMPLE=mipsel-unknown-linux-gnu
+    - export PATH=$HOME/x-tools/mipsel-unknown-linux-uclibc/bin:$PATH
 
 # Building the standard samples
 script:
     - . ./.travis.sh      # Load the travis environment
     - ct-ng $CT_SAMPLE    # Configure the build
     - ct-ng_travis_build  # Build the sample
+    - ss_build
 
 # On failure displaying the last lines of the log file
 after_failure:
