@@ -1,0 +1,6 @@
+[submodule "crosstool-ng"]
+	path = crosstool-ng
+	url = git@github.com:oglops/crosstool-ng.git
+[submodule "shadowsocks-libev"]
+	path = shadowsocks-libev
+	url = git@github.com:oglops/shadowsocks-libev.git
