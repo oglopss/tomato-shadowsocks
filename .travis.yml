@@ -29,6 +29,7 @@ addons:
 
 # Building crosstool-NG core
 install:
+    - cd crosstools-ng
     - ./bootstrap
     - ./configure --enable-local
     - make
@@ -36,15 +37,7 @@ install:
 # Here is the list of all the standard samples tracked
 # by the continuous integration system
 env:
-    - CT_SAMPLE=arm-unknown-eabi
-    - CT_SAMPLE=arm-unknown-linux-gnueabi
-    - CT_SAMPLE=armeb-unknown-linux-gnueabi
-    - CT_SAMPLE=arm-unknown-linux-musleabi
-    - CT_SAMPLE=aarch64-unknown-linux-gnueabi
-    - CT_SAMPLE=mips64el-n64-linux-uclibc
-    - CT_SAMPLE=powerpc-e500v2-linux-gnuspe
-    - CT_SAMPLE=x86_64-unknown-linux-uclibc
-    - CT_SAMPLE=xtensa-unknown-linux-uclibc
+    - CT_SAMPLE=mipsel-unknown-linux-gnu
 
 # Building the standard samples
 script:
