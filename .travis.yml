@@ -26,7 +26,16 @@ addons:
             - libncurses5-dev
             - texinfo
             - help2man
-
+            
+# Handle git submodules yourself
+git:
+    submodules: false
+    
+# Use sed to replace the SSH URL with the public URL, then initialize submodules
+before_install:
+    - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
+    - git submodule update --init --recursive
+    
 # Building crosstool-NG core
 install:
     - cd crosstools-ng
