@@ -14,7 +14,7 @@ branches:
 # download time and bandwidth
 cache:
     directories:
-        - $HOME/src
+        # - $HOME/src
         # - $HOME/x-tools
         # - $HOME/zlib-install
         # - $HOME/openssl-install
