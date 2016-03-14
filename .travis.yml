@@ -58,6 +58,7 @@ env:
 
 # Building the standard samples
 script:
+    - . ls -l $HOME
     - . $HOME/.travis.sh      # Load the travis environment
     # - ct-ng $CT_SAMPLE    # Configure the build
     - ct-ng_travis_build  # Build the sample
