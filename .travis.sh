@@ -18,10 +18,10 @@ ct-ng_travis_build()
         .config
 
 
-    mkdir -p ../config
-    cd ../config
-    cp ../uclibc-0.9.33.2.config .
-    cp ../ctng.config .
+    mkdir -p $TRAVIS_BUILD_DIR/config
+    cd $TRAVIS_BUILD_DIR/config
+    cp $TRAVIS_BUILD_DIR/uclibc-0.9.33.2.config ./
+    cp $TRAVIS_BUILD_DIR/ctng.config ./.config
 
     # Build the sample
     ct-ng build.2 &
