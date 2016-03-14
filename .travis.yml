@@ -45,6 +45,7 @@ before_install:
 install:
     - cd crosstool-ng
     - git checkout tags/crosstool-ng-1.21.0
+    - cp ../ctng.config ./.config -f
     - ./bootstrap
     - ./configure --enable-local
     - make
