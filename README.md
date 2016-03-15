@@ -3,8 +3,8 @@
 Cross compile shadowsocks libev for my tomato router:
 
 
-[travis-status]: https://travis-ci.org/oglops/tomato-shadowsocks.svg
-[travis]: https://travis-ci.org/oglops/tomato-shadowsocks
+[travis-status]: https://travis-ci.org/oglopss/tomato-shadowsocks.svg
+[travis]: https://travis-ci.org/oglopss/tomato-shadowsocks
 
 irc: irc.freenode.net #crosstool-ng
 
