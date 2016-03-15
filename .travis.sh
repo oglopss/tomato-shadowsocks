@@ -1,5 +1,7 @@
 # Add current directory to PATH
 export PATH="$(pwd):$(pwd)/crosstool-ng:$PATH"
+export PATH=$HOME/x-tools/mipsel-unknown-linux-uclibc/bin:$PATH
+mkdir -p $HOME/src
 
 # Manage the travis build
 ct-ng_travis_build()
