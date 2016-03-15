@@ -1,5 +1,8 @@
 # Using container-based infrastructure
-sudo: false
+# sudo: false
+# enable trusty beta
+sudo: required
+dist: trusty
 
 # 'bash' will define a generic environment without interfering environment
 # settings like "CC=gcc"
