@@ -79,7 +79,6 @@ zlib_build()
 
 
 
-
 ss_build()
 {
 
@@ -109,6 +108,20 @@ ss_build()
     kill $runner_pid
     wait $runner_pid 2>/dev/null
 
+
+    # strip files
+    printf "strip files ...\r"
+    mipsel-unknown-linux-uclibc-strip $HOME/ss-install/bin/*
+    # upx files
+    printf "upx files ...\r"
+    wget http://upx.sourceforge.net/download/upx-3.91-amd64_linux.tar.bz2 -P $HOME/src
+    tar xvf $HOME/src/upx-* -C $HOME
+    cd $HOME/upx-*
+    ./upx $HOME/ss-install/bin/*
+    cd $HOME/ss-install/bin/*
+
+    printf "compress files ...\r"
+    tar -zcvf shadowsocks-libev-2.4.5.tar.gz *
     # Return the result
     return $result
 }
