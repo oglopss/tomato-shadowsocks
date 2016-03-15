@@ -1,5 +1,5 @@
 # Add current directory to PATH
-export PATH="$(pwd):$PATH"
+export PATH="$(pwd):$(pwd)/crosstool-ng:$PATH"
 
 # Manage the travis build
 ct-ng_travis_build()
