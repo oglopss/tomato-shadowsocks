@@ -83,7 +83,7 @@ ss_build()
 {
 
     # Build the sample
-    cd ../shadowsocks-libev
+    cd $TRAVIS_BUILD_DIR/shadowsocks-libev
     git checkout tags/v2.4.5
     CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --disable-ssp --host=mipsel-uclibc-linux --prefix=$HOME/ss-install --with-openssl=$HOME/openssl-install --host=mipsel-uclibc-linux --with-zlib=$HOME/zlib-install
     make V=99 && make install &
