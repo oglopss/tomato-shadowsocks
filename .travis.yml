@@ -17,10 +17,10 @@ branches:
 # download time and bandwidth
 cache:
     directories:
-        # - $HOME/src
-        # - $HOME/x-tools
-        # - $HOME/zlib-install
-        # - $HOME/openssl-install
+        - $HOME/src
+        - $HOME/x-tools
+        - $HOME/zlib-install
+        - $HOME/openssl-install
 
 # Installing needed dependencies
 addons:
