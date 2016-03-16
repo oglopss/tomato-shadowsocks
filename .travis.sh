@@ -118,9 +118,10 @@ ss_build()
     tar xvf $HOME/src/upx-* -C $HOME
     cd $HOME/upx-*
     ./upx $HOME/ss-install/bin/*
-    cd $HOME/ss-install/bin/*
+    cd $HOME/ss-install/bin/
 
     printf "compress files ...\r"
+    # rm -rf
     tar -zcvf shadowsocks-libev-2.4.5.tar.gz *
     # Return the result
     return $result
