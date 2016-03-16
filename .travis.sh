@@ -59,8 +59,9 @@ openssl_build()
     tar xvf openssl-1.0.2g.tar.gz -C ../
     cd ../openssl*
     git checkout tags/OpenSSL_1_0_2g
-    CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./Configure no-asm shared --prefix=$HOME/openssl-install linux-mips32
-    make && make install
+    CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./Configure no-asm shared --prefix=$HOME/openssl-install linux-mips32 &> /dev/null
+    make &> /dev/null
+    make install &> /dev/null
 
 }
 
@@ -71,8 +72,9 @@ zlib_build()
     # export PATH=$HOME/x-tools/mipsel-unknown-linux-uclibc/bin:$PATH
     tar xvf zlib-1.2.8.tar.gz -C ../
     cd ../zlib-1.2.8*
-    CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --prefix=$HOME/zlib-install
-    make && make install
+    CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --prefix=$HOME/zlib-install &> /dev/null
+    make &> /dev/null
+    make install &> /dev/null
 
 
 }
@@ -85,28 +87,29 @@ ss_build()
     # Build the sample
     cd $TRAVIS_BUILD_DIR/shadowsocks-libev
     git checkout tags/v2.4.5
-    CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --disable-ssp --host=mipsel-uclibc-linux --prefix=$HOME/ss-install --with-openssl=$HOME/openssl-install --host=mipsel-uclibc-linux --with-zlib=$HOME/zlib-install
-    make V=99 && make install &
-    local build_pid=$!
+    CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --disable-ssp --host=mipsel-uclibc-linux --prefix=$HOME/ss-install --with-openssl=$HOME/openssl-install --host=mipsel-uclibc-linux --with-zlib=$HOME/zlib-install &> /dev/null
+    make &> /dev/null
+    make install &> /dev/null
+    # local build_pid=$!
 
-    # Start a runner task to print a "still running" line every 5 minutes
-    # to avoid travis to think that the build is stuck
-    {
-        while true
-        do
-            sleep 300
-            printf "ss is still running ...\r"
-        done
-    } &
-    local runner_pid=$!
+    # # Start a runner task to print a "still running" line every 5 minutes
+    # # to avoid travis to think that the build is stuck
+    # {
+    #     while true
+    #     do
+    #         sleep 300
+    #         printf "ss is still running ...\r"
+    #     done
+    # } &
+    # local runner_pid=$!
 
-    # Wait for the build to finish and get the result
-    wait $build_pid 2>/dev/null
-    local result=$?
+    # # Wait for the build to finish and get the result
+    # wait $build_pid 2>/dev/null
+    # local result=$?
 
-    # Stop the runner task
-    kill $runner_pid
-    wait $runner_pid 2>/dev/null
+    # # Stop the runner task
+    # kill $runner_pid
+    # wait $runner_pid 2>/dev/null
 
 
     # strip files
