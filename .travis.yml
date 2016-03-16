@@ -77,4 +77,4 @@ script:
 after_failure:
     - tail -n 1000 build.log
 
-after_success: ./update-gh-pages.sh
+after_success: $TRAVIS_BUILD_DIR/update-gh-pages.sh
