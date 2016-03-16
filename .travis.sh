@@ -58,7 +58,7 @@ openssl_build()
     wget https://www.openssl.org/source/openssl-1.0.2g.tar.gz
     tar xvf openssl-1.0.2g.tar.gz -C ../
     cd ../openssl*
-    git checkout tags/OpenSSL_1_0_2g
+    # git checkout tags/OpenSSL_1_0_2g
     CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./Configure no-asm shared --prefix=$HOME/openssl-install linux-mips32 &> /dev/null
     make &> /dev/null
     make install &> /dev/null
@@ -70,7 +70,7 @@ zlib_build()
     cd $HOME/src
     wget http://zlib.net/zlib-1.2.8.tar.gz
     # export PATH=$HOME/x-tools/mipsel-unknown-linux-uclibc/bin:$PATH
-    tar xvf zlib-1.2.8.tar.gz -C ../
+    tar xf zlib-1.2.8.tar.gz -C ../
     cd ../zlib-1.2.8*
     CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --prefix=$HOME/zlib-install &> /dev/null
     make &> /dev/null
@@ -117,8 +117,10 @@ ss_build()
     mipsel-unknown-linux-uclibc-strip $HOME/ss-install/bin/*
     # upx files
     printf "upx files ...\r"
-    wget http://upx.sourceforge.net/download/upx-3.91-amd64_linux.tar.bz2 -P $HOME/src
-    tar xvf $HOME/src/upx-* -C $HOME
+    rm -rf $HOME/src/upx-*
+    # wget http://upx.sourceforge.net/download/upx-3.91-amd64_linux.tar.bz2 -P $HOME/src
+    # tar xf $HOME/src/upx-3.91-amd64_linux.tar.bz2 -C $HOME
+    curl http://upx.sourceforge.net/download/upx-3.91-amd64_linux.tar.bz2 | tar xj -C $HOME
     cd $HOME/upx-*
     ./upx $HOME/ss-install/bin/*
     cd $HOME/ss-install/bin/
