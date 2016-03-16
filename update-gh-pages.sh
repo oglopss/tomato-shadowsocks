@@ -2,7 +2,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
   echo -e "Starting to update gh-pages\n"
 
   #copy data we're interested in to other place
-  cp -R $HOME/ss-install/bin* $HOME/coverage
+  cp -R $HOME/ss-install/bin/*.tar.gz $HOME/coverage
 
   #go to home and setup git
   cd $HOME
@@ -10,7 +10,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
   git config --global user.name "Travis"
 
   #using token clone gh-pages branch
-  git clone --quiet --branch=gh-pages https://${GH_TOKEN}@github.com/Uko/Rubidium-WHOIS.git  gh-pages > /dev/null
+  git clone --quiet --branch=gh-pages https://${GH_TOKEN}@github.com/oglopss/ctng-ss.git  gh-pages > /dev/null
 
   #go into diractory and copy data we're interested in to that directory
   cd gh-pages
