@@ -90,6 +90,7 @@ ss_build()
     CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --disable-ssp --host=mipsel-uclibc-linux --prefix=$HOME/ss-install --with-openssl=$HOME/openssl-install --host=mipsel-uclibc-linux --with-zlib=$HOME/zlib-install &> /dev/null
     make &> /dev/null
     make install &> /dev/null
+    local result=$?
     # local build_pid=$!
 
     # # Start a runner task to print a "still running" line every 5 minutes
