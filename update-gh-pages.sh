@@ -2,6 +2,7 @@
   echo -e "Starting to update gh-pages\n"
 
   #copy data we're interested in to other place
+  mkdir -p $HOME/coverage
   cp -R $HOME/ss-install/bin/*.tar.gz $HOME/coverage
 
   #go to home and setup git
