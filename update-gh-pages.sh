@@ -15,6 +15,7 @@
 
   #go into diractory and copy data we're interested in to that directory
   cd gh-pages
+  mkdir -p ss && cd ss
   cp -Rf $HOME/coverage/* .
 
   #add, commit and push files
