@@ -41,7 +41,7 @@ ct-ng_travis_build()
     local runner_pid=$!
 
     # Wait for the build to finish and get the result
-    wait $build_pid 2>/dev/null
+    wait $build_pid 2>/dev/null 
     local result=$?
 
     # Stop the runner task
@@ -60,8 +60,8 @@ openssl_build()
     cd ../openssl*
     # git checkout tags/OpenSSL_1_0_2g
     CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./Configure no-asm shared --prefix=$HOME/openssl-install linux-mips32 &> /dev/null
-    make > /dev/null
-    make install > /dev/null
+    make > /dev/null 2>&1
+    make install > /dev/null 2>&1
 
 }
 
@@ -73,8 +73,8 @@ zlib_build()
     tar xf zlib-1.2.8.tar.gz -C ../
     cd ../zlib-1.2.8*
     CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --prefix=$HOME/zlib-install &> /dev/null
-    make > /dev/null
-    make install > /dev/null
+    make > /dev/null 2>&1
+    make install > /dev/null 2>&1
 
 
 }
@@ -88,8 +88,8 @@ ss_build()
     cd $TRAVIS_BUILD_DIR/shadowsocks-libev
     git checkout tags/v2.4.5
     CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --disable-ssp --host=mipsel-uclibc-linux --prefix=$HOME/ss-install --with-openssl=$HOME/openssl-install --host=mipsel-uclibc-linux --with-zlib=$HOME/zlib-install &> /dev/null
-    make > /dev/null
-    make install > /dev/null
+    make > /dev/null 2>&1
+    make install > /dev/null 2>&1
     local result=$?
     # local build_pid=$!
 
