@@ -67,7 +67,7 @@ env:
 script:
     # - . ls -l $HOME
     - . $TRAVIS_BUILD_DIR/.travis.sh      # Load the travis environment
-    - ct-ng $CT_SAMPLE    # Configure the build
+    # - ct-ng $CT_SAMPLE    # Configure the build
     # - ct-ng_travis_build  # Build the sample
     # - zlib_build
     # - openssl_build
