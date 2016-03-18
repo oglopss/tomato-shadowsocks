@@ -86,7 +86,7 @@ ss_build()
 
     # Build the sample
     cd $TRAVIS_BUILD_DIR/shadowsocks-libev
-    git checkout tags/v2.4.5
+    git checkout tags/$SS_VER
     CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --disable-ssp --host=mipsel-uclibc-linux --prefix=$HOME/ss-install --with-openssl=$HOME/openssl-install --host=mipsel-uclibc-linux --with-zlib=$HOME/zlib-install &> /dev/null
     make > /dev/null 2>&1
     make install > /dev/null 2>&1
@@ -128,7 +128,7 @@ ss_build()
 
     printf "compress files ...\r"
     # rm -rf
-    tar -zcvf shadowsocks-libev-2.4.5.tar.gz *
+    tar -zcvf shadowsocks-libev-$SS_VER.tar.gz *
     # Return the result
     return $result
 }
