@@ -93,6 +93,14 @@ ss_build()
     echo path: $PATH
     echo ========home=========
     ls -l $HOME
+    echo ========home/build=========
+    ls -l $HOME/build
+    echo ========home/builds=========
+    ls -l $HOME/builds    
+    echo ========home/xtools=========
+    ls -l $HOME/xtools     
+    
+    
     echo ========TRAVIS_BUILD_DIR=========
     ls -l $TRAVIS_BUILD_DIR
     
