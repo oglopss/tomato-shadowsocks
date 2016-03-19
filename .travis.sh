@@ -91,6 +91,11 @@ ss_build()
     # Build the sample
     echo In ss_build ...
     echo path: $PATH
+    echo ========home=========
+    ls -l $HOME
+    echo ========TRAVIS_BUILD_DIR=========
+    ls -l $TRAVIS_BUILD_DIR
+    
     ls -l $HOME/x-tools/mipsel-unknown-linux-uclibc/bin
     cd $TRAVIS_BUILD_DIR/shadowsocks-libev
     git checkout tags/$SS_VER
