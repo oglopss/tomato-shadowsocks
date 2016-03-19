@@ -58,19 +58,22 @@ install:
 # by the continuous integration system
 env:
     # - CT_SAMPLE=mipsel-unknown-linux-gnu
-    # matrix:
+    matrix:
         # - export PATH=$HOME/x-tools/mipsel-unknown-linux-uclibc/bin:$PATH
+        - SS_VER=v2.4.5
+        - SS_VER=v2.4.1
+        - SS_VER=v2.3.1
     global:
         - secure: ia+DDKsGsVyzsmQElKUQDja8xRt0M5WlZ3WUiXKpNparvs5nJ6XrfKldzOJRAwKQZlDZQevzal1x8rt7Gj2Zm6FdV6blM8BA4TNCJYnkxFCpkR9BEo0HlaX4QZChBiJlOk3ecnmVnB8vA6B1V7gOnSbvOJ0NX9zBgGFxbbrqtRhAfaAgvOi7W3KANb2OZ6hBzXM2tW13x2VArI69svV/I85pwbxllsQ4ed85o/Uaxzuu1eenf1EoT9qxxBU46y/6CR6LAvJ/J2OUL6J4XGJ6lSbXnEReqCEVelt5m+OM+FiTurs05NLcXJeBsQpOcOaKRi8U7vlz4/se2faEW+3lVOXoKDSJPtML8Y7H5X4+OdHm217Rc1/SbMzCA8uV3fLZ7VtW3gMifRQ5aWonfX0LhVDhCCuIxOghKjzWG3AEl5kjWf1Av6w/MLMzFsZey5EHtpe98XYGhpo9Lnp1Q4fzhY+wa7v6+r+taIdKzZpIacoPh0FwZv7qbxNy5Q7/wIvr/D5ocTTTNliistDRozesberGK8cHPmJDa1qzTe4aL3qUy8X56zQaXRyfO/20ciQyUcdoW8iaTenpfNmgxqNe8YQ9FyVY+Znx1j72NNmTKNAGrLYTA5J7q/Flzzfll2yjRLUA8q1SwfptSP7FzkR0w2A6gDs/zUSkdqMMj5NAuoI=
-        - SS_VER=v2.4.5
+        # - SS_VER=v2.4.5
 # Building the standard samples
 script:
     # - . ls -l $HOME
     - . $TRAVIS_BUILD_DIR/.travis.sh      # Load the travis environment
-    - ct-ng $CT_SAMPLE    # Configure the build
-    - ct-ng_travis_build  # Build the sample
-    - zlib_build
-    - openssl_build
+    # - ct-ng $CT_SAMPLE    # Configure the build
+    # - ct-ng_travis_build  # Build the sample
+    # - zlib_build
+    # - openssl_build
     - ss_build
 
 # On failure displaying the last lines of the log file
