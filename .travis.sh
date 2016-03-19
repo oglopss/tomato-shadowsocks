@@ -97,8 +97,10 @@ ss_build()
     ls -l $HOME/build
     echo ========home/builds=========
     ls -l $HOME/builds    
-    echo ========home/xtools=========
-    ls -l $HOME/xtools     
+    echo ========home/x-tools=========
+    ls -l $HOME/x-tools   
+    echo ========home/x-tools/mipsel-unknown-linux-uclibc=========
+    ls -l $HOME/x-tools/mipsel-unknown-linux-uclibc    
     
     
     echo ========TRAVIS_BUILD_DIR=========
