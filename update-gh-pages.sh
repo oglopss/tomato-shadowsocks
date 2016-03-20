@@ -12,7 +12,7 @@
   
   echo ===== about to clone ctng-ss-jekyllx ===============
   echo 
-  x=$[ ( $RANDOM % 180 )  + 10 ]s
+  x=$[ ( $RANDOM % 30 )  + 10 ]s
   echo sleeping $x
   sleep $x
   
