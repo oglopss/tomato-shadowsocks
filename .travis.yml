@@ -1,8 +1,8 @@
 # Using container-based infrastructure
 # sudo: false
 # enable trusty beta
-sudo: required
-dist: trusty
+# sudo: required
+# dist: trusty
 
 # 'bash' will define a generic environment without interfering environment
 # settings like "CC=gcc"
@@ -71,9 +71,9 @@ script:
     # - . ls -l $HOME
     - . $TRAVIS_BUILD_DIR/.travis.sh      # Load the travis environment
     # - ct-ng $CT_SAMPLE    # Configure the build
-    # - ct-ng_travis_build  # Build the sample
-    # - zlib_build
-    # - openssl_build
+    - ct-ng_travis_build  # Build the sample
+    - zlib_build
+    - openssl_build
     - ss_build
 
 # On failure displaying the last lines of the log file
