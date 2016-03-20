@@ -1,5 +1,5 @@
 # Using container-based infrastructure
-# sudo: false
+sudo: false
 # enable trusty beta
 # sudo: required
 # dist: trusty
