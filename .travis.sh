@@ -22,7 +22,7 @@ ct-ng_travis_build()
 
     mkdir -p $TRAVIS_BUILD_DIR/config
     cd $TRAVIS_BUILD_DIR/config
-    cp $TRAVIS_BUILD_DIR/uclibc-0.9.30.3.config ./
+    cp $TRAVIS_BUILD_DIR/uclibc.config ./
     cp $TRAVIS_BUILD_DIR/ctng.config ./.config
 
     # Build the sample
