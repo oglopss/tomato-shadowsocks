@@ -110,7 +110,7 @@ ss_build()
     cd $TRAVIS_BUILD_DIR/shadowsocks-libev
     if [ "$SS_VER" == "latest" ]; then
         id=$(git rev-parse HEAD)
-        SS_VER=${id:0:5}
+        SS_VER=snapshot-${id:0:5}
     else    
         git checkout tags/$SS_VER
 
