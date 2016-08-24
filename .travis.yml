@@ -32,6 +32,7 @@ addons:
             - libncurses5-dev
             - texinfo
             - help2man
+            - asciidoc
             # - openssl
             # - zlib
             
