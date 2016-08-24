@@ -33,6 +33,7 @@ addons:
             - texinfo
             - help2man
             - asciidoc
+            - xmlto
             # - openssl
             # - zlib
             
