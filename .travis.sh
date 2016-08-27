@@ -145,7 +145,10 @@ ss_build()
 
     # strip files
     printf "strip files ...\r"
-    mipsel-unknown-linux-uclibc-strip $HOME/ss-install/bin/*
+    # exclude ss-nat new in 2.4.7
+    # mipsel-unknown-linux-uclibc-strip $HOME/ss-install/bin/*
+    find $HOME/ss-install/bin -type f \( ! -iname "ss-nat" \) -execdir mipsel-unknown-linux-uclibc-strip {} \;
+    
     # upx files
     printf "upx files ...\r"
     rm -rf $HOME/src/upx-*
@@ -153,7 +156,8 @@ ss_build()
     # tar xf $HOME/src/upx-3.91-amd64_linux.tar.bz2 -C $HOME
     curl http://upx.sourceforge.net/download/upx-3.91-amd64_linux.tar.bz2 | tar xj -C $HOME
     cd $HOME/upx-*
-    ./upx $HOME/ss-install/bin/*
+    # ./upx $HOME/ss-install/bin/*
+    find $HOME/ss-install/bin -type f \( ! -iname "ss-nat" \) -execdir ./upx {} \;
     cd $HOME/ss-install/bin/
 
     printf "compress files ...\r"
