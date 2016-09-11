@@ -35,6 +35,7 @@ addons:
             - asciidoc
             - xmlto
             - libpcre3
+            - libpcre3-dev
             # - openssl
             # - zlib
             
