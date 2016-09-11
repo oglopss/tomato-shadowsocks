@@ -34,7 +34,7 @@ addons:
             - help2man
             - asciidoc
             - xmlto
-            - pcre
+            - libpcre3
             # - openssl
             # - zlib
             
