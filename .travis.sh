@@ -105,6 +105,18 @@ ss_build()
     
     echo ========TRAVIS_BUILD_DIR=========
     ls -l $TRAVIS_BUILD_DIR
+
+    echo ========/usr=========
+    ls -l /usr
+    echo ========/usr/include=========
+    ls -l /usr/include    
+    echo ========/usr/lib=========
+    ls -l /usr/lib     
+    echo ========/usr/lib64=========
+    ls -l /usr/lib64     
+    echo ========/usr/local=========
+    ls -l /usr/local 
+    
     
     ls -l $HOME/x-tools/mipsel-unknown-linux-uclibc/bin
     cd $TRAVIS_BUILD_DIR/shadowsocks-libev
