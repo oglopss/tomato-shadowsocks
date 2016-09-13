@@ -105,6 +105,18 @@ ss_build()
     
     echo ========TRAVIS_BUILD_DIR=========
     ls -l $TRAVIS_BUILD_DIR
+
+    echo ========/usr=========
+    ls -l /usr
+    echo ========/usr/include=========
+    ls -l /usr/include    
+    echo ========/usr/lib=========
+    ls -l /usr/lib     
+    echo ========/usr/lib64=========
+    ls -l /usr/lib64     
+    echo ========/usr/local=========
+    ls -l /usr/local 
+    
     
     ls -l $HOME/x-tools/mipsel-unknown-linux-uclibc/bin
     cd $TRAVIS_BUILD_DIR/shadowsocks-libev
@@ -117,7 +129,7 @@ ss_build()
     fi
 
     
-    CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --disable-ssp --host=mipsel-uclibc-linux --prefix=$HOME/ss-install --with-openssl=$HOME/openssl-install --host=mipsel-uclibc-linux --with-zlib=$HOME/zlib-install
+    CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --disable-ssp --host=mipsel-uclibc-linux --prefix=$HOME/ss-install --with-openssl=$HOME/openssl-install --host=mipsel-uclibc-linux --with-zlib=$HOME/zlib-install --with-pcre=/usr
     make > /dev/null 
     make install > /dev/null
     local result=$?
