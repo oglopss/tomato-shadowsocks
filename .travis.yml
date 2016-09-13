@@ -1,7 +1,7 @@
 # Using container-based infrastructure
-# sudo: false
+sudo: false
 # enable trusty beta
-sudo: required
+# sudo: required
 dist: trusty
 
 # 'bash' will define a generic environment without interfering environment
@@ -66,6 +66,7 @@ env:
     matrix:
         # - export PATH=$HOME/x-tools/mipsel-unknown-linux-uclibc/bin:$PATH
         - SS_VER=latest
+        - SS_VER=v2.5.2
         - SS_VER=v2.5.1
         - SS_VER=v2.5.0
         - SS_VER=v2.4.8
