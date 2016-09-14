@@ -126,8 +126,8 @@ ss_build()
     ls -l /usr/include    
     echo ========/usr/lib=========
     ls -l /usr/lib     
-    echo ========/usr/lib64=========
-    ls -l /usr/lib64     
+    echo ========$HOME/pcre-install=========
+    ls -l $HOME/pcre-install 
     echo ========/usr/local=========
     ls -l /usr/local 
     echo ========pcre-config=========
