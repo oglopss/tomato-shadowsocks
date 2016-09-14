@@ -55,8 +55,10 @@ ct-ng_travis_build()
 pcre_build()
 {
 cd $HOME/src
-wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre2-10.20.tar.gz
-tar xvf pcre2-10.20.tar.gz
+# wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre2-10.20.tar.gz
+wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.38.tar.gz
+# tar xvf pcre2-10.20.tar.gz
+tar xvf pcre-8.38.tar.gz
 cd pcre*
 CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --host=mipsel-uclibc-linux
 make > /dev/null 2>&1
