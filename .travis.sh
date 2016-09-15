@@ -59,7 +59,7 @@ cd $HOME/src
 wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.38.tar.gz
 # tar xvf pcre2-10.20.tar.gz
 tar xvf pcre-8.38.tar.gz
-cd pcre*
+cd pcre-8.38
 CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --host=mipsel-uclibc-linux --disable-cpp --prefix=$HOME/pcre-install
 make # > /dev/null 2>&1
 make install # > /dev/null 2>&1
