@@ -21,6 +21,7 @@ cache:
         - $HOME/x-tools
         - $HOME/zlib-install
         - $HOME/openssl-install
+        - $HOME/pcre-install
 
 # Installing needed dependencies
 addons:
