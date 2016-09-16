@@ -45,6 +45,7 @@
 
 push_changes()
 {
+  git checkout .
   # pull latest before we try something
   git pull origin gh-pages
 
