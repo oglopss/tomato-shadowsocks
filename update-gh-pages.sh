@@ -17,7 +17,7 @@
   
   echo ===== about to clone ctng-ss-jekyll ===============
   echo 
-  x=$[ ( $RANDOM % 30 )  + 10 ]s
+  x=$[ ( $RANDOM % 120 )  + 10 ]s
   echo sleeping $x
   sleep $x
   
@@ -81,7 +81,7 @@ fi
   # git push -fq origin gh-pages # > /dev/null
 
   # keep retrying until push successful
-
+  git pull origin gh-pages
   pushcmd="git push -fq origin gh-pages"
   eval "$pushcmd"
   ret=$?
