@@ -60,7 +60,7 @@ wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.38.tar.gz
 # tar xvf pcre2-10.20.tar.gz
 tar xvf pcre-8.38.tar.gz
 cd pcre-8.38
-CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --host=mipsel-uclibc-linux --disable-cpp # --prefix=$HOME/pcre-install
+CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --host=mipsel-uclibc-linux --disable-cpp --prefix=$HOME/pcre-install
 make > /dev/null 2>&1
 make install > /dev/null 2>&1
 # echo ========$HOME/pcre-install=========
@@ -137,7 +137,12 @@ ss_build()
     ls -l /usr/local 
     echo ========pcre-config=========
     which pcre-config
-    
+    echo ========$HOME/pcre-install/include=========
+    ls -l $HOME/pcre-install/include   
+    echo ========$HOME/pcre-install/lib=========
+    ls -l $HOME/pcre-install/lib  
+
+
     ls -l $HOME/x-tools/mipsel-unknown-linux-uclibc/bin
     cd $TRAVIS_BUILD_DIR/shadowsocks-libev
     if [ "$SS_VER" == "latest" ]; then
@@ -149,7 +154,7 @@ ss_build()
     fi
 
     
-    CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --disable-ssp --host=mipsel-uclibc-linux --prefix=$HOME/ss-install --with-openssl=$HOME/openssl-install --with-zlib=$HOME/zlib-install --with-pcre=/usr/pcre
+    CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --disable-ssp --host=mipsel-uclibc-linux --prefix=$HOME/ss-install --with-openssl=$HOME/openssl-install --with-zlib=$HOME/zlib-install --with-pcre=$HOME/pcre-install
     make > /dev/null 
     make install > /dev/null
     local result=$?
