@@ -16,10 +16,10 @@
   git config --global user.name "Travis"
   
   echo ===== about to clone ctng-ss-jekyll ===============
-  # echo 
-  # x=$[ ( $RANDOM % 30 )  + 10 ]s
-  # echo sleeping $x
-  # sleep $x
+  echo 
+  x=$[ ( $RANDOM % 30 )  + 10 ]s
+  echo sleeping $x
+  sleep $x
   
   #using token clone gh-pages branch
   git clone --quiet --branch=gh-pages https://${GH_TOKEN}@github.com/oglopss/ctng-ss-jekyll.git  gh-pages-$SS_VER > /dev/null
@@ -40,6 +40,9 @@
   cd ../_data
 
   datetime=$(date '+%d/%m/%Y %H:%M:%S %Z');
+
+  # pull latest before we try something
+  git pull origin gh-pages
 
 if grep -qe "build: $TRAVIS_BUILD_NUMBER$" ss.yml
 then
@@ -78,7 +81,7 @@ fi
   # git push -fq origin gh-pages # > /dev/null
 
   # keep retrying until push successful
-  git pull origin gh-pages
+
   pushcmd="git push -fq origin gh-pages"
   eval "$pushcmd"
   ret=$?
