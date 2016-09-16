@@ -73,7 +73,7 @@ fi
   # git push -fq origin gh-pages # > /dev/null
 
   # keep retrying until push successful
-  cmd = 'git push -fq origin gh-pages '
+  cmd = "git push -fq origin gh-pages"
   eval $cmd
   ret=$?
   while ! test "$ret" -eq 0
