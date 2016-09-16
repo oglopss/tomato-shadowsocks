@@ -78,8 +78,8 @@ fi
   # git push -fq origin gh-pages # > /dev/null
 
   # keep retrying until push successful
-  cmd = "git push -fq origin gh-pages"
-  eval "$cmd"
+  pushcmd="git push -fq origin gh-pages"
+  eval "$pushcmd"
   ret=$?
   echo ========= the value "$ret" ============
   while ! test "$ret" -eq 0
@@ -90,7 +90,7 @@ fi
       sleep $x
       echo wake up!
       # exit 1
-      eval "$cmd"
+      eval "$pushcmd"
       ret=$?
   done
 
