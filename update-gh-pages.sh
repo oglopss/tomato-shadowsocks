@@ -41,6 +41,10 @@
 
   datetime=$(date '+%d/%m/%Y %H:%M:%S %Z');
 
+
+
+push_changes()
+{
   # pull latest before we try something
   git pull origin gh-pages
 
@@ -72,6 +76,7 @@ files:
 EOL
 
 fi
+
   
   echo ============= print ss.yml =============
   cat ./ss.yml
@@ -85,6 +90,11 @@ fi
   # pushcmd="git push -fq origin gh-pages"
   pushcmd="git push origin gh-pages"
   eval "$pushcmd"
+
+}
+
+
+  push_changes  
   ret=$?
   echo ========= the value "$ret" ============
   while ! test "$ret" -eq 0
@@ -95,8 +105,9 @@ fi
       sleep $x
       echo wake up!
       # exit 1
-      git pull origin gh-pages
-      eval "$pushcmd"
+      # git pull origin gh-pages
+      # eval "$pushcmd"
+      push_changes
       ret=$?
   done
 
