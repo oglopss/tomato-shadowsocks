@@ -81,7 +81,7 @@ fi
   cmd = "git push -fq origin gh-pages"
   eval "$cmd"
   ret=$?
-  echo ========= return value $ret ============
+  echo ========= the value "$ret" ============
   while ! test "$ret" -eq 0
   do
       echo >&2 "push failed with exit status $ret"
