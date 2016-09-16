@@ -1,9 +1,12 @@
 # if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
   echo -e "Starting to update gh-pages\n"
 
+  echo ======== show $HOME/ss-install* =======
+  ls -l $HOME/ss-install* -d
+
   #copy data we're interested in to other place
   mkdir -p $HOME/coverage
-  cp -R $HOME/ss-install/bin/*.tar.gz $HOME/coverage
+  cp -R $HOME/ss-install-$TRAVIS_BUILD_NUMBER/bin/*.tar.gz $HOME/coverage
 
   #go to home and setup git
   cd $HOME
@@ -17,10 +20,10 @@
   # sleep $x
   
   #using token clone gh-pages branch
-  git clone --quiet --branch=gh-pages https://${GH_TOKEN}@github.com/oglopss/ctng-ss-jekyll.git  gh-pages > /dev/null
+  git clone --quiet --branch=gh-pages https://${GH_TOKEN}@github.com/oglopss/ctng-ss-jekyll.git  gh-pages-$TRAVIS_BUILD_NUMBER > /dev/null
 
   #go into diractory and copy data we're interested in to that directory
-  cd gh-pages
+  cd gh-pages-$TRAVIS_BUILD_NUMBER
   mkdir -p download && cd download
   cp -Rf $HOME/coverage/* .
 
@@ -79,7 +82,7 @@ fi
   while ! test "$ret" -eq 0
   do
       echo >&2 "push failed with exit status $ret"
-      x=$[ ( $RANDOM % 5 )  + 2 ]s
+      x=$[ ( $RANDOM % 20 )  + 10 ]s
       echo sleeping $x
       sleep $x
       echo wake up!

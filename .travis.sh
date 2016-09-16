@@ -154,7 +154,7 @@ ss_build()
     fi
 
     
-    CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --disable-ssp --host=mipsel-uclibc-linux --prefix=$HOME/ss-install --with-openssl=$HOME/openssl-install --with-zlib=$HOME/zlib-install --with-pcre=$HOME/pcre-install
+    CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --disable-ssp --host=mipsel-uclibc-linux --prefix=$HOME/ss-install-$TRAVIS_BUILD_NUMBER --with-openssl=$HOME/openssl-install --with-zlib=$HOME/zlib-install --with-pcre=$HOME/pcre-install
     make > /dev/null 
     make install > /dev/null
     local result=$?
@@ -184,7 +184,7 @@ ss_build()
     printf "strip files ...\r"
     # exclude ss-nat new in 2.4.7
     # mipsel-unknown-linux-uclibc-strip $HOME/ss-install/bin/*
-    find $HOME/ss-install/bin -type f \( ! -iname "ss-nat" \) -execdir mipsel-unknown-linux-uclibc-strip {} \;
+    find $HOME/ss-install-$TRAVIS_BUILD_NUMBER/bin -type f \( ! -iname "ss-nat" \) -execdir mipsel-unknown-linux-uclibc-strip {} \;
     
     # upx files
     printf "upx files ...\r"
@@ -194,8 +194,8 @@ ss_build()
     curl http://upx.sourceforge.net/download/upx-3.91-amd64_linux.tar.bz2 | tar xj -C $HOME
     cd $HOME/upx-*
     # ./upx $HOME/ss-install/bin/*
-    find $HOME/ss-install/bin -type f \( ! -iname "ss-nat" \) -execdir ./upx {} \;
-    cd $HOME/ss-install/bin/
+    find $HOME/ss-install-$TRAVIS_BUILD_NUMBER/bin -type f \( ! -iname "ss-nat" \) -execdir ./upx {} \;
+    cd $HOME/ss-install-$TRAVIS_BUILD_NUMBER/bin/
 
     printf "compress files ...\r"
     # rm -rf
