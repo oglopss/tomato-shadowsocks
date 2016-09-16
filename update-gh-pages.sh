@@ -15,17 +15,17 @@
   git config --global user.email "travis@travis-ci.org"
   git config --global user.name "Travis"
   
-  echo ===== about to clone ctng-ss-jekyllx ===============
+  echo ===== about to clone ctng-ss-jekyll ===============
   # echo 
   # x=$[ ( $RANDOM % 30 )  + 10 ]s
   # echo sleeping $x
   # sleep $x
   
   #using token clone gh-pages branch
-  git clone --quiet --branch=gh-pages https://${GH_TOKEN}@github.com/oglopss/ctng-ss-jekyll.git  gh-pages > /dev/null
+  git clone --quiet --branch=gh-pages https://${GH_TOKEN}@github.com/oglopss/ctng-ss-jekyll.git  gh-pages-$SS_VER > /dev/null
 
   #go into diractory and copy data we're interested in to that directory
-  cd gh-pages
+  cd gh-pages-$SS_VER
   mkdir -p download && cd download
   cp -Rf $HOME/coverage/* .
 
@@ -33,7 +33,7 @@
   git add -f .
   
   # update ss.yml as well
-    echo ======== show $SS_VER =======
+  echo ======== show $SS_VER =======
   echo $SS_VER
 
   # need to regenerate _data/ss.yml
@@ -74,7 +74,7 @@ fi
   cat ./ss.yml
   git add -f ss.yml
   
-  git commit -m "Travis build $TRAVIS_BUILD_NUMBER pushed to gh-pages"
+  git commit -m "Travis build $TRAVIS_BUILD_NUMBER $SS_VER pushed to gh-pages"
   # git push -fq origin gh-pages # > /dev/null
 
   # keep retrying until push successful
