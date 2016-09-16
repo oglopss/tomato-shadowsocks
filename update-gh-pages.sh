@@ -78,6 +78,7 @@ fi
   # git push -fq origin gh-pages # > /dev/null
 
   # keep retrying until push successful
+  git pull origin gh-pages
   pushcmd="git push -fq origin gh-pages"
   eval "$pushcmd"
   ret=$?
