@@ -11,10 +11,10 @@
   git config --global user.name "Travis"
   
   echo ===== about to clone ctng-ss-jekyllx ===============
-  echo 
-  x=$[ ( $RANDOM % 30 )  + 10 ]s
-  echo sleeping $x
-  sleep $x
+  # echo 
+  # x=$[ ( $RANDOM % 30 )  + 10 ]s
+  # echo sleeping $x
+  # sleep $x
   
   #using token clone gh-pages branch
   git clone --quiet --branch=gh-pages https://${GH_TOKEN}@github.com/oglopss/ctng-ss-jekyll.git  gh-pages > /dev/null
@@ -70,7 +70,21 @@ fi
   git add -f ss.yml
   
   git commit -m "Travis build $TRAVIS_BUILD_NUMBER pushed to gh-pages"
-  git push -fq origin gh-pages > /dev/null
+  # git push -fq origin gh-pages # > /dev/null
+
+  # keep retrying until push successful
+  cmd = 'git push -fq origin gh-pages '
+  eval cmd
+  ret=$?
+  while ! test "$ret" -eq 0
+  do
+      echo >&2 "push failed with exit status $ret"
+      x=$[ ( $RANDOM % 5 )  + 2 ]s
+      echo sleeping $x
+      sleep $x
+      echo wake up!
+      # exit 1
+  done
 
   echo -e "Done magic with love\n"
 # fi
