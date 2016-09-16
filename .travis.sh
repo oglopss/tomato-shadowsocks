@@ -62,13 +62,13 @@ tar xvf pcre-8.38.tar.gz
 cd pcre-8.38
 CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --host=mipsel-uclibc-linux --disable-cpp # --prefix=$HOME/pcre-install
 make > /dev/null 2>&1
-sudo make install > /dev/null 2>&1
-echo ========$HOME/pcre-install=========
-ls -l $HOME/pcre-install 
-echo ========$HOME/pcre-install/include=========
-ls -l $HOME/pcre-install/include
-echo ========pcre-config  --prefix=========
-pcre-config  --prefix
+make install > /dev/null 2>&1
+# echo ========$HOME/pcre-install=========
+# ls -l $HOME/pcre-install 
+# echo ========$HOME/pcre-install/include=========
+# ls -l $HOME/pcre-install/include
+# echo ========pcre-config  --prefix=========
+# pcre-config  --prefix
 }
 
 openssl_build()
@@ -131,8 +131,8 @@ ss_build()
     ls -l /usr/include    
     echo ========/usr/lib=========
     ls -l /usr/lib     
-    echo ========$HOME/pcre-install=========
-    ls -l $HOME/pcre-install 
+    # echo ========$HOME/pcre-install=========
+    # ls -l $HOME/pcre-install 
     echo ========/usr/local=========
     ls -l /usr/local 
     echo ========pcre-config=========
@@ -149,7 +149,7 @@ ss_build()
     fi
 
     
-    CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --disable-ssp --host=mipsel-uclibc-linux --prefix=$HOME/ss-install --with-openssl=$HOME/openssl-install --with-zlib=$HOME/zlib-install --with-pcre=/usr/
+    CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --disable-ssp --host=mipsel-uclibc-linux --prefix=$HOME/ss-install --with-openssl=$HOME/openssl-install --with-zlib=$HOME/zlib-install --with-pcre=/usr/local
     make > /dev/null 
     make install > /dev/null
     local result=$?
