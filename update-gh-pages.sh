@@ -74,7 +74,7 @@ fi
 
   # keep retrying until push successful
   cmd = 'git push -fq origin gh-pages '
-  eval cmd
+  eval $cmd
   ret=$?
   while ! test "$ret" -eq 0
   do
@@ -84,6 +84,8 @@ fi
       sleep $x
       echo wake up!
       # exit 1
+      eval $cmd
+      ret=$?
   done
 
   echo -e "Done magic with love\n"
