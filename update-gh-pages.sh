@@ -51,12 +51,12 @@ push_changes()
   cat ./ss.yml
 
   # git reset --hard
-  git checkout .
+  # git checkout .
 
   # echo ============= print ss.yml after reset hard =============
   # cat ./ss.yml
 
-  pull latest before we try something
+  # pull latest before we try something
   git pull origin gh-pages
 
   echo ============= print ss.yml in push changes after pull =============
