@@ -46,8 +46,16 @@
 
 push_changes()
 {
+
+  echo ============= print ss.yml before reset hard =============
+  cat ./ss.yml
+
   git reset --hard
   # git checkout .
+
+  echo ============= print ss.yml after reset hard =============
+  cat ./ss.yml
+
   # pull latest before we try something
   git pull origin gh-pages
 
@@ -84,7 +92,7 @@ EOL
 fi
 
   
-  echo ============= print ss.yml =============
+  echo ============= print ss.yml after ccat =============
   cat ./ss.yml
   git add -f ss.yml
   
