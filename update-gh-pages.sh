@@ -68,10 +68,10 @@ push_changes()
       echo "Need to pull"
 
     git fetch --all
-    git reset --hard origin/master
+    git reset --hard origin/gh-pages
   fi
 
-  
+
   echo ============= print ss.yml in push changes after pull =============
   cat ./ss.yml
 
