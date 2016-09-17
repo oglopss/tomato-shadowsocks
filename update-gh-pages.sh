@@ -39,7 +39,7 @@
   # need to regenerate _data/ss.yml
   cd ../_data
 
-  datetime=$(date '+%d/%m/%Y %H:%M:%S %Z');
+  # datetime=$(date '+%d/%m/%Y %H:%M:%S %Z');
 
   echo ============= print ss.yml before push changes =============
   cat ./ss.yml
@@ -75,7 +75,7 @@ then
 EOL
     fi
   # update datetime
-  sed -ie 's@^date:\s.*@date: '"$datetime"'@g' ss.yml
+  # sed -ie 's@^date:\s.*@date: '"$datetime"'@g' ss.yml
 
 else
     # code if not found
@@ -84,7 +84,6 @@ else
 
     cat > ss.yml <<EOL
 build: $TRAVIS_BUILD_NUMBER
-date: $datetime
 files:
   - $SS_VER
 EOL
