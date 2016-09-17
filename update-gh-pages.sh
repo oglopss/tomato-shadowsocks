@@ -41,7 +41,8 @@
 
   datetime=$(date '+%d/%m/%Y %H:%M:%S %Z');
 
-
+  echo ============= print ss.yml =============
+  cat ./ss.yml
 
 push_changes()
 {
