@@ -62,6 +62,12 @@ push_changes()
   echo ============= print ss.yml in push changes after pull =============
   cat ./ss.yml
 
+if grep -qe ">>>>>>>" ss.yml
+then
+rm -f ss.yml
+fi
+
+
 if grep -qe "build: $TRAVIS_BUILD_NUMBER$" ss.yml
 then
     # code if found
