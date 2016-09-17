@@ -17,7 +17,7 @@
   
   echo ===== about to clone ctng-ss-jekyll ===============
   echo 
-  x=$[ ( $RANDOM % 120 )  + 10 ]s
+  x=$[ ( $RANDOM % 250 )  + 40 ]s
   echo sleeping $x
   sleep $x
   
@@ -48,7 +48,7 @@ push_changes()
   git reset --hard
   #git checkout .
   # pull latest before we try something
-  git pull origin gh-pages
+  # git pull origin gh-pages
 
 if grep -qe "build: $TRAVIS_BUILD_NUMBER$" ss.yml
 then
@@ -102,7 +102,7 @@ fi
   while ! test "$ret" -eq 0
   do
       echo >&2 "push failed with exit status $ret"
-      x=$[ ( $RANDOM % 20 )  + 10 ]s
+      x=$[ ( $RANDOM % 250 )  + 30 ]s
       echo sleeping $x
       sleep $x
       echo wake up!
