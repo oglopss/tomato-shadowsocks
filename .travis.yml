@@ -111,17 +111,17 @@ env:
         - SS_VER=v1.5.0
 
         # the following version errored out so i disabled them
-        # - SS_VER=v1.4.8
-        # - SS_VER=v1.4.7
-        # - SS_VER=v1.4.6
-        # - SS_VER=v1.4.5
-        # - SS_VER=v1.4.4
-        # - SS_VER=v1.4.3
-        # - SS_VER=v1.4.2
-        # - SS_VER=v1.4.1
-        # - SS_VER=v1.4.0
-        # - SS_VER=v1.3.2
-        # - SS_VER=v1.3
+        - SS_VER=v1.4.8
+        - SS_VER=v1.4.7
+        - SS_VER=v1.4.6
+        - SS_VER=v1.4.5
+        - SS_VER=v1.4.4
+        - SS_VER=v1.4.3
+        - SS_VER=v1.4.2
+        - SS_VER=v1.4.1
+        - SS_VER=v1.4.0
+        - SS_VER=v1.3.2
+        - SS_VER=v1.3
     global:
         - secure: ZfpM0iSUM+t+A/RgdCQ/aTaoYfMHGPWED+pmqrHT50yjSEIVw4PclHZcDeExaopx1lUQjJpdOTlJ9Y8i7kfAGisojFNd6+3MOL2Qpe6rt8NF0x+n5V1YHgI9xOILigBcQo+ty4Iy1hDGFYrn96FCWRA71A4JuLthqXvAJY7RVAkTnmcTGf6ePWqYRQHvtje4mR4w43+VU9dlQpl1uly0ocd+PUhZrehqyfvmOxZhZbNfHBk/tQfLMl50OfyV6+vaOruOmkZKdsqMVCbz8NPanTDz8UeCLpaPQD46zH6F/KVOMRUhErNfQs4vWopg5H4BL25nOd/Ji8D38V+ai/h3d4EbBv8aQSuygmuSDSC3VeEuxjNgRvnoHSlqJGnhFsagH6suALu1kFfsCQNeX7267p4pNXKTTb4NIWnv/flwCgKPzk81h2OXhOpKVw2htfrcK0jmb0tyVNVRWDs9NTlFH+z5KjuOm+ykqeVS61Bc6Y5kHK3D0QsA7EIWN5MbIbExPnsfCkA/TMIcMDLzDCU/0zkfvZ0T7DqHpcU0mDeRCpA1IqhJ1Fmsz5V6g2hr9eF2VL1tSNoXSi7soCRG0kZjhnGQdssbmBplvJW55MwJCtc88LSJDdj5amTq8ZYwDi/ZbEpJYenpkwXU6/tq9EKsIjq3Znh+mgP/nnAxSiVrHkI=
         
