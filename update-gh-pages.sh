@@ -41,7 +41,7 @@
 
   datetime=$(date '+%d/%m/%Y %H:%M:%S %Z');
 
-  echo ============= print ss.yml =============
+  echo ============= print ss.yml before push changes =============
   cat ./ss.yml
 
 push_changes()
@@ -50,6 +50,9 @@ push_changes()
   # git checkout .
   # pull latest before we try something
   git pull origin gh-pages
+
+  echo ============= print ss.yml in push changes after pull =============
+  cat ./ss.yml
 
 if grep -qe "build: $TRAVIS_BUILD_NUMBER$" ss.yml
 then
