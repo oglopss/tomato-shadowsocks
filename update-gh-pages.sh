@@ -47,9 +47,9 @@
 push_changes()
 {
   git reset --hard
-  #git checkout .
+  # git checkout .
   # pull latest before we try something
-  # git pull origin gh-pages
+  git pull origin gh-pages
 
 if grep -qe "build: $TRAVIS_BUILD_NUMBER$" ss.yml
 then
@@ -99,7 +99,7 @@ fi
 
   push_changes  
   ret=$?
-  echo ========= the value "$ret" ============
+  # echo ========= the value "$ret" ============
   while ! test "$ret" -eq 0
   do
       echo >&2 "push failed with exit status $ret"
