@@ -50,22 +50,22 @@ push_changes()
   echo ============= print ss.yml before reset hard =============
   cat ./ss.yml
 
-  git reset --hard
-  # git checkout .
+  # git reset --hard
+  git checkout .
 
-  echo ============= print ss.yml after reset hard =============
-  cat ./ss.yml
+  # echo ============= print ss.yml after reset hard =============
+  # cat ./ss.yml
 
-  # pull latest before we try something
+  pull latest before we try something
   git pull origin gh-pages
 
   echo ============= print ss.yml in push changes after pull =============
   cat ./ss.yml
 
-if grep -qe ">>>>>>>" ss.yml
-then
-rm -f ss.yml
-fi
+# if grep -qe ">>>>>>>" ss.yml
+# then
+# rm -f ss.yml
+# fi
 
 
 if grep -qe "build: $TRAVIS_BUILD_NUMBER$" ss.yml
