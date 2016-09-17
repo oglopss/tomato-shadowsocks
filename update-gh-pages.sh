@@ -57,8 +57,21 @@ push_changes()
   # cat ./ss.yml
 
   # pull latest before we try something
-  git pull origin gh-pages
+  # git pull origin gh-pages
 
+  # http://stackoverflow.com/questions/3258243/check-if-pull-needed-in-git
+  LOCAL=$(git rev-parse @)
+  REMOTE=$(git rev-parse @{u})
+  BASE=$(git merge-base @ @{u})
+
+  if [ $LOCAL = $BASE ]; then
+      echo "Need to pull"
+
+    git fetch --all
+    git reset --hard origin/master
+  fi
+
+  
   echo ============= print ss.yml in push changes after pull =============
   cat ./ss.yml
 
@@ -105,7 +118,7 @@ fi
   # git push -fq origin gh-pages # > /dev/null
 
   # keep retrying until push successful
-  git pull origin gh-pages
+  # git pull origin gh-pages
   # pushcmd="git push -fq origin gh-pages"
   pushcmd="git push origin gh-pages"
   eval "$pushcmd"
