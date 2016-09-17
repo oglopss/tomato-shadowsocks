@@ -17,7 +17,7 @@
   
   echo ===== about to clone ctng-ss-jekyll ===============
   echo 
-  x=$[ ( $RANDOM % 250 )  + 40 ]s
+  x=$[ ( $RANDOM % 25 )  + 10 ]s
   echo sleeping $x
   sleep $x
   
@@ -103,7 +103,7 @@ fi
   while ! test "$ret" -eq 0
   do
       echo >&2 "push failed with exit status $ret"
-      x=$[ ( $RANDOM % 250 )  + 30 ]s
+      x=$[ ( $RANDOM % 20 )  + 10 ]s
       echo sleeping $x
       sleep $x
       echo wake up!
