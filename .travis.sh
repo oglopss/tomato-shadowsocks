@@ -184,7 +184,7 @@ ss_build()
     printf "strip files ...\r"
     echo ========$path=========
     echo before: "$PATH"
-
+    # http://stackoverflow.com/questions/13710806/string-replace-this-shell-variable
     PATH=${PATH/:.\/node_modules\/.bin}
 
     echo after: "$PATH"
@@ -198,8 +198,16 @@ ss_build()
     rm -rf $HOME/src/upx-*
     # wget http://upx.sourceforge.net/download/upx-3.91-amd64_linux.tar.bz2 -P $HOME/src
     # tar xf $HOME/src/upx-3.91-amd64_linux.tar.bz2 -C $HOME
+
+    # http://www.shellhacks.com/en/HowTo-Download-and-Extract-untar-TAR-Archive-with-One-Command
     curl http://upx.sourceforge.net/download/upx-3.91-amd64_linux.tar.bz2 | tar xj -C $HOME
     cd $HOME/upx-*
+
+    echo ========$HOME/upx-*=========
+    pwd
+    ls -l
+
+
     # ./upx $HOME/ss-install/bin/*
     find $HOME/ss-install/bin -type f \( ! -iname "ss-nat" \) -execdir ./upx {} \;
     cd $HOME/ss-install/bin/
