@@ -26,7 +26,7 @@
 
 
   cd gh-pages-$SS_VER
-  
+
   # update ss.yml as well
   echo ======== show $SS_VER =======
   echo $SS_VER
@@ -74,7 +74,7 @@ push_changes()
   cat ./ss.yml
 
     #go into diractory and copy data we're interested in to that directory
-  cd gh-pages-$SS_VER
+  cd $HOME/gh-pages-$SS_VER
   mkdir -p download && cd download
   cp -Rf $HOME/coverage/* .
 
