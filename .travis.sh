@@ -147,7 +147,7 @@ ss_build()
     cd $TRAVIS_BUILD_DIR/shadowsocks-libev
 
 
-    pcre_config="--with-pcre=$HOME/pcre-install"
+    # pcre_config="--with-pcre=$HOME/pcre-install"
 
     if [ "$SS_VER" == "latest" ]; then
         id=$(git rev-parse HEAD)
@@ -156,13 +156,13 @@ ss_build()
 
         # http://stackoverflow.com/questions/229551/string-contains-in-bash
 
-        if [[ $SS_VER == *"nopcre"* ]]; then
-            pcre_config="--without-libpcre"
-        fi
+        # if [[ $SS_VER == *"nopcre"* ]]; then
+        #     pcre_config="--without-libpcre"
+        # fi
 
-        if [[ $SS_VER == *"_"* ]]; then
-            SS_VER=${SS_VER%_*}
-        fi
+        # if [[ $SS_VER == *"_"* ]]; then
+        #     SS_VER=${SS_VER%_*}
+        # fi
 
 
         echo ================= will checkout SS_VER ================
@@ -172,17 +172,17 @@ ss_build()
 
     fi
 
-    echo ================= before ss-config ================
+    # echo ================= before ss-config ================
 
-    echo $pcre_config
+    # echo $pcre_config
 
-    config_cmd="CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --disable-ssp --host=mipsel-uclibc-linux --prefix=$HOME/ss-install --with-openssl=$HOME/openssl-install --with-zlib=$HOME/zlib-install $pcre_config"
+    # config_cmd="CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --disable-ssp --host=mipsel-uclibc-linux --prefix=$HOME/ss-install --with-openssl=$HOME/openssl-install --with-zlib=$HOME/zlib-install $pcre_config"
 
-    echo "$config_cmd"
+    # echo "$config_cmd"
 
     # eval "$config_cmd"
     # echo ======== this time is real ==========
-    CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --disable-ssp --host=mipsel-uclibc-linux --prefix=$HOME/ss-install --with-openssl=$HOME/openssl-install --with-zlib=$HOME/zlib-install $pcre_config
+    CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --disable-ssp --host=mipsel-uclibc-linux --prefix=$HOME/ss-install --with-openssl=$HOME/openssl-install --with-zlib=$HOME/zlib-install --with-pcre=$HOME/pcre-install
 
 
     make > /dev/null 
