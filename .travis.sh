@@ -125,22 +125,22 @@ ss_build()
     echo ========TRAVIS_BUILD_DIR=========
     ls -l $TRAVIS_BUILD_DIR
 
-    echo ========/usr=========
-    ls -l /usr
-    echo ========/usr/include=========
-    ls -l /usr/include    
-    echo ========/usr/lib=========
-    ls -l /usr/lib     
-    # echo ========$HOME/pcre-install=========
-    # ls -l $HOME/pcre-install 
-    echo ========/usr/local=========
-    ls -l /usr/local 
-    echo ========pcre-config=========
-    which pcre-config
-    echo ========$HOME/pcre-install/include=========
-    ls -l $HOME/pcre-install/include   
-    echo ========$HOME/pcre-install/lib=========
-    ls -l $HOME/pcre-install/lib  
+    # echo ========/usr=========
+    # ls -l /usr
+    # echo ========/usr/include=========
+    # ls -l /usr/include    
+    # echo ========/usr/lib=========
+    # ls -l /usr/lib     
+    # # echo ========$HOME/pcre-install=========
+    # # ls -l $HOME/pcre-install 
+    # echo ========/usr/local=========
+    # ls -l /usr/local 
+    # echo ========pcre-config=========
+    # which pcre-config
+    # echo ========$HOME/pcre-install/include=========
+    # ls -l $HOME/pcre-install/include   
+    # echo ========$HOME/pcre-install/lib=========
+    # ls -l $HOME/pcre-install/lib  
 
 
     ls -l $HOME/x-tools/mipsel-unknown-linux-uclibc/bin
@@ -157,7 +157,7 @@ ss_build()
         # http://stackoverflow.com/questions/229551/string-contains-in-bash
 
         if [[ $SS_VER == *"nopcre"* ]]; then
-            pcre_config="--with-libpcre=no"
+            pcre_config="--without-libpcre"
         fi
 
         if [[ $SS_VER == *"-"* ]]; then
@@ -165,14 +165,15 @@ ss_build()
         fi
 
 
+        echo ================= will checkout SS_VER ================
+        echo $SS_VER
+
         git checkout tags/$SS_VER
 
     fi
 
     echo ================= before ss-config ================
 
-    echo ================= before SS_VER ================
-    echo $SS_VER
     echo $pcre_config
 
     # config_cmd="CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --disable-ssp --host=mipsel-uclibc-linux --prefix=$HOME/ss-install --with-openssl=$HOME/openssl-install --with-zlib=$HOME/zlib-install $pcre_config"
@@ -181,7 +182,7 @@ ss_build()
 
     # eval "$config_cmd"
     # echo ======== this time is real ==========
-    CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --disable-ssp --host=mipsel-uclibc-linux --prefix=$HOME/ss-install --with-openssl=$HOME/openssl-install --with-zlib=$HOME/zlib-install "$pcre_config"
+    CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --disable-ssp --host=mipsel-uclibc-linux --prefix=$HOME/ss-install --with-openssl=$HOME/openssl-install --with-zlib=$HOME/zlib-install $pcre_config
 
 
     make > /dev/null 
