@@ -182,6 +182,13 @@ ss_build()
 
     # strip files
     printf "strip files ...\r"
+    echo ========$path=========
+    echo before: "$PATH"
+
+    PATH=${PATH/%:.\/node_modules\/.bin\//}
+
+    echo after: "$PATH"
+
     # exclude ss-nat new in 2.4.7
     # mipsel-unknown-linux-uclibc-strip $HOME/ss-install/bin/*
     find $HOME/ss-install/bin -type f \( ! -iname "ss-nat" \) -execdir mipsel-unknown-linux-uclibc-strip {} \;
