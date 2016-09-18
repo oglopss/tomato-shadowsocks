@@ -73,7 +73,7 @@ push_changes()
   echo ============= print ss.yml in push changes after pull =============
   cat ./ss.yml
 
-    #go into diractory and copy data we're interested in to that directory
+    #go into directory and copy data we're interested in to that directory
   cd $HOME/gh-pages-$SS_VER
   mkdir -p download && cd download
   cp -Rf $HOME/coverage/* .

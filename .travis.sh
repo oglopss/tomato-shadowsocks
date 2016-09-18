@@ -145,16 +145,37 @@ ss_build()
 
     ls -l $HOME/x-tools/mipsel-unknown-linux-uclibc/bin
     cd $TRAVIS_BUILD_DIR/shadowsocks-libev
+
+
+    pcre_config="--with-pcre=$HOME/pcre-install"
+
     if [ "$SS_VER" == "latest" ]; then
         id=$(git rev-parse HEAD)
         SS_VER=vsnapshot-${id:0:5}
     else    
+
+        # http://stackoverflow.com/questions/229551/string-contains-in-bash
+
+        if [[ $SS_VER == *"nopcre"* ]]; then
+            pcre_config="--without-pcre"
+        fi
+
+        if [[ $SS_VER == *"-"* ]]; then
+            SS_VER=${SS_VER%-*}
+        fi
+
+
         git checkout tags/$SS_VER
 
     fi
 
-    
-    CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --disable-ssp --host=mipsel-uclibc-linux --prefix=$HOME/ss-install --with-openssl=$HOME/openssl-install --with-zlib=$HOME/zlib-install --with-pcre=$HOME/pcre-install
+    echo =================  ss-config ================
+    config_cmd=CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --disable-ssp --host=mipsel-uclibc-linux --prefix=$HOME/ss-install --with-openssl=$HOME/openssl-install --with-zlib=$HOME/zlib-install $pcre_config
+
+    echo $config_cmd
+
+    eval $config_cmd
+
     make > /dev/null 
     make install > /dev/null
     local result=$?
