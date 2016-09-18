@@ -157,7 +157,7 @@ ss_build()
         # http://stackoverflow.com/questions/229551/string-contains-in-bash
 
         if [[ $SS_VER == *"nopcre"* ]]; then
-            pcre_config="--without-libpcre"
+            pcre_config="--with-libpcre=no"
         fi
 
         if [[ $SS_VER == *"-"* ]]; then
