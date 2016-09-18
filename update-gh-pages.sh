@@ -24,20 +24,14 @@
   #using token clone gh-pages branch
   git clone --quiet --branch=gh-pages https://${GH_TOKEN}@github.com/oglopss/ctng-ss-jekyll.git  gh-pages-$SS_VER > /dev/null
 
-  #go into diractory and copy data we're interested in to that directory
-  cd gh-pages-$SS_VER
-  mkdir -p download && cd download
-  cp -Rf $HOME/coverage/* .
 
-  #add, commit and push files
-  git add -f .
   
   # update ss.yml as well
   echo ======== show $SS_VER =======
   echo $SS_VER
 
   # need to regenerate _data/ss.yml
-  cd ../_data
+  cd _data
 
   # datetime=$(date '+%d/%m/%Y %H:%M:%S %Z');
 
@@ -46,6 +40,9 @@
 
 push_changes()
 {
+
+
+
 
   echo ============= print ss.yml before reset hard =============
   cat ./ss.yml
@@ -74,6 +71,16 @@ push_changes()
 
   echo ============= print ss.yml in push changes after pull =============
   cat ./ss.yml
+
+    #go into diractory and copy data we're interested in to that directory
+  cd gh-pages-$SS_VER
+  mkdir -p download && cd download
+  cp -Rf $HOME/coverage/* .
+
+  #add, commit and push files
+  git add -f .
+
+  cd ../_data
 
 # if grep -qe ">>>>>>>" ss.yml
 # then
