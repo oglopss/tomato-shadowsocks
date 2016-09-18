@@ -185,7 +185,7 @@ ss_build()
     echo ========$path=========
     echo before: "$PATH"
 
-    PATH=${PATH/%:.\/node_modules\/.bin\//}
+    PATH=${PATH/:.\/node_modules\/.bin}
 
     echo after: "$PATH"
 
