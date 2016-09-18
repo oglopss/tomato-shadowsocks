@@ -209,7 +209,7 @@ ss_build()
 
 
     # ./upx $HOME/ss-install/bin/*
-    find $HOME/ss-install/bin -type f \( ! -iname "ss-nat" \) -execdir ./upx {} \;
+    find $HOME/ss-install/bin -type f \( ! -iname "ss-nat" \) -exec ./upx {} \;
     cd $HOME/ss-install/bin/
 
     printf "compress files ...\r"
