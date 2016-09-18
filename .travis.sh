@@ -160,7 +160,7 @@ ss_build()
             # pcre_config="--without-libpcre"
         fi
 
-        if [[ $SS_VER == *"-"* ]]; then
+        if [[ $SS_VER == *"_"* ]]; then
             SS_VER=${SS_VER%-*}
         fi
 
