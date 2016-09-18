@@ -161,7 +161,7 @@ ss_build()
         fi
 
         if [[ $SS_VER == *"_"* ]]; then
-            SS_VER=${SS_VER%-*}
+            SS_VER=${SS_VER%_*}
         fi
 
 
