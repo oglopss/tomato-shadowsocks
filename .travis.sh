@@ -118,8 +118,8 @@ ss_build()
     ls -l $HOME/builds    
     echo ========home/x-tools=========
     ls -l $HOME/x-tools   
-    echo ========home/x-tools/mipsel-unknown-linux-uclibc=========
-    ls -l $HOME/x-tools/mipsel-unknown-linux-uclibc    
+    # echo ========home/x-tools/mipsel-unknown-linux-uclibc=========
+    # ls -l $HOME/x-tools/mipsel-unknown-linux-uclibc    
     
     
     echo ========TRAVIS_BUILD_DIR=========
@@ -157,7 +157,7 @@ ss_build()
         # http://stackoverflow.com/questions/229551/string-contains-in-bash
 
         if [[ $SS_VER == *"nopcre"* ]]; then
-            pcre_config="--without-libpcre"
+            # pcre_config="--without-libpcre"
         fi
 
         if [[ $SS_VER == *"-"* ]]; then
