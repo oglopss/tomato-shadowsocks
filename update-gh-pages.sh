@@ -25,6 +25,7 @@
   git clone --quiet --branch=gh-pages https://${GH_TOKEN}@github.com/oglopss/ctng-ss-jekyll.git  gh-pages-$SS_VER > /dev/null
 
 
+  cd gh-pages-$SS_VER
   
   # update ss.yml as well
   echo ======== show $SS_VER =======
