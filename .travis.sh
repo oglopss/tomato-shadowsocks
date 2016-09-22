@@ -142,8 +142,12 @@ ss_build()
     # echo ========$HOME/pcre-install/lib=========
     # ls -l $HOME/pcre-install/lib  
 
+    echo ========mipsel-unknown-linux-uclibc=========
+    ls -l $HOME/x-tools/mipsel-unknown-linux-uclibc
 
+    echo ========mipsel-unknown-linux-uclibc/bin=========
     ls -l $HOME/x-tools/mipsel-unknown-linux-uclibc/bin
+
     cd $TRAVIS_BUILD_DIR/shadowsocks-libev
 
 
