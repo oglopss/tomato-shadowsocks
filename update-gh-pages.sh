@@ -65,8 +65,12 @@ push_changes()
   if [ $LOCAL = $BASE ]; then
       echo "Need to pull"
 
-    git fetch --all
+    # git fetch --all
+    # git reset --hard origin/gh-pages
+
     git reset --hard origin/gh-pages
+    git pull
+
   fi
 
 
