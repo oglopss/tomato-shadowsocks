@@ -58,12 +58,12 @@ push_changes()
   # git pull origin gh-pages
 
   # http://stackoverflow.com/questions/3258243/check-if-pull-needed-in-git
-  LOCAL=$(git rev-parse @)
-  REMOTE=$(git rev-parse @{u})
-  BASE=$(git merge-base @ @{u})
+  # LOCAL=$(git rev-parse @)
+  # REMOTE=$(git rev-parse @{u})
+  # BASE=$(git merge-base @ @{u})
 
-  if [ $LOCAL = $BASE ]; then
-      echo "Need to pull"
+  # if [ $LOCAL = $BASE ]; then
+  #     echo "Need to pull"
 
     # git fetch --all
     # git reset --hard origin/gh-pages
@@ -71,7 +71,7 @@ push_changes()
     git reset --hard origin/gh-pages
     git pull
 
-  fi
+  # fi
 
 
   echo ============= print ss.yml in push changes after pull =============
