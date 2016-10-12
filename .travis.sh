@@ -130,7 +130,7 @@ ss_build()
     # echo ========/usr/include=========
     # ls -l /usr/include    
     # echo ========/usr/lib=========
-    # ls -l /usr/lib     
+    # ls -l /usr/lib     qwerty
     # # echo ========$HOME/pcre-install=========
     # # ls -l $HOME/pcre-install 
     # echo ========/usr/local=========
