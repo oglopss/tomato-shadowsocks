@@ -54,7 +54,7 @@ before_install:
 # Building crosstool-NG core
 install:
     - cd crosstool-ng
-    # - git checkout tomato
+    - git checkout tomato
     # - cp $TRAVIS_BUILD_DIR/ctng.config ./.config -f
     # - ./bootstrap
     # - ./configure --enable-local
