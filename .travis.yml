@@ -136,10 +136,10 @@ script:
     # - ct-ng $CT_SAMPLE    # Configure the build
     # - echo ============================
     # - apt-cache search pcre
-    # - ct-ng_travis_build  # Build the sample
-    # - pcre_build
-    # - zlib_build
-    # - openssl_build
+    - ct-ng_travis_build  # Build the sample
+    - pcre_build
+    - zlib_build
+    - openssl_build
     - ss_build
 
 # On failure displaying the last lines of the log file
