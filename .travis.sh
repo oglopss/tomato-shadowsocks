@@ -74,8 +74,8 @@ make install > /dev/null 2>&1
 openssl_build()
 {
     cd $HOME/src
-    wget https://www.openssl.org/source/openssl-1.0.2g.tar.gz
-    tar xvf openssl-1.0.2g.tar.gz -C ../
+    wget https://www.openssl.org/source/openssl-1.0.2j.tar.gz
+    tar xvf openssl-1.0.2j.tar.gz -C ../
     cd ../openssl*
     # git checkout tags/OpenSSL_1_0_2g
     CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./Configure no-asm shared --prefix=$HOME/openssl-install linux-mips32 &> /dev/null
