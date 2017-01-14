@@ -87,10 +87,10 @@ openssl_build()
 zlib_build()
 {
     cd $HOME/src
-    wget http://zlib.net/zlib-1.2.8.tar.gz
+    wget http://zlib.net/zlib-1.2.10.tar.gz
     # export PATH=$HOME/x-tools/mipsel-unknown-linux-uclibc/bin:$PATH
-    tar xf zlib-1.2.8.tar.gz -C ../
-    cd ../zlib-1.2.8*
+    tar xf zlib-1.2.10.tar.gz -C ../
+    cd ../zlib-1.2.10*
     CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --prefix=$HOME/zlib-install &> /dev/null
     make > /dev/null 2>&1
     make install > /dev/null 2>&1
