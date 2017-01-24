@@ -56,10 +56,10 @@ pcre_build()
 {
 cd $HOME/src
 # wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre2-10.20.tar.gz
-wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.38.tar.gz
+wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.40.tar.gz
 # tar xvf pcre2-10.20.tar.gz
-tar xvf pcre-8.38.tar.gz
-cd pcre-8.38
+tar xvf pcre-8.40.tar.gz
+cd pcre-8.40
 CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --host=mipsel-uclibc-linux --disable-cpp --prefix=$HOME/pcre-install
 make > /dev/null 2>&1
 make install > /dev/null 2>&1
@@ -74,8 +74,8 @@ make install > /dev/null 2>&1
 openssl_build()
 {
     cd $HOME/src
-    wget https://www.openssl.org/source/openssl-1.0.2g.tar.gz
-    tar xvf openssl-1.0.2g.tar.gz -C ../
+    wget https://www.openssl.org/source/openssl-1.0.2j.tar.gz
+    tar xvf openssl-1.0.2j.tar.gz -C ../
     cd ../openssl*
     # git checkout tags/OpenSSL_1_0_2g
     CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./Configure no-asm shared --prefix=$HOME/openssl-install linux-mips32 &> /dev/null
@@ -87,10 +87,10 @@ openssl_build()
 zlib_build()
 {
     cd $HOME/src
-    wget http://zlib.net/zlib-1.2.8.tar.gz
+    wget http://zlib.net/zlib-1.2.10.tar.gz
     # export PATH=$HOME/x-tools/mipsel-unknown-linux-uclibc/bin:$PATH
-    tar xf zlib-1.2.8.tar.gz -C ../
-    cd ../zlib-1.2.8*
+    tar xf zlib-1.2.10.tar.gz -C ../
+    cd ../zlib-1.2.10*
     CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --prefix=$HOME/zlib-install &> /dev/null
     make > /dev/null 2>&1
     make install > /dev/null 2>&1
