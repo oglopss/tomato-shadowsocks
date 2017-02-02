@@ -55,11 +55,11 @@ before_install:
 install:
     - cd crosstool-ng
     #- git checkout tomato
-    #- cp $TRAVIS_BUILD_DIR/ctng.config ./.config -f
-    #- ./bootstrap
-    #- ./configure --enable-local
-    #- make
-    #- make install
+    # - cp $TRAVIS_BUILD_DIR/ctng.config ./.config -f
+    # - ./bootstrap
+    # - ./configure --enable-local
+    # - make
+    # - make install
 
 # Here is the list of all the standard samples tracked
 # by the continuous integration system
@@ -68,6 +68,7 @@ env:
     matrix:
         # - export PATH=$HOME/x-tools/mipsel-unknown-linux-uclibc/bin:$PATH
         - SS_VER=latest
+        - SS_VER=v2.6.2
         - SS_VER=v2.6.1
         - SS_VER=v2.6.0
         - SS_VER=v2.5.6
