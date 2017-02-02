@@ -55,11 +55,11 @@ before_install:
 install:
     - cd crosstool-ng
     #- git checkout tomato
-    # - cp $TRAVIS_BUILD_DIR/ctng.config ./.config -f
-    # - ./bootstrap
-    # - ./configure --enable-local
-    # - make
-    # - make install
+    - cp $TRAVIS_BUILD_DIR/ctng.config ./.config -f
+    - ./bootstrap
+    - ./configure --enable-local
+    - make
+    - make install
 
 # Here is the list of all the standard samples tracked
 # by the continuous integration system
