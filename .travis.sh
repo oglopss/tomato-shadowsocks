@@ -1,6 +1,19 @@
 # Add current directory to PATH
 export PATH="$(pwd):$(pwd)/crosstool-ng:$PATH"
 export PATH=$HOME/x-tools/mipsel-unknown-linux-uclibc/bin:$PATH
+
+# for testing, disable after releasing
+export SS_VER=v3.0.0
+export TRAVIS_BUILD_DIR=/home/travis/builds/oglopss/tomato-shadowsocks
+
+export OUT="> /dev/null 2>&1"
+
+export LIBSODIUM_VER=1.0.11
+export MBEDTLS_VER=2.4.0
+export UDNS_VER=0.4
+
+
+
 mkdir -p $HOME/src
 
 # Manage the travis build
@@ -54,15 +67,19 @@ ct-ng_travis_build()
 
 pcre_build()
 {
-cd $HOME/src
-# wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre2-10.20.tar.gz
-wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.40.tar.gz
-# tar xvf pcre2-10.20.tar.gz
-tar xvf pcre-8.40.tar.gz
-cd pcre-8.40
-CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --host=mipsel-uclibc-linux --disable-cpp --prefix=$HOME/pcre-install
-make > /dev/null 2>&1
-make install > /dev/null 2>&1
+    cd $HOME/src
+
+    export PCRE_VER=8.40
+    wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-$PCRE_VER.tar.gz
+    tar xf pcre-$PCRE_VER.tar.gz
+    cd pcre-$PCRE_VER
+
+    CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --host=mipsel-uclibc-linux --disable-cpp --prefix=$HOME/pcre-install
+
+    make > /dev/null 2>&1
+    make install > /dev/null 2>&1
+
+
 # echo ========$HOME/pcre-install=========
 # ls -l $HOME/pcre-install 
 # echo ========$HOME/pcre-install/include=========
@@ -75,7 +92,7 @@ openssl_build()
 {
     cd $HOME/src
     wget https://www.openssl.org/source/openssl-1.0.2j.tar.gz
-    tar xvf openssl-1.0.2j.tar.gz -C ../
+    tar xf openssl-1.0.2j.tar.gz -C ../
     cd ../openssl*
     # git checkout tags/OpenSSL_1_0_2g
     CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./Configure no-asm shared --prefix=$HOME/openssl-install linux-mips32 &> /dev/null
@@ -87,15 +104,95 @@ openssl_build()
 zlib_build()
 {
     cd $HOME/src
-    wget http://zlib.net/zlib-1.2.10.tar.gz
+    wget http://zlib.net/zlib-1.2.11.tar.gz
     # export PATH=$HOME/x-tools/mipsel-unknown-linux-uclibc/bin:$PATH
-    tar xf zlib-1.2.10.tar.gz -C ../
-    cd ../zlib-1.2.10*
+    tar xf zlib-1.2.11.tar.gz -C ../
+    cd ../zlib-1.2.11*
     CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --prefix=$HOME/zlib-install &> /dev/null
     make > /dev/null 2>&1
     make install > /dev/null 2>&1
 
 
+}
+
+# new builds for ss 3.0 or above
+
+libsodium_build()
+{
+    pushd $TRAVIS_BUILD_DIR
+    cd $HOME/src
+    # export LIBSODIUM_VER=1.0.11
+    # this does not work inside container
+    #wget http://download.libsodium.org/libsodium/releases/libsodium-$LIBSODIUM_VER.tar.gz
+
+    # http://stackoverflow.com/questions/30418188/how-to-force-wget-to-overwrite-an-existing-file-ignoring-timestamp
+    wget --backups=1 https://github.com/jedisct1/libsodium/releases/download/$LIBSODIUM_VER/libsodium-$LIBSODIUM_VER.tar.gz
+
+
+    tar xvf libsodium-$LIBSODIUM_VER.tar.gz
+    pushd libsodium-$LIBSODIUM_VER
+ 
+    CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib  ./configure --prefix=$HOME/libsodium-install --host=mipsel-uclibc-linux
+ 
+    make  > /dev/null 2>&1
+
+    make install  > /dev/null 2>&1
+
+ 
+    popd
+    popd
+
+}
+
+mbedtls_build()
+{
+    pushd $TRAVIS_BUILD_DIR
+    cd $HOME/src
+
+    # export MBEDTLS_VER=2.4.0
+    wget  --backups=1 https://tls.mbed.org/download/mbedtls-$MBEDTLS_VER-gpl.tgz
+    tar xvf mbedtls-$MBEDTLS_VER-gpl.tgz
+    pushd mbedtls-$MBEDTLS_VER
+ 
+    CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib make > /dev/null 2>&1
+ 
+    make install DESTDIR=$HOME/mbedtls-install > /dev/null 2>&1
+ 
+    popd
+    popd
+}
+
+
+udns_build()
+{
+    pushd $TRAVIS_BUILD_DIR
+    cd $HOME/src
+    # export UDNS_VER=0.4
+    wget --backups=1 http://www.corpit.ru/mjt/udns/udns-$UDNS_VER.tar.gz
+    tar xvf udns-$UDNS_VER.tar.gz
+    pushd udns-$UDNS_VER
+ 
+    # apply patch
+    patch -p1 < $TRAVIS_BUILD_DIR/udns-configure.lib.patch
+
+    CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure
+ 
+    make
+    popd
+    popd
+}
+
+
+libev_build()
+{
+    pushd $TRAVIS_BUILD_DIR
+    cd $HOME/src
+    git clone https://github.com/enki/libev.git
+    cd libev
+    CPPFLAGS=-I$HOME/udns-$UDNS_VER LDFLAGS=-L$HOME/udns-$UDNS_VER  CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --prefix=$HOME/libev-install --host=mipsel-uclibc-linux
+    make
+    make install
+    popd
 }
 
 err_report() {
@@ -148,7 +245,7 @@ ss_build()
     echo ========mipsel-unknown-linux-uclibc/bin=========
     ls -l $HOME/x-tools/mipsel-unknown-linux-uclibc/bin
 
-    cd $TRAVIS_BUILD_DIR/shadowsocks-libev
+    pushd $TRAVIS_BUILD_DIR/shadowsocks-libev
 
 
     # pcre_config="--with-pcre=$HOME/pcre-install"
@@ -173,7 +270,6 @@ ss_build()
         echo $SS_VER
 
         git checkout tags/$SS_VER
-
     fi
 
     # echo ================= before ss-config ================
@@ -186,10 +282,45 @@ ss_build()
 
     # eval "$config_cmd"
     # echo ======== this time is real ==========
-    CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --disable-ssp --host=mipsel-uclibc-linux --prefix=$HOME/ss-install --with-openssl=$HOME/openssl-install --with-zlib=$HOME/zlib-install --with-pcre=$HOME/pcre-install
+
+    git clean -xfd
+    git submodule update --init --recursive
+    
+
+    if [ "v3" == ${SS_VER:0:2} ] || [   "vs" == ${SS_VER:0:2}  ]; then
+    	./autogen.sh
+        # build other dependencies
+        if [ -d "$HOME/libsodium-install"]; then
+            libsodium_build
+        fi
+
+        if [ -d "$HOME/mbedtls-install"]; then
+            mbedtls_build
+        fi
+
+        if [ -d "$HOME/src/udns-$UDNS_VER"]; then
+            udns_build
+        fi
+
+        if [ -d "$HOME/libev-install"]; then
+            libev_build
+        fi
 
 
-    make > /dev/null 
+        CPPFLAGS="-I$HOME/src/udns-$UDNS_VER -I$HOME/libev-install/include"  LDFLAGS="-Wl,-rpath,/lib:/usr/lib:/opt/lib  -L$HOME/src/udns-$UDNS_VER -L$HOME/libev-install/lib"  CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --disable-ssp --prefix=$HOME/ss-install --with-pcre=$HOME/pcre-install --with-sodium=$HOME/libsodium-install --with-mbedtls=$HOME/mbedtls-install --host=mipsel-uclibc-linux
+
+
+    else
+        CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --disable-ssp --host=mipsel-uclibc-linux --prefix=$HOME/ss-install --with-openssl=$HOME/openssl-install --with-zlib=$HOME/zlib-install --with-pcre=$HOME/pcre-install
+    fi
+
+    make > /dev/null
+
+    if [ -d "$HOME/ss-install"]; then
+        rm -rf $HOME/ss-install
+    fi
+
+
     make install > /dev/null
     local result=$?
     # local build_pid=$!
@@ -249,6 +380,9 @@ ss_build()
     printf "compress files ...\r"
     # rm -rf
     tar -zcvf shadowsocks-libev-$SS_VER.tar.gz *
+
+    popd
+
     # Return the result
     return $result
 }
