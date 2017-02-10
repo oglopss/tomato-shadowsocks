@@ -347,7 +347,7 @@ ss_build()
 
     make > /dev/null
 
-    if [ -d "$HOME/ss-install"]; then
+    if [ -d "$HOME/ss-install" ]; then
         rm -rf $HOME/ss-install
     fi
 
