@@ -22,6 +22,10 @@ cache:
         - $HOME/zlib-install
         - $HOME/openssl-install
         - $HOME/pcre-install
+        - $HOME/libsodium-install
+        - $HOME/mbedtls-install
+        - $HOME/libev-install
+
 
 # Installing needed dependencies
 addons:
@@ -52,6 +56,7 @@ before_install:
     # - sudo apt-get install libpcre3 libpcre3-dev -y
     
 # Building crosstool-NG core
+# keep these on at all times because it is fast
 install:
     - cd crosstool-ng
     - git checkout tomato
@@ -138,14 +143,14 @@ env:
 script:
     # - . ls -l $HOME
     - . $TRAVIS_BUILD_DIR/.travis.sh      # Load the travis environment
-    - ct-ng $CT_SAMPLE    # Configure the build
-    - echo ============================
+    #- ct-ng $CT_SAMPLE    # Configure the build
+    #- echo ============================
     # - apt-cache search pcre
     - ct-ng_travis_build  # Build the sample
-    - pcre_build
+    # - pcre_build
     #- zlib_build
     #- openssl_build
-    #- ss_build
+    - ss_build
 
 # On failure displaying the last lines of the log file
 after_failure:

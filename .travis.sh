@@ -3,11 +3,15 @@ export PATH="$(pwd):$(pwd)/crosstool-ng:$PATH"
 export PATH=$HOME/x-tools/mipsel-unknown-linux-uclibc/bin:$PATH
 
 # for testing, disable after releasing
-export SS_VER=v3.0.0
-export TRAVIS_BUILD_DIR=/home/travis/builds/oglopss/tomato-shadowsocks
+#export SS_VER=v3.0.0
+#export TRAVIS_BUILD_DIR=/home/travis/builds/oglopss/tomato-shadowsocks
 
 export OUT="> /dev/null 2>&1"
 
+export ZLIB_VER=1.2.11
+export OPENSSL_VER=1.0.2j
+
+export PCRE_VER=8.40
 export LIBSODIUM_VER=1.0.11
 export MBEDTLS_VER=2.4.0
 export UDNS_VER=0.4
@@ -19,6 +23,12 @@ mkdir -p $HOME/src
 # Manage the travis build
 ct-ng_travis_build()
 {
+    # check if toolchain is already in cache
+    if [ ! -d "$HOME/"]; then
+
+
+    ct-ng $CT_SAMPLE
+
     # Override the log behaviour
     sed -i -e 's/^.*\(CT_LOG_ERROR\).*$/# \1 is not set/' \
         -e 's/^.*\(CT_LOG_WARN\).*$/# \1 is not set/' \
@@ -63,13 +73,15 @@ ct-ng_travis_build()
 
     # Return the result
     return $result
+
+fi
 }
 
 pcre_build()
 {
     cd $HOME/src
 
-    export PCRE_VER=8.40
+    # export PCRE_VER=8.40
     wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-$PCRE_VER.tar.gz
     tar xf pcre-$PCRE_VER.tar.gz
     cd pcre-$PCRE_VER
@@ -91,9 +103,9 @@ pcre_build()
 openssl_build()
 {
     cd $HOME/src
-    wget https://www.openssl.org/source/openssl-1.0.2j.tar.gz
-    tar xf openssl-1.0.2j.tar.gz -C ../
-    cd ../openssl*
+    wget https://www.openssl.org/source/openssl-$OPENSSL_VER.tar.gz
+    tar xf openssl-$OPENSSL_VER.tar.gz -C ../
+    cd ../openssl-$OPENSSL_VER
     # git checkout tags/OpenSSL_1_0_2g
     CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./Configure no-asm shared --prefix=$HOME/openssl-install linux-mips32 &> /dev/null
     make > /dev/null 2>&1
@@ -104,10 +116,10 @@ openssl_build()
 zlib_build()
 {
     cd $HOME/src
-    wget http://zlib.net/zlib-1.2.11.tar.gz
+    wget http://zlib.net/zlib-$ZLIB_VER.tar.gz
     # export PATH=$HOME/x-tools/mipsel-unknown-linux-uclibc/bin:$PATH
-    tar xf zlib-1.2.11.tar.gz -C ../
-    cd ../zlib-1.2.11*
+    tar xf zlib-$ZLIB_VER.tar.gz -C ../
+    cd ../zlib-$ZLIB_VER
     CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --prefix=$HOME/zlib-install &> /dev/null
     make > /dev/null 2>&1
     make install > /dev/null 2>&1
@@ -286,6 +298,14 @@ ss_build()
     git clean -xfd
     git submodule update --init --recursive
     
+    # always build pcre
+
+    export PCRE_VER=8.40
+
+    if [ -d "$HOME/pcre-install"]; then
+        pcre_build
+    fi
+
 
     if [ "v3" == ${SS_VER:0:2} ] || [   "vs" == ${SS_VER:0:2}  ]; then
     	./autogen.sh
@@ -311,6 +331,17 @@ ss_build()
 
 
     else
+        # for ss < 3.0
+
+        if [ -d "$HOME/zlib-install"]; then
+            zlib_build
+        fi
+
+        if [ -d "$HOME/openssl-install"]; then
+            openssl_build
+        fi
+
+
         CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --disable-ssp --host=mipsel-uclibc-linux --prefix=$HOME/ss-install --with-openssl=$HOME/openssl-install --with-zlib=$HOME/zlib-install --with-pcre=$HOME/pcre-install
     fi
 
