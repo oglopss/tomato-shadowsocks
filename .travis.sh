@@ -298,6 +298,8 @@ ss_build()
     git clean -xfd
     git submodule update --init --recursive
     
+    pcre_build
+    
     # always build pcre
     if [ ! -d "$HOME/pcre-install"]; then
         pcre_build
