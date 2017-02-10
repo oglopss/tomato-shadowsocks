@@ -24,7 +24,7 @@ mkdir -p $HOME/src
 ct-ng_travis_build()
 {
     # check if toolchain is already in cache
-    if [ ! -d "$HOME/"]; then
+    if [ ! -d "$HOME/x-tools/mipsel-unknown-linux-uclibc/bin" ]; then
 
 
     ct-ng $CT_SAMPLE
