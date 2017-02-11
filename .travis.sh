@@ -317,6 +317,9 @@ ss_build()
         echo ========new build for v3=========
         
     	./autogen.sh
+        
+         zlib_build
+         
         # build other dependencies
         if [ ! -d "$HOME/libsodium-install" ]; then
             libsodium_build
