@@ -305,7 +305,7 @@ ss_build()
     pcre_build
     
     # always build pcre
-    if [ ! -d "$HOME/pcre-install"]; then
+    if [ ! -d "$HOME/pcre-install" ]; then
         pcre_build
     fi
 
@@ -313,19 +313,19 @@ ss_build()
     if [ "v3" == ${SS_VER:0:2} ] || [   "vs" == ${SS_VER:0:2}  ]; then
     	./autogen.sh
         # build other dependencies
-        if [ ! -d "$HOME/libsodium-install"]; then
+        if [ ! -d "$HOME/libsodium-install" ]; then
             libsodium_build
         fi
 
-        if [ ! -d "$HOME/mbedtls-install"]; then
+        if [ ! -d "$HOME/mbedtls-install" ]; then
             mbedtls_build
         fi
 
-        if [ ! -d "$HOME/src/udns-$UDNS_VER"]; then
+        if [ ! -d "$HOME/src/udns-$UDNS_VER" ]; then
             udns_build
         fi
 
-        if [ ! -d "$HOME/libev-install"]; then
+        if [ ! -d "$HOME/libev-install" ]; then
             libev_build
         fi
 
@@ -336,11 +336,11 @@ ss_build()
     else
         # for ss < 3.0
 
-        if [ ! -d "$HOME/zlib-install"]; then
+        if [ ! -d "$HOME/zlib-install" ]; then
             zlib_build
         fi
 
-        if [ ! -d "$HOME/openssl-install"]; then
+        if [ ! -d "$HOME/openssl-install" ]; then
             openssl_build
         fi
 
