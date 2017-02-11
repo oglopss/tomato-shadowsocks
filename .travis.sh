@@ -177,6 +177,7 @@ mbedtls_build()
 
 udns_build()
 {
+    echo ========udns_build=========
     pushd $TRAVIS_BUILD_DIR
     cd $HOME/src
     # export UDNS_VER=0.4
@@ -197,6 +198,7 @@ udns_build()
 
 libev_build()
 {
+    echo ========libev_build=========
     pushd $TRAVIS_BUILD_DIR
     cd $HOME/src
     git clone https://github.com/enki/libev.git
@@ -217,7 +219,7 @@ ss_build()
 {
 
     # Build the sample
-    echo In ss_build ...
+    echo  ======ss_build======
     echo path: $PATH
     echo ========home=========
     ls -l $HOME
@@ -302,7 +304,7 @@ ss_build()
     git clean -xfd
     git submodule update --init --recursive
     
-    pcre_build
+    # pcre_build
     
     # always build pcre
     if [ ! -d "$HOME/pcre-install" ]; then
@@ -311,6 +313,9 @@ ss_build()
 
 
     if [ "v3" == ${SS_VER:0:2} ] || [   "vs" == ${SS_VER:0:2}  ]; then
+    
+        echo ========new build for v3=========
+        
     	./autogen.sh
         # build other dependencies
         if [ ! -d "$HOME/libsodium-install" ]; then
