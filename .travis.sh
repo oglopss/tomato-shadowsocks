@@ -257,6 +257,10 @@ ss_build()
     echo ========mipsel-unknown-linux-uclibc/bin=========
     ls -l $HOME/x-tools/mipsel-unknown-linux-uclibc/bin
 
+    echo ========$TRAVIS_BUILD_DIR=========
+    echo $TRAVIS_BUILD_DIR
+    ls -l $TRAVIS_BUILD_DIR
+    
     pushd $TRAVIS_BUILD_DIR/shadowsocks-libev
 
 
