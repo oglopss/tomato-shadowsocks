@@ -211,6 +211,10 @@ udns_build()
     #ls -l 
     
     make
+    
+    echo ======== after udns make=============
+    pwd
+    ls -l
     # popd
     #popd
 }
