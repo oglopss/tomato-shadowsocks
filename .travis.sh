@@ -316,8 +316,8 @@ ss_build()
     if [ "v3" == ${SS_VER:0:2} ] || [   "vs" == ${SS_VER:0:2}  ]; then
     
         echo ========new build for v3=========
-        pwd
-        ls -l
+        #pwd
+        #ls -l
         
         if [ -f "./autogen.sh" ]; then
             echo running autogen
