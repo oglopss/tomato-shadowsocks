@@ -198,13 +198,15 @@ udns_build()
     # apply patch
     patch -p1 < $TRAVIS_BUILD_DIR/udns-configure.lib.patch
     
-    cat ./configure.lib
+    #cat ./configure.lib
     echo running udns configure
+    
+    make distclean
     
     CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure
     
-    echo ======== udns src dir=============
-    ls -l 
+    #echo ======== udns src dir=============
+    #ls -l 
     
     make
     # popd
