@@ -338,6 +338,8 @@ ss_build()
             echo running autogen
             source ./autogen.sh
         #fi
+        echo after autogen
+        ls -l
         
          # zlib_build
          
