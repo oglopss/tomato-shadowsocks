@@ -330,6 +330,9 @@ ss_build()
         # build other dependencies
         if [ ! -d "$HOME/libsodium-install" ]; then
             libsodium_build
+        else
+            echo ====we have libsodium======
+            ls -l $HOME/libsodium-install
         fi
 
         if [ ! -d "$HOME/mbedtls-install" ]; then
