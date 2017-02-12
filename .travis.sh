@@ -343,19 +343,19 @@ ss_build()
     if [ "v3" == ${SS_VER:0:2} ] || [   "vs" == ${SS_VER:0:2}  ]; then
     
         echo ========new build v3=========
-        echo current dir 
-        pwd
+        #echo current dir 
+        #pwd
 
         #pwd
-        echo current ss dir contents
-        ls -l
+        #echo current ss dir contents
+        #ls -l
         
         #if [ -x "autogen.sh" ]; then
             echo running autogen
             ./autogen.sh
         #fi
-        echo after autogen
-        ls -l
+        #echo after autogen
+        #ls -l
         
          # zlib_build
          
@@ -376,19 +376,23 @@ ss_build()
         #if [ ! -d "$HOME/libev-install" ]; then
             libev_build
         #fi
-        echo ================ running configure for ss
+        # echo ================ running configure for ss
         
         cd $TRAVIS_BUILD_DIR/shadowsocks-libev
     
-        ls -l
+        #ls -l
         
-        echo udns check
-        ls -l $HOME/src/udns-$UDNS_VER
+        #echo udns check
+        #ls -l $HOME/src/udns-$UDNS_VER
         
-        echo --------
+        #echo --------
 
-        CPPFLAGS="-I$HOME/src/udns-$UDNS_VER -I$HOME/libev-install/include"  LDFLAGS="-Wl,-rpath,/opt/lib:/lib:/usr/lib -L$HOME/src/udns-$UDNS_VER -L$HOME/libev-install/lib" CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --disable-ssp --prefix=$HOME/ss-install --with-pcre=$HOME/pcre-install --with-sodium=$HOME/libsodium-install --with-mbedtls=$HOME/mbedtls-install --host=mipsel-uclibc-linux
-
+        export CPPFLAGS="-I$HOME/src/udns-$UDNS_VER -I$HOME/libev-install/include"  
+        export LDFLAGS="-Wl,-rpath,/opt/lib:/lib:/usr/lib -L$HOME/src/udns-$UDNS_VER -L$HOME/libev-install/lib" 
+        
+        CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --disable-ssp --prefix=$HOME/ss-install --with-pcre=$HOME/pcre-install --with-sodium=$HOME/libsodium-install --with-mbedtls=$HOME/mbedtls-install --host=mipsel-uclibc-linux
+        
+        echo -=-=-==-=-=-=-=-=-=-=
 
     else
         # for ss < 3.0
