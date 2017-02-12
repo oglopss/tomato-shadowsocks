@@ -336,7 +336,7 @@ ss_build()
         
         #if [ -x "autogen.sh" ]; then
             echo running autogen
-            autogen.sh
+            ./autogen.sh
         #fi
         echo after autogen
         ls -l
@@ -386,7 +386,8 @@ ss_build()
     fi
 
     echo ========= ss_build make ===========
-    make > /dev/null
+    ls -l
+    make #> /dev/null
     
 
     if [ -d "$HOME/ss-install" ]; then
