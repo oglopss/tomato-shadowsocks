@@ -316,10 +316,13 @@ ss_build()
     if [ "v3" == ${SS_VER:0:2} ] || [   "vs" == ${SS_VER:0:2}  ]; then
     
         echo ========new build for v3=========
-        echo $(pwd)
+        pwd
+        ls -l
         
         if [ -f "./autogen.sh" ]; then
+            echo running autogen
             ./autogen.sh
+            echo finished running autogen
         fi
         
          # zlib_build
