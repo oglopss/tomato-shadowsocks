@@ -329,13 +329,12 @@ ss_build()
         echo ========new build v3=========
         echo current dir 
         pwd
-        
-        
-        #pwd
+
+        #pwd
         echo current ss dir contents
         ls -l
         
-        if [ -f "./autogen.sh" ]; then
+        if [ -x "autogen.sh" ]; then
             echo running autogen
             ./autogen.sh
         fi
