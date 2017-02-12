@@ -336,7 +336,7 @@ ss_build()
         
         #if [ -x "autogen.sh" ]; then
             echo running autogen
-            source ./autogen.sh
+            autogen.sh
         #fi
         echo after autogen
         ls -l
