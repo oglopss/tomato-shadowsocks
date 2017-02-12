@@ -79,6 +79,8 @@ fi
 
 pcre_build()
 {
+    echo ========= pcre_build =========
+
     cd $HOME/src
 
     # export PCRE_VER=8.40
@@ -102,6 +104,8 @@ pcre_build()
 
 openssl_build()
 {
+
+    echo ========= openssl_build =========
     cd $HOME/src
     wget https://www.openssl.org/source/openssl-$OPENSSL_VER.tar.gz
     tar xf openssl-$OPENSSL_VER.tar.gz -C ../
@@ -131,6 +135,8 @@ zlib_build()
 
 libsodium_build()
 {
+
+    echo ========= libsodium_build =========
     pushd $TRAVIS_BUILD_DIR
     cd $HOME/src
     # export LIBSODIUM_VER=1.0.11
@@ -141,7 +147,7 @@ libsodium_build()
     wget --backups=1 https://github.com/jedisct1/libsodium/releases/download/$LIBSODIUM_VER/libsodium-$LIBSODIUM_VER.tar.gz
 
 
-    tar xvf libsodium-$LIBSODIUM_VER.tar.gz
+    tar xf libsodium-$LIBSODIUM_VER.tar.gz
     pushd libsodium-$LIBSODIUM_VER
  
     CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib  ./configure --prefix=$HOME/libsodium-install --host=mipsel-uclibc-linux
@@ -158,12 +164,14 @@ libsodium_build()
 
 mbedtls_build()
 {
+
+    echo ========= mbedtls_build =========
     pushd $TRAVIS_BUILD_DIR
     cd $HOME/src
 
     # export MBEDTLS_VER=2.4.0
     wget  --backups=1 https://tls.mbed.org/download/mbedtls-$MBEDTLS_VER-gpl.tgz
-    tar xvf mbedtls-$MBEDTLS_VER-gpl.tgz
+    tar xf mbedtls-$MBEDTLS_VER-gpl.tgz
     pushd mbedtls-$MBEDTLS_VER
  
     CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib make > /dev/null 2>&1
@@ -182,7 +190,7 @@ udns_build()
     cd $HOME/src
     # export UDNS_VER=0.4
     wget --backups=1 http://www.corpit.ru/mjt/udns/udns-$UDNS_VER.tar.gz
-    tar xvf udns-$UDNS_VER.tar.gz
+    tar xf udns-$UDNS_VER.tar.gz
     pushd udns-$UDNS_VER
  
     # apply patch
@@ -242,8 +250,8 @@ ss_build()
     # ls -l /usr/include    
     # echo ========/usr/lib=========
     # ls -l /usr/lib     qwerty
-    # # echo ========$HOME/pcre-install=========
-    # # ls -l $HOME/pcre-install 
+    echo ========$HOME/pcre-install=========
+    ls -l $HOME/pcre-install 
     # echo ========/usr/local=========
     # ls -l /usr/local 
     # echo ========pcre-config=========
@@ -315,7 +323,7 @@ ss_build()
 
     if [ "v3" == ${SS_VER:0:2} ] || [   "vs" == ${SS_VER:0:2}  ]; then
     
-        echo ========new build for v3=========
+        echo ========new build v3=========
         #pwd
         #ls -l
         
@@ -351,7 +359,7 @@ ss_build()
 
     else
         # for ss < 3.0
-        echo ========old ss build for v2=========
+        echo ========old ss build v2=========
         
         #if [ ! -d "$HOME/zlib-install" ]; then
             zlib_build
@@ -365,13 +373,15 @@ ss_build()
         CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --disable-ssp --host=mipsel-uclibc-linux --prefix=$HOME/ss-install --with-openssl=$HOME/openssl-install --with-zlib=$HOME/zlib-install --with-pcre=$HOME/pcre-install
     fi
 
+    echo ========= ss_build make ===========
     make > /dev/null
+    
 
     if [ -d "$HOME/ss-install" ]; then
         rm -rf $HOME/ss-install
     fi
 
-
+    echo ========= ss_build make install ===========
     make install > /dev/null
     local result=$?
     # local build_pid=$!
