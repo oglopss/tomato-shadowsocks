@@ -308,9 +308,9 @@ ss_build()
     # pcre_build
     
     # always build pcre
-    if [ ! -d "$HOME/pcre-install" ]; then
+    #if [ ! -d "$HOME/pcre-install" ]; then
         pcre_build
-    fi
+    #fi
 
 
     if [ "v3" == ${SS_VER:0:2} ] || [   "vs" == ${SS_VER:0:2}  ]; then
@@ -320,32 +320,30 @@ ss_build()
         #ls -l
         
         if [ -f "./autogen.sh" ]; then
-            echo running autogen
+
             ./autogen.sh
-            echo finished running autogen
+
         fi
         
          # zlib_build
          
         # build other dependencies
-        if [ ! -d "$HOME/libsodium-install" ]; then
+        # if [ ! -d "$HOME/libsodium-install" ]; then
             libsodium_build
-        else
-            echo ====we have libsodium======
-            ls -l $HOME/libsodium-install
-        fi
+        #else
+        #fi
 
-        if [ ! -d "$HOME/mbedtls-install" ]; then
+        #if [ ! -d "$HOME/mbedtls-install" ]; then
             mbedtls_build
-        fi
+        #fi
 
-        if [ ! -d "$HOME/src/udns-$UDNS_VER" ]; then
+        #if [ ! -d "$HOME/src/udns-$UDNS_VER" ]; then
             udns_build
-        fi
+        #fi
 
-        if [ ! -d "$HOME/libev-install" ]; then
+        #if [ ! -d "$HOME/libev-install" ]; then
             libev_build
-        fi
+        #fi
 
 
         CPPFLAGS="-I$HOME/src/udns-$UDNS_VER -I$HOME/libev-install/include"  LDFLAGS="-Wl,-rpath,/opt/lib:/lib:/usr/lib  -L$HOME/src/udns-$UDNS_VER -L$HOME/libev-install/lib"  CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --disable-ssp --prefix=$HOME/ss-install --with-pcre=$HOME/pcre-install --with-sodium=$HOME/libsodium-install --with-mbedtls=$HOME/mbedtls-install --host=mipsel-uclibc-linux
@@ -355,13 +353,13 @@ ss_build()
         # for ss < 3.0
         echo ========old ss build for v2=========
         
-        if [ ! -d "$HOME/zlib-install" ]; then
+        #if [ ! -d "$HOME/zlib-install" ]; then
             zlib_build
-        fi
+        #fi
 
-        if [ ! -d "$HOME/openssl-install" ]; then
+        #if [ ! -d "$HOME/openssl-install" ]; then
             openssl_build
-        fi
+        #fi
 
 
         CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --disable-ssp --host=mipsel-uclibc-linux --prefix=$HOME/ss-install --with-openssl=$HOME/openssl-install --with-zlib=$HOME/zlib-install --with-pcre=$HOME/pcre-install
