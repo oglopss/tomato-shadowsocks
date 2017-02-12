@@ -202,7 +202,10 @@ udns_build()
     echo running udns configure
     
     CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure
- 
+    
+    echo ======== udns src dir=============
+    ls -l 
+    
     make
     # popd
     #popd
