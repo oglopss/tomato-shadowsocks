@@ -320,7 +320,9 @@ ss_build()
     #if [ ! -d "$HOME/pcre-install" ]; then
         pcre_build
     #fi
-
+    
+    
+    cd $TRAVIS_BUILD_DIR/shadowsocks-libev
 
     if [ "v3" == ${SS_VER:0:2} ] || [   "vs" == ${SS_VER:0:2}  ]; then
     
@@ -331,11 +333,11 @@ ss_build()
         #pwd
         #ls -l
         
-        #if [ -f "./autogen.sh" ]; then
-
+        if [ -f "./autogen.sh" ]; then
+            echo running autogen
             ./autogen.sh
 
-        #fi
+        fi
         
          # zlib_build
          
