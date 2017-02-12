@@ -190,7 +190,7 @@ udns_build()
     cd $HOME/src
     # export UDNS_VER=0.4
     wget --backups=1 http://www.corpit.ru/mjt/udns/udns-$UDNS_VER.tar.gz
-    tar xvf udns-$UDNS_VER.tar.gz
+    tar xf udns-$UDNS_VER.tar.gz
     cd udns-$UDNS_VER
  
     echo apply udns patch
@@ -201,11 +201,13 @@ udns_build()
     #cat ./configure.lib
     echo running udns configure
     
-    make distclean
+    # make clean
     
     CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure
     
-    #echo ======== udns src dir=============
+    make clean
+    
+    echo ======== udns make=============
     #ls -l 
     
     make
