@@ -336,7 +336,7 @@ ss_build()
         
         if [ -x "autogen.sh" ]; then
             echo running autogen
-            ./autogen.sh
+            source ./autogen.sh
         fi
         
          # zlib_build
