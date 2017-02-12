@@ -271,6 +271,7 @@ ss_build()
     echo $TRAVIS_BUILD_DIR
     ls -l $TRAVIS_BUILD_DIR
     
+    # go into ss dir
     pushd $TRAVIS_BUILD_DIR/shadowsocks-libev
 
 
@@ -324,14 +325,17 @@ ss_build()
     if [ "v3" == ${SS_VER:0:2} ] || [   "vs" == ${SS_VER:0:2}  ]; then
     
         echo ========new build v3=========
+        echo current dir 
+        pwd
+        
         #pwd
         #ls -l
         
-        if [ -f "./autogen.sh" ]; then
+        #if [ -f "./autogen.sh" ]; then
 
             ./autogen.sh
 
-        fi
+        #fi
         
          # zlib_build
          
