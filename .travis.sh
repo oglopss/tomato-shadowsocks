@@ -334,10 +334,10 @@ ss_build()
         echo current ss dir contents
         ls -l
         
-        if [ -x "autogen.sh" ]; then
+        #if [ -x "autogen.sh" ]; then
             echo running autogen
             source ./autogen.sh
-        fi
+        #fi
         
          # zlib_build
          
