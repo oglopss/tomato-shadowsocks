@@ -302,7 +302,8 @@ ss_build()
     # echo ======== this time is real ==========
 
     git clean -xfd
-    git submodule update --init --recursive
+    git submodule update --init
+    git submodule update --recursive
     
     # pcre_build
     
@@ -315,10 +316,13 @@ ss_build()
     if [ "v3" == ${SS_VER:0:2} ] || [   "vs" == ${SS_VER:0:2}  ]; then
     
         echo ========new build for v3=========
+        echo $PWD
+        
+        if [ -f "./autogen.sh" ]; then
+            ./autogen.sh
+        fi
         
-    	./autogen.sh
-        
-         zlib_build
+         # zlib_build
          
         # build other dependencies
         if [ ! -d "$HOME/libsodium-install" ]; then
@@ -338,12 +342,13 @@ ss_build()
         fi
 
 
-        CPPFLAGS="-I$HOME/src/udns-$UDNS_VER -I$HOME/libev-install/include"  LDFLAGS="-Wl,-rpath,/lib:/usr/lib:/opt/lib  -L$HOME/src/udns-$UDNS_VER -L$HOME/libev-install/lib"  CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --disable-ssp --prefix=$HOME/ss-install --with-pcre=$HOME/pcre-install --with-sodium=$HOME/libsodium-install --with-mbedtls=$HOME/mbedtls-install --host=mipsel-uclibc-linux
+        CPPFLAGS="-I$HOME/src/udns-$UDNS_VER -I$HOME/libev-install/include"  LDFLAGS="-Wl,-rpath,/opt/lib:/lib:/usr/lib  -L$HOME/src/udns-$UDNS_VER -L$HOME/libev-install/lib"  CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure - --prefix=$HOME/ss-install --with-pcre=$HOME/pcre-install --with-sodium=$HOME/libsodium-install --with-mbedtls=$HOME/mbedtls-install --host=mipsel-uclibc-linux
 
 
     else
         # for ss < 3.0
-
+        echo ========old ss build for v2=========
+        
         if [ ! -d "$HOME/zlib-install" ]; then
             zlib_build
         fi
