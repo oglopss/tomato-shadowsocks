@@ -359,6 +359,8 @@ ss_build()
             libev_build
         #fi
         echo ================ running configure for ss
+        
+        cd $TRAVIS_BUILD_DIR/shadowsocks-libev
 
         CPPFLAGS="-I$HOME/src/udns-$UDNS_VER -I$HOME/libev-install/include"  LDFLAGS="-Wl,-rpath,/opt/lib:/lib:/usr/lib -L$HOME/src/udns-$UDNS_VER -L$HOME/libev-install/lib"  CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --disable-ssp --prefix=$HOME/ss-install --with-pcre=$HOME/pcre-install --with-sodium=$HOME/libsodium-install --with-mbedtls=$HOME/mbedtls-install --host=mipsel-uclibc-linux
 
@@ -374,7 +376,8 @@ ss_build()
         #if [ ! -d "$HOME/openssl-install" ]; then
             openssl_build
         #fi
-
+        
+        cd $TRAVIS_BUILD_DIR/shadowsocks-libev
 
         CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --disable-ssp --host=mipsel-uclibc-linux --prefix=$HOME/ss-install --with-openssl=$HOME/openssl-install --with-zlib=$HOME/zlib-install --with-pcre=$HOME/pcre-install
         
