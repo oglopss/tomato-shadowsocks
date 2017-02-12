@@ -227,7 +227,7 @@ libev_build()
     cd $HOME/src
     git clone https://github.com/enki/libev.git
     cd libev
-    CPPFLAGS=-I$HOME/udns-$UDNS_VER LDFLAGS=-L$HOME/udns-$UDNS_VER  CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --prefix=$HOME/libev-install --host=mipsel-uclibc-linux
+    CPPFLAGS=-I$HOME/src/udns-$UDNS_VER LDFLAGS=-L$HOME/src/udns-$UDNS_VER  CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --prefix=$HOME/libev-install --host=mipsel-uclibc-linux
     make
     make install
     popd
