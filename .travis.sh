@@ -330,13 +330,14 @@ ss_build()
         echo current dir 
         pwd
         
+        
         #pwd
-        #ls -l
+        echo current ss dir contents
+        ls -l
         
         if [ -f "./autogen.sh" ]; then
             echo running autogen
             ./autogen.sh
-
         fi
         
          # zlib_build
