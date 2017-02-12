@@ -186,21 +186,26 @@ mbedtls_build()
 udns_build()
 {
     echo ========udns_build=========
-    pushd $TRAVIS_BUILD_DIR
+    #pushd $TRAVIS_BUILD_DIR
     cd $HOME/src
     # export UDNS_VER=0.4
     wget --backups=1 http://www.corpit.ru/mjt/udns/udns-$UDNS_VER.tar.gz
-    tar xf udns-$UDNS_VER.tar.gz
-    pushd udns-$UDNS_VER
+    tar xvf udns-$UDNS_VER.tar.gz
+    cd udns-$UDNS_VER
  
+    echo apply udns patch
+    ls -l $TRAVIS_BUILD_DIR/udns-configure.lib.patch
     # apply patch
     patch -p1 < $TRAVIS_BUILD_DIR/udns-configure.lib.patch
-
+    
+    cat ./configure.lib
+    echo running udns configure
+    
     CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure
  
     make
-    popd
-    popd
+    # popd
+    #popd
 }
 
 
