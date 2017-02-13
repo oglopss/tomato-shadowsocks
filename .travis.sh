@@ -337,6 +337,8 @@ ss_build()
         pcre_build
     #fi
         zlib_build
+
+        openssl_build
     
     cd $TRAVIS_BUILD_DIR/shadowsocks-libev
 
@@ -392,8 +394,8 @@ ss_build()
         
         # echo --------
 
-        export CPPFLAGS="$CPPFLAGS -I$HOME/src/udns-$UDNS_VER -I$HOME/libev-install/include -I$HOME/zlib-install/include"
-        export LDFLAGS="$LDFLAGS -Wl,-rpath,/opt/lib:/lib:/usr/lib -L$HOME/src/udns-$UDNS_VER -L$HOME/libev-install/lib -L$HOME/zlib-install/lib"
+        export CPPFLAGS="$CPPFLAGS -I$HOME/src/udns-$UDNS_VER -I$HOME/libev-install/include -I$HOME/zlib-install/include -I$HOME/openssl-install/include"
+        export LDFLAGS="$LDFLAGS -Wl,-rpath,/opt/lib:/lib:/usr/lib -L$HOME/src/udns-$UDNS_VER -L$HOME/libev-install/lib -L$HOME/zlib-install/lib -L$HOME/openssl-install/lib"
 
 
         CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure -h
@@ -410,11 +412,11 @@ ss_build()
         echo ========old ss build v2 =========
         
         #if [ ! -d "$HOME/zlib-install" ]; then
-            zlib_build
+            # zlib_build
         #fi
 
         #if [ ! -d "$HOME/openssl-install" ]; then
-            openssl_build
+            # openssl_build
         #fi
         
         cd $TRAVIS_BUILD_DIR/shadowsocks-libev
