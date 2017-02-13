@@ -340,6 +340,11 @@ ss_build()
     
     cd $TRAVIS_BUILD_DIR/shadowsocks-libev
 
+    if [ -f "autogen.sh" ]; then
+        echo running autogen
+        ./autogen.sh
+    fi
+
     if [ "v3" == ${SS_VER:0:2} ] || [   "vs" == ${SS_VER:0:2}  ]; then
     
         echo ========new build v3 =========
@@ -351,8 +356,8 @@ ss_build()
         #ls -l
         
         #if [ -x "autogen.sh" ]; then
-            echo running autogen
-            ./autogen.sh
+            # echo running autogen
+            # ./autogen.sh
         #fi
         #echo after autogen
         #ls -l
@@ -387,8 +392,11 @@ ss_build()
         
         # echo --------
 
-        export CPPFLAGS="-I$HOME/src/udns-$UDNS_VER -I$HOME/libev-install/include -I$HOME/zlib-install/include"
-        export LDFLAGS="-Wl,-rpath,/opt/lib:/lib:/usr/lib -L$HOME/src/udns-$UDNS_VER -L$HOME/libev-install/lib -L$HOME/zlib-install/lib"
+        export CPPFLAGS="$CPPFLAGS -I$HOME/src/udns-$UDNS_VER -I$HOME/libev-install/include -I$HOME/zlib-install/include"
+        export LDFLAGS="$LDFLAGS -Wl,-rpath,/opt/lib:/lib:/usr/lib -L$HOME/src/udns-$UDNS_VER -L$HOME/libev-install/lib -L$HOME/zlib-install/lib"
+
+
+        CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure -h
 
         CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --disable-ssp --prefix=$HOME/ss-install --with-pcre=$HOME/pcre-install --with-sodium=$HOME/libsodium-install --with-mbedtls=$HOME/mbedtls-install --host=mipsel-uclibc-linux
 
