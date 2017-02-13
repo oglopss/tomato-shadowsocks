@@ -21,6 +21,11 @@ cache:
         - $HOME/x-tools
         - $HOME/zlib-install
         - $HOME/openssl-install
+        - $HOME/pcre-install
+        - $HOME/libsodium-install
+        - $HOME/mbedtls-install
+        - $HOME/libev-install
+
 
 # Installing needed dependencies
 addons:
@@ -32,6 +37,10 @@ addons:
             - libncurses5-dev
             - texinfo
             - help2man
+            - asciidoc
+            - xmlto
+            # - libpcre3
+            # - libpcre3-dev
             # - openssl
             # - zlib
             
@@ -43,11 +52,14 @@ git:
 before_install:
     - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
     - git submodule update --init --recursive
+    # - sudo apt-get update -qq
+    # - sudo apt-get install libpcre3 libpcre3-dev -y
     
 # Building crosstool-NG core
+# keep these on at all times because it is fast
 install:
     - cd crosstool-ng
-    - git checkout tags/crosstool-ng-1.21.0
+    - git checkout tomato
     - cp $TRAVIS_BUILD_DIR/ctng.config ./.config -f
     - ./bootstrap
     - ./configure --enable-local
@@ -58,18 +70,92 @@ install:
 # by the continuous integration system
 env:
     # - CT_SAMPLE=mipsel-unknown-linux-gnu
-    - export PATH=$HOME/x-tools/mipsel-unknown-linux-uclibc/bin:$PATH
+    matrix:
+        # - export PATH=$HOME/x-tools/mipsel-unknown-linux-uclibc/bin:$PATH
+        - SS_VER=latest
+        - SS_VER=v3.0.2
+        - SS_VER=v3.0.1
+        - SS_VER=v3.0.0
+        - SS_VER=v2.6.3
+        - SS_VER=v2.6.2
+        - SS_VER=v2.6.1
+        - SS_VER=v2.6.0
+        - SS_VER=v2.5.6
+        - SS_VER=v2.5.5
+        - SS_VER=v2.5.4
+        - SS_VER=v2.5.3
+        - SS_VER=v2.5.2
+        - SS_VER=v2.5.1
+        - SS_VER=v2.5.0
+        - SS_VER=v2.4.8
+        - SS_VER=v2.4.7
+        - SS_VER=v2.4.6
+        - SS_VER=v2.4.5
+        - SS_VER=v2.4.4
+        - SS_VER=v2.4.3
+        - SS_VER=v2.4.2
+        - SS_VER=v2.4.1
+        - SS_VER=v2.4.0
+        - SS_VER=v2.3.3
+        - SS_VER=v2.3.2
+        - SS_VER=v2.3.1
+        - SS_VER=v2.3.0
+        - SS_VER=v2.2.3
+        - SS_VER=v2.2.2
+        - SS_VER=v2.2.1
+        - SS_VER=v2.2.0
+        - SS_VER=v2.1.4
+        - SS_VER=v2.1.3
+        - SS_VER=v2.1.2
+        - SS_VER=v2.1.1
+        - SS_VER=v2.1.0
+        - SS_VER=v2.0.8
+        - SS_VER=v2.0.7
+        - SS_VER=v2.0.6
+        - SS_VER=v2.0.5
+        - SS_VER=v2.0.4
+        - SS_VER=v2.0.3
+        - SS_VER=v2.0.2
+        - SS_VER=v2.0.1
+        - SS_VER=v1.6.4
+        - SS_VER=v1.6.3
+        - SS_VER=v1.6.2
+        - SS_VER=v1.6.1
+        - SS_VER=v1.5.3
+        - SS_VER=v1.5.2
+        - SS_VER=v1.5.1
+        - SS_VER=v1.5.0
 
+        # the following version errored out so i disabled them
+        # - SS_VER=v1.4.8
+        # - SS_VER=v1.4.7
+        # - SS_VER=v1.4.6
+        # - SS_VER=v1.4.5
+        # - SS_VER=v1.4.4
+        # - SS_VER=v1.4.3
+        # - SS_VER=v1.4.2
+        # - SS_VER=v1.4.1
+        # - SS_VER=v1.4.0
+        # - SS_VER=v1.3.2
+        # - SS_VER=v1.3
+    global:
+        - secure: ZfpM0iSUM+t+A/RgdCQ/aTaoYfMHGPWED+pmqrHT50yjSEIVw4PclHZcDeExaopx1lUQjJpdOTlJ9Y8i7kfAGisojFNd6+3MOL2Qpe6rt8NF0x+n5V1YHgI9xOILigBcQo+ty4Iy1hDGFYrn96FCWRA71A4JuLthqXvAJY7RVAkTnmcTGf6ePWqYRQHvtje4mR4w43+VU9dlQpl1uly0ocd+PUhZrehqyfvmOxZhZbNfHBk/tQfLMl50OfyV6+vaOruOmkZKdsqMVCbz8NPanTDz8UeCLpaPQD46zH6F/KVOMRUhErNfQs4vWopg5H4BL25nOd/Ji8D38V+ai/h3d4EbBv8aQSuygmuSDSC3VeEuxjNgRvnoHSlqJGnhFsagH6suALu1kFfsCQNeX7267p4pNXKTTb4NIWnv/flwCgKPzk81h2OXhOpKVw2htfrcK0jmb0tyVNVRWDs9NTlFH+z5KjuOm+ykqeVS61Bc6Y5kHK3D0QsA7EIWN5MbIbExPnsfCkA/TMIcMDLzDCU/0zkfvZ0T7DqHpcU0mDeRCpA1IqhJ1Fmsz5V6g2hr9eF2VL1tSNoXSi7soCRG0kZjhnGQdssbmBplvJW55MwJCtc88LSJDdj5amTq8ZYwDi/ZbEpJYenpkwXU6/tq9EKsIjq3Znh+mgP/nnAxSiVrHkI=
+        
 # Building the standard samples
 script:
     # - . ls -l $HOME
     - . $TRAVIS_BUILD_DIR/.travis.sh      # Load the travis environment
-    # - ct-ng $CT_SAMPLE    # Configure the build
+    #- ct-ng $CT_SAMPLE    # Configure the build
+    #- echo ============================
+    # - apt-cache search pcre
     - ct-ng_travis_build  # Build the sample
-    - zlib_build
-    - openssl_build
+    # - pcre_build
+    #- zlib_build
+    #- openssl_build
     - ss_build
 
 # On failure displaying the last lines of the log file
 after_failure:
-    - tail -n 1000 build.log
+    - tail -n 1000 $TRAVIS_BUILD_DIR/config/build.log
+
+after_success: . $TRAVIS_BUILD_DIR/update-gh-pages.sh
