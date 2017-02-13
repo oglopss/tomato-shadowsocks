@@ -422,7 +422,7 @@ ss_build()
 
         if [ "$SS_VER" == "v2.6.3" ]; then
             libsodium_build
-        if
+        fi
         
         cd $TRAVIS_BUILD_DIR/shadowsocks-libev
 
