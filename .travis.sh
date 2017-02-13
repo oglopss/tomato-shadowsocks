@@ -387,10 +387,10 @@ ss_build()
         
         # echo --------
 
-        echo CPPFLAGS="-I$HOME/src/udns-$UDNS_VER -I$HOME/libev-install/include" LDFLAGS="-Wl,-rpath,/opt/lib:/lib:/usr/lib -L$HOME/src/udns-$UDNS_VER -L$HOME/libev-install/lib" CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --disable-ssp --prefix=$HOME/ss-install --with-pcre=$HOME/pcre-install --with-sodium=$HOME/libsodium-install --with-mbedtls=$HOME/mbedtls-install --host=mipsel-uclibc-linux
+        echo CPPFLAGS="$CPPFLAGS -I$HOME/src/udns-$UDNS_VER -I$HOME/libev-install/include" LDFLAGS="$LDFLAGS -Wl,-rpath,/opt/lib:/lib:/usr/lib -L$HOME/src/udns-$UDNS_VER -L$HOME/libev-install/lib" CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --disable-ssp --prefix=$HOME/ss-install --with-pcre=$HOME/pcre-install --with-sodium=$HOME/libsodium-install --with-mbedtls=$HOME/mbedtls-install --host=mipsel-uclibc-linux
         
 
-        CPPFLAGS="-I$HOME/src/udns-$UDNS_VER -I$HOME/libev-install/include" LDFLAGS="-Wl,-rpath,/opt/lib:/lib:/usr/lib -L$HOME/src/udns-$UDNS_VER -L$HOME/libev-install/lib" CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --disable-ssp --prefix=$HOME/ss-install --with-pcre=$HOME/pcre-install --with-sodium=$HOME/libsodium-install --with-mbedtls=$HOME/mbedtls-install --host=mipsel-uclibc-linux
+        CPPFLAGS="$CPPFLAGS -I$HOME/src/udns-$UDNS_VER -I$HOME/libev-install/include" LDFLAGS="$LDFLAGS -Wl,-rpath,/opt/lib:/lib:/usr/lib -L$HOME/src/udns-$UDNS_VER -L$HOME/libev-install/lib" CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --disable-ssp --prefix=$HOME/ss-install --with-pcre=$HOME/pcre-install --with-sodium=$HOME/libsodium-install --with-mbedtls=$HOME/mbedtls-install --host=mipsel-uclibc-linux
 
         echo -=-=-==-=-=-=-=-=-=-=
 
