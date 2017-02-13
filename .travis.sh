@@ -418,6 +418,11 @@ ss_build()
         #if [ ! -d "$HOME/openssl-install" ]; then
             # openssl_build
         #fi
+
+
+        if [ "$SS_VER" == "v2.6.3" ]; then
+            libsodium_build
+        if
         
         cd $TRAVIS_BUILD_DIR/shadowsocks-libev
 
@@ -425,7 +430,7 @@ ss_build()
         export LDFLAGS="$LDFLAGS -Wl,-rpath,/opt/lib:/lib:/usr/lib -L$HOME/libsodium-install/lib"
 
 
-        CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --disable-ssp --host=mipsel-uclibc-linux --prefix=$HOME/ss-install --with-openssl=$HOME/openssl-install --with-zlib=$HOME/zlib-install --with-pcre=$HOME/pcre-install
+        CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --disable-ssp --host=mipsel-uclibc-linux --prefix=$HOME/ss-install --with-openssl=$HOME/openssl-install --with-zlib=$HOME/zlib-install --with-pcre=$HOME/pcre-install --with-sodium=$HOME/libsodium-install
         
     fi
 
