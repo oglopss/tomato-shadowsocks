@@ -137,7 +137,7 @@ libsodium_build()
 {
 
     echo ========= libsodium_build =========
-    pushd $TRAVIS_BUILD_DIR
+    cd $TRAVIS_BUILD_DIR
     cd $HOME/src
     # export LIBSODIUM_VER=1.0.11
     # this does not work inside container
@@ -148,7 +148,7 @@ libsodium_build()
 
 
     tar xf libsodium-$LIBSODIUM_VER.tar.gz
-    pushd libsodium-$LIBSODIUM_VER
+    cd libsodium-$LIBSODIUM_VER
  
     CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib  ./configure --prefix=$HOME/libsodium-install --host=mipsel-uclibc-linux
  
@@ -157,8 +157,8 @@ libsodium_build()
     make install  > /dev/null 2>&1
 
  
-    popd
-    popd
+    # popd
+    # popd
 
 }
 
@@ -166,20 +166,20 @@ mbedtls_build()
 {
 
     echo ========= mbedtls_build =========
-    pushd $TRAVIS_BUILD_DIR
+    cd $TRAVIS_BUILD_DIR
     cd $HOME/src
 
     # export MBEDTLS_VER=2.4.0
     wget  --backups=1 https://tls.mbed.org/download/mbedtls-$MBEDTLS_VER-gpl.tgz
     tar xf mbedtls-$MBEDTLS_VER-gpl.tgz
-    pushd mbedtls-$MBEDTLS_VER
+    cd mbedtls-$MBEDTLS_VER
  
     CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib make > /dev/null 2>&1
  
     make install DESTDIR=$HOME/mbedtls-install > /dev/null 2>&1
  
-    popd
-    popd
+    # popd
+    # popd
 }
 
 
@@ -223,14 +223,14 @@ udns_build()
 libev_build()
 {
     echo ========libev_build=========
-    pushd $TRAVIS_BUILD_DIR
+    cd $TRAVIS_BUILD_DIR
     cd $HOME/src
     git clone https://github.com/enki/libev.git
     cd libev
     CPPFLAGS="-I$HOME/src/udns-$UDNS_VER" LDFLAGS="-L$HOME/src/udns-$UDNS_VER" CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --prefix=$HOME/libev-install --host=mipsel-uclibc-linux
     make
     make install
-    popd
+    # popd
 }
 
 err_report() {
@@ -288,7 +288,7 @@ ss_build()
     ls -l $TRAVIS_BUILD_DIR
     
     # go into ss dir
-    pushd $TRAVIS_BUILD_DIR/shadowsocks-libev
+    cd $TRAVIS_BUILD_DIR/shadowsocks-libev
 
 
     # pcre_config="--with-pcre=$HOME/pcre-install"
@@ -479,7 +479,7 @@ ss_build()
     # rm -rf
     tar -zcvf shadowsocks-libev-$SS_VER.tar.gz *
 
-    popd
+    # popd
 
     # Return the result
     return $result
