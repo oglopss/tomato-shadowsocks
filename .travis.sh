@@ -227,7 +227,7 @@ libev_build()
     cd $HOME/src
     git clone https://github.com/enki/libev.git
     cd libev
-    CPPFLAGS="-I$HOME/src/udns-$UDNS_VER" LDFLAGS="-L$HOME/src/udns-$UDNS_VER" CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --prefix=$HOME/libev-install --host=mipsel-uclibc-linux
+    CPPFLAGS="$CPPFLAGS -I$HOME/src/udns-$UDNS_VER" LDFLAGS="$LDFLAGS -L$HOME/src/udns-$UDNS_VER" CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --prefix=$HOME/libev-install --host=mipsel-uclibc-linux
     make
     make install
     # popd
@@ -336,7 +336,7 @@ ss_build()
     #if [ ! -d "$HOME/pcre-install" ]; then
         pcre_build
     #fi
-    
+        zlib_build
     
     cd $TRAVIS_BUILD_DIR/shadowsocks-libev
 
@@ -387,10 +387,9 @@ ss_build()
         
         # echo --------
 
-        echo CPPFLAGS="$CPPFLAGS -I$HOME/src/udns-$UDNS_VER -I$HOME/libev-install/include" LDFLAGS="$LDFLAGS -Wl,-rpath,/opt/lib:/lib:/usr/lib -L$HOME/src/udns-$UDNS_VER -L$HOME/libev-install/lib" CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --disable-ssp --prefix=$HOME/ss-install --with-pcre=$HOME/pcre-install --with-sodium=$HOME/libsodium-install --with-mbedtls=$HOME/mbedtls-install --host=mipsel-uclibc-linux
+        CPPFLAGS="$CPPFLAGS -I$HOME/src/udns-$UDNS_VER -I$HOME/libev-install/include -I$HOME/zlib-install/include" LDFLAGS="$LDFLAGS -Wl,-rpath,/opt/lib:/lib:/usr/lib -L$HOME/src/udns-$UDNS_VER -L$HOME/libev-install/lib -L$HOME/zlib-install/lib" CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --disable-ssp --prefix=$HOME/ss-install --with-pcre=$HOME/pcre-install --with-sodium=$HOME/libsodium-install --with-mbedtls=$HOME/mbedtls-install --host=mipsel-uclibc-linux
         
 
-        CPPFLAGS="$CPPFLAGS -I$HOME/src/udns-$UDNS_VER -I$HOME/libev-install/include" LDFLAGS="$LDFLAGS -Wl,-rpath,/opt/lib:/lib:/usr/lib -L$HOME/src/udns-$UDNS_VER -L$HOME/libev-install/lib" CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --disable-ssp --prefix=$HOME/ss-install --with-pcre=$HOME/pcre-install --with-sodium=$HOME/libsodium-install --with-mbedtls=$HOME/mbedtls-install --host=mipsel-uclibc-linux
 
         echo -=-=-==-=-=-=-=-=-=-=
 
