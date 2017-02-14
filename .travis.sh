@@ -354,7 +354,7 @@ ss_build()
 
     echo ====== "$SS_VER_INT"
     
-    if [ "$SS_VER_INT" -ge "263" ]; then
+    if  [  "$SS_VER_INT"  -ge  263  ] ; then 
     
         echo ========new build v3 =========
         #echo current dir 
