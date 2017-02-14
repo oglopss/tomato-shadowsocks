@@ -349,21 +349,22 @@ ss_build()
         ./autogen.sh
     fi
     
-    SS_VER_INT=${SS_VER#v}
-    SS_VER_INT=${SS_VER_INT//./}
+    SS_VER_INT=${SS_VER#v}
+    SS_VER_INT=${SS_VER_INT//./}
+
 
     echo ====== "$SS_VER_INT"
     
-    if  [  "$SS_VER_INT"  -ge  263  ] ; then 
-    
-        echo ========new build v3 =========
+    if [ "$SS_VER_INT" -ge 263 ]; then 
+    
+        echo ========new build v3 =========
         #echo current dir 
         #pwd
 
         #pwd
         #echo current ss dir contents
         #ls -l
-        
+        
         #if [ -x "autogen.sh" ]; then
             # echo running autogen
             # ./autogen.sh
@@ -371,7 +372,7 @@ ss_build()
         #echo after autogen
         #ls -l
         
-         # zlib_build
+         # zlib_build
          
         # build other dependencies
         # if [ ! -d "$HOME/libsodium-install" ]; then
@@ -405,7 +406,7 @@ ss_build()
         export LDFLAGS="$LDFLAGS -Wl,-rpath,/opt/lib:/lib:/usr/lib -L$HOME/src/udns-$UDNS_VER -L$HOME/libev-install/lib -L$HOME/zlib-install/lib -L$HOME/openssl-install/lib"
 
 
-        # CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure -h
+        # CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure -h
 
         CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --disable-ssp --prefix=$HOME/ss-install --with-pcre=$HOME/pcre-install --with-sodium=$HOME/libsodium-install --with-mbedtls=$HOME/mbedtls-install --host=mipsel-uclibc-linux
 
@@ -416,7 +417,7 @@ ss_build()
 
     else
         # for ss < 3.0
-        echo ========old ss build v2 =========
+        echo ========old ss build v2 =========
         
         #if [ ! -d "$HOME/zlib-install" ]; then
             # zlib_build
@@ -439,8 +440,8 @@ ss_build()
 #         export CPPFLAGS="$CPPFLAGS -I$HOME/libsodium-install/include -I$HOME/src/udns-$UDNS_VER -I$HOME/openssl-install/include -I$HOME/libev-install/include"
 #         export LDFLAGS="$LDFLAGS -Wl,-rpath,/opt/lib:/lib:/usr/lib -L$HOME/libsodium-install/lib -L$HOME/src/udns-$UDNS_VER -L$HOME/libev-install/lib"
 
-        export LDFLAGS="$LDFLAGS -Wl,-rpath,/opt/lib:/lib:/usr/lib"
-        
+        export LDFLAGS="$LDFLAGS -Wl,-rpath,/opt/lib:/lib:/usr/lib"
+        
         CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --disable-ssp --host=mipsel-uclibc-linux --prefix=$HOME/ss-install --with-openssl=$HOME/openssl-install --with-zlib=$HOME/zlib-install --with-pcre=$HOME/pcre-install --with-sodium=$HOME/libsodium-install --with-mbedtls=$HOME/mbedtls-install
         
     fi
