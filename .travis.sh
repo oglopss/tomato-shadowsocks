@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Add current directory to PATH
 export PATH="$(pwd):$(pwd)/crosstool-ng:$PATH"
 export PATH=$HOME/x-tools/mipsel-unknown-linux-uclibc/bin:$PATH
@@ -347,11 +349,11 @@ ss_build()
         ./autogen.sh
     fi
     
-    local SS_VER_INT=${SS_VER#v}
-    local SS_VER_INT=${SS_VER_INT//./}
+    SS_VER_INT=${SS_VER#v}
+    SS_VER_INT=${SS_VER_INT//./}
     
     # if [ "v3" == ${SS_VER:0:2} ] || [ "vs" == ${SS_VER:0:2}  ]; then
-    if [ $SS_VER_INT >= 263 ]; then
+    if [ "$SS_VER_INT" -ge 263 ]; then
     
         echo ========new build v3 =========
         #echo current dir 
