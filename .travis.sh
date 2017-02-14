@@ -352,7 +352,6 @@ ss_build()
     SS_VER_INT=${SS_VER#v}
     SS_VER_INT=${SS_VER_INT//./}
     
-    # if [ "v3" == ${SS_VER:0:2} ] || [ "vs" == ${SS_VER:0:2}  ]; then
     if [ "$SS_VER_INT" -ge 263 ]; then
     
         echo ========new build v3 =========
