@@ -519,6 +519,9 @@ ss_build()
         cp $HOME/mbedtls-install/lib/libmbedcrypto.so.0 .
         cp $HOME/libev-install/lib/libev.so.4 .
 
+        # strip them as well
+        mipsel-unknown-linux-uclibc-strip ./*so*
+
     fi
 
     printf "compress files ...\r"
