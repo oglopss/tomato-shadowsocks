@@ -512,6 +512,15 @@ ss_build()
     find $HOME/ss-install/bin -type f \( ! -iname "ss-nat" \) -exec ./upx {} \;
     cd $HOME/ss-install/bin/
 
+
+    # copy so files
+    if [ "$SS_VER_INT" -ge 263 ]; then 
+
+        cp $HOME/mbedtls-install/lib/libmbedcrypto.so.0 .
+        cp $HOME/libev-install/lib/libev.so.4 .
+
+    fi
+
     printf "compress files ...\r"
     # rm -rf
     tar -zcvf shadowsocks-libev-$SS_VER.tar.gz *
