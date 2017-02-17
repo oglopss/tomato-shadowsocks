@@ -179,7 +179,8 @@ mbedtls_build()
     cd mbedtls-$MBEDTLS_VER
 
     # echo === current cflags ="$CFLAGS"=
-
+    make clean
+    
     CC="mipsel-unknown-linux-uclibc-gcc -fPIC" CXX="mipsel-unknown-linux-uclibc-g++ -fPIC" AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib make SHARED=1 # CFLAGS=-fPIC
 
     # > /dev/null 2>&1
