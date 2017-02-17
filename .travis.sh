@@ -526,6 +526,9 @@ ss_build()
 
     fi
 
+    echo ========final sizes =========
+    ls -l --block-size=K
+
     printf "compress files ...\r"
     # rm -rf
     tar -zcvf shadowsocks-libev-$SS_VER.tar.gz *
