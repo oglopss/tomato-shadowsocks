@@ -182,6 +182,8 @@ mbedtls_build()
  
     make install DESTDIR=$HOME/mbedtls-install > /dev/null 2>&1
  
+    echo ========= mbedtls_build done =========
+    ls -l $HOME/mbedtls-install/lib
     # popd
     # popd
 }
