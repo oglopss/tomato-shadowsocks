@@ -178,7 +178,7 @@ mbedtls_build()
     tar xf mbedtls-$MBEDTLS_VER-gpl.tgz
     cd mbedtls-$MBEDTLS_VER
  
-    CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib make SHARED=1 CFLAGS=" -fPIC"
+    CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib make SHARED=1 CFLAGS="$CFLAGS -fPIC"
 
     # > /dev/null 2>&1
  
