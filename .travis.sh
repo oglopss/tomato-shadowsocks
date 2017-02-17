@@ -180,7 +180,7 @@ mbedtls_build()
 
     # echo === current cflags ="$CFLAGS"=
 
-    CC=mipsel-unknown-linux-uclibc-gcc CXX="mipsel-unknown-linux-uclibc-g++ -fPIC" AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib make SHARED=1 # CFLAGS=-fPIC
+    CC="mipsel-unknown-linux-uclibc-gcc -fPIC" CXX="mipsel-unknown-linux-uclibc-g++ -fPIC" AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib make SHARED=1 # CFLAGS=-fPIC
 
     # > /dev/null 2>&1
  
