@@ -11,7 +11,7 @@ export PATH=$HOME/x-tools/mipsel-unknown-linux-uclibc/bin:$PATH
 export OUT="> /dev/null 2>&1"
 
 export ZLIB_VER=1.2.11
-export OPENSSL_VER=1.0.2j
+export OPENSSL_VER=1.0.2k
 
 export PCRE_VER=8.40
 export LIBSODIUM_VER=1.0.11
@@ -178,7 +178,7 @@ mbedtls_build()
     tar xf mbedtls-$MBEDTLS_VER-gpl.tgz
     cd mbedtls-$MBEDTLS_VER
  
-    CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib make SHARED=1 CFLAGS="-fPIC" # > /dev/null 2>&1
+    CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib SHARED=1 CFLAGS=-fPIC make# > /dev/null 2>&1
  
     make install DESTDIR=$HOME/mbedtls-install > /dev/null 2>&1
  
