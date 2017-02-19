@@ -3,8 +3,8 @@
 # if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
   echo -e "Starting to update gh-pages\n"
 
-  echo ======== show $HOME/ss-install =======
-  ls -l $HOME/ss-install
+  echo ======== show $HOME/ss-install/bin =======
+  ls -l $HOME/ss-install/bin --block-size=K
 
   #copy data we're interested in to other place
   mkdir -p $HOME/coverage
