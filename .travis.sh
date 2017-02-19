@@ -181,7 +181,12 @@ mbedtls_build()
     # echo === current cflags ="$CFLAGS"=
     make clean
     
-    CC="mipsel-unknown-linux-uclibc-gcc -fPIC" CXX="mipsel-unknown-linux-uclibc-g++ -fPIC" AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib make SHARED=1 # CFLAGS=-fPIC
+    # CC="mipsel-unknown-linux-uclibc-gcc -fPIC" CXX="mipsel-unknown-linux-uclibc-g++ -fPIC" AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib make SHARED=1 # CFLAGS=-fPIC
+
+    
+    CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib make # SHARED=1 CFLAGS=-fPIC
+
+
 
     # > /dev/null 2>&1
  
@@ -370,7 +375,7 @@ ss_build()
     SS_VER_INT=${SS_VER#v}
     SS_VER_INT=${SS_VER_INT//./}
 
-    if [  "${id:0:5}" == "vsnap" ]; then
+    if [  "${SS_VER:0:5}" == "vsnap" ]; then
         SS_VER_INT=999
     fi
 
