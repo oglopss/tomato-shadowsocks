@@ -365,8 +365,14 @@ ss_build()
         ./autogen.sh
     fi
     
+
+
     SS_VER_INT=${SS_VER#v}
     SS_VER_INT=${SS_VER_INT//./}
+
+    if [  "${id:0:5}" == "vsnap" ]; then
+        SS_VER_INT=999
+    fi
 
 
     echo ====== "$SS_VER_INT"
