@@ -19,12 +19,12 @@ cache:
     directories:
         - $HOME/src
         - $HOME/x-tools
-        - $HOME/zlib-install
-        - $HOME/openssl-install
-        - $HOME/pcre-install
-        - $HOME/libsodium-install
-        - $HOME/mbedtls-install
-        - $HOME/libev-install
+        # - $HOME/zlib-install
+        # - $HOME/openssl-install
+        # - $HOME/pcre-install
+        # - $HOME/libsodium-install
+        # - $HOME/mbedtls-install
+        # - $HOME/libev-install
 
 
 # Installing needed dependencies

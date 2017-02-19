@@ -95,6 +95,9 @@ pcre_build()
     CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --host=mipsel-uclibc-linux --disable-cpp --prefix=$HOME/pcre-install
 
     make > /dev/null 2>&1
+
+    rm -rf $HOME/pcre-install
+    
     make install > /dev/null 2>&1
 
 
@@ -117,6 +120,8 @@ openssl_build()
     # git checkout tags/OpenSSL_1_0_2g
     CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./Configure no-asm shared --prefix=$HOME/openssl-install linux-mips32 &> /dev/null
     make > /dev/null 2>&1
+    rm -rf $HOME/openssl-install
+
     make install > /dev/null 2>&1
 
 }
@@ -130,6 +135,8 @@ zlib_build()
     cd ../zlib-$ZLIB_VER
     CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --prefix=$HOME/zlib-install &> /dev/null
     make > /dev/null 2>&1
+
+    rm -rf $HOME/zlib-install
     make install > /dev/null 2>&1
 
 
@@ -158,6 +165,7 @@ libsodium_build()
  
     make  > /dev/null 2>&1
 
+    rm -rf $HOME/libsodium-install
     make install  > /dev/null 2>&1
 
  
@@ -189,6 +197,7 @@ mbedtls_build()
 
 
     # > /dev/null 2>&1
+    rm -rf $HOME/mbedtls-install
  
     make install DESTDIR=$HOME/mbedtls-install > /dev/null 2>&1
  
@@ -252,6 +261,9 @@ libev_build()
     
     CPPFLAGS="-I$HOME/src/udns-$UDNS_VER" LDFLAGS="-L$HOME/src/udns-$UDNS_VER" CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --prefix=$HOME/libev-install --host=mipsel-uclibc-linux
     make
+
+    rm -rf $HOME/libev-install
+
     make install
     # popd
 }
