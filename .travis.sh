@@ -552,6 +552,9 @@ ss_build()
         # strip them as well
         mipsel-unknown-linux-uclibc-strip ./*so*
 
+    else
+        cp $HOME/openssl-install/lib/libcrypto.so.1.0.0 .
+
     fi
 
     echo ========final sizes =========
