@@ -80,6 +80,13 @@ push_changes()
     #go into directory and copy data we're interested in to that directory
   cd $HOME/gh-pages-$SS_VER
   mkdir -p download && cd download
+
+
+  # if it's latest build, delete all others
+  if [  "${SS_VER:0:5}" == "vsnap" ]; then
+      rm  shadowsocks-libev-vsnapshot*
+  fi
+
   cp -Rf $HOME/coverage/* .
 
   #add, commit and push files

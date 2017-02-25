@@ -330,7 +330,8 @@ ss_build()
 
     if [ "$SS_VER" == "latest" ]; then
         id=$(git rev-parse HEAD)
-        SS_VER=vsnapshot-${id:0:5}
+        # SS_VER=vsnapshot-${id:0:5}
+        SS_VER=vsnapshot-${id: -5}
     else    
 
         # http://stackoverflow.com/questions/229551/string-contains-in-bash
