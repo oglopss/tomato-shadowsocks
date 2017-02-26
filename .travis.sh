@@ -347,7 +347,8 @@ ss_build()
 
         echo ================= will checkout SS_VER ================
         echo $SS_VER
-
+        git clean -xfd
+        git checkout .
         git checkout tags/$SS_VER
     fi
 
