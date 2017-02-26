@@ -330,7 +330,7 @@ ss_build()
 
     if [ "$SS_VER" == "latest" ]; then
         id=$(git rev-parse HEAD)
-        SS_VER=vsnapshot-${id:0:5}
+        SS_VER=vsnapshot-${id: -5}
     else    
 
         # http://stackoverflow.com/questions/229551/string-contains-in-bash
@@ -347,7 +347,8 @@ ss_build()
         echo ================= will checkout SS_VER ================
         echo $SS_VER
 
-        git checkout tags/$SS_VER
+        git checkout -f tags/$SS_VER
+        git clean -xfd
     fi
 
     # echo ================= before ss-config ================
