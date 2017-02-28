@@ -442,6 +442,13 @@ ss_build()
         
         # echo --------
 
+        # backport issue 1306
+        if [ "$SS_VER_INT" -ge 263 ] && [ "$SS_VER_INT" -le 303 ]; then
+            cd $TRAVIS_BUILD_DIR/shadowsocks-libev
+            git cherry-pick 5b122d4f8ce02dfea0848fe7e0fff43ccf0d69ff
+        fi
+
+
         if [ "$SS_VER_INT" = 263 ] || [ "$SS_VER_INT" = 999 ]; then
 
             echo 263 or 999 use openssl
