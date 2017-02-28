@@ -375,14 +375,6 @@ ss_build()
         zlib_build
 
         # openssl_build
-    
-    cd $TRAVIS_BUILD_DIR/shadowsocks-libev
-
-    if [ -f "autogen.sh" ]; then
-        echo running autogen
-        ./autogen.sh
-    fi
-    
 
 
     SS_VER_INT=${SS_VER#v}
@@ -391,6 +383,22 @@ ss_build()
     if [  "${SS_VER:0:5}" == "vsnap" ]; then
         SS_VER_INT=999
     fi
+    
+    cd $TRAVIS_BUILD_DIR/shadowsocks-libev
+
+   # backport issue 1306
+    if [ "$SS_VER_INT" -ge 263 ] && [ "$SS_VER_INT" -le 303 ]; then
+        cd $TRAVIS_BUILD_DIR/shadowsocks-libev
+        git cherry-pick 5b122d4f8ce02dfea0848fe7e0fff43ccf0d69ff
+    fi
+
+
+    if [ -f "autogen.sh" ]; then
+        echo running autogen
+        ./autogen.sh
+    fi
+    
+
 
 
     echo ====== "$SS_VER_INT"
@@ -442,11 +450,6 @@ ss_build()
         
         # echo --------
 
-        # backport issue 1306
-        if [ "$SS_VER_INT" -ge 263 ] && [ "$SS_VER_INT" -le 303 ]; then
-            cd $TRAVIS_BUILD_DIR/shadowsocks-libev
-            git cherry-pick 5b122d4f8ce02dfea0848fe7e0fff43ccf0d69ff
-        fi
 
 
         if [ "$SS_VER_INT" = 263 ] || [ "$SS_VER_INT" = 999 ]; then
