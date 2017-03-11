@@ -574,16 +574,17 @@ ss_build()
 
         cp $HOME/mbedtls-install/lib/libmbedcrypto.so.0 .
         cp $HOME/libev-install/lib/libev.so.4 .
+        cp $HOME/libsodium-install/lib/libsodium.so.18 .
 
-        if [ "$SS_VER_INT" -eq 263 ] || [ "$SS_VER_INT" -eq 999 ]; then
-            cp $HOME/openssl-install/lib/libcrypto.so.1.0.0 .
-        fi
+        # if [ "$SS_VER_INT" -eq 263 ] || [ "$SS_VER_INT" -eq 999 ]; then
+        #     cp $HOME/openssl-install/lib/libcrypto.so.1.0.0 .
+        # fi
 
 
-    else
-        cp $HOME/openssl-install/lib/libcrypto.so.1.0.0 .
+    # else
+    #     cp $HOME/openssl-install/lib/libcrypto.so.1.0.0 .
 
-    fi
+    # fi
 
 
     # strip them as well
