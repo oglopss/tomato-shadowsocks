@@ -584,7 +584,7 @@ ss_build()
     # else
     #     cp $HOME/openssl-install/lib/libcrypto.so.1.0.0 .
 
-    # fi
+    fi
 
 
     # strip them as well
