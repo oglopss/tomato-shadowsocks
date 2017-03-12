@@ -15,7 +15,7 @@ export OPENSSL_VER=1.0.2k
 
 export PCRE_VER=8.40
 export LIBSODIUM_VER=1.0.11
-export MBEDTLS_VER=2.4.0
+export MBEDTLS_VER=2.4.2
 export UDNS_VER=0.4
 
 # using the same ver as in entware 02/14/2017
