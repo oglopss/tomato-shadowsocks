@@ -17,6 +17,7 @@ export PCRE_VER=8.40
 export LIBSODIUM_VER=1.0.11
 export MBEDTLS_VER=2.4.2
 export UDNS_VER=0.4
+export OBFS_VER=0.0.2
 
 # using the same ver as in entware 02/14/2017
 # libev - 4.20-1 - A full-featured and high-performance event loop that is loosely modelled after libevent, but without its limitations and bugs.
@@ -274,6 +275,25 @@ err_report() {
 
 trap 'err_report $LINENO' ERR
 
+
+obfs_build()
+{
+    echo ========obfs_build=========
+    cd $TRAVIS_BUILD_DIR
+    cd $HOME/src
+    git clone https://github.com/shadowsocks/simple-obfs
+
+    cd simple-obfs
+    git checkout v$ver -b v$ver
+    git submodule init && git submodule update
+    ./autogen.sh
+    LIBS="-lpthread -lm" LDFLAGS="-L$HOME/libsodium-install/lib -L$HOME/src/udns-$UDNS_VER -L$HOME/libev-install/lib" CFLAGS="-I$HOME/libsodium-install/include -I$HOME/src/udns-$UDNS_VER -I$HOME/libev-install/include" ./configure --host=mipsel-uclibc-linux --prefix=$HOME/obfs-install --disable-ssp --disable-documentation
+    make && make install
+
+    echo ========$HOME/obfs-install=========
+    ls -l $HOME/obfs-install
+}
+
 ss_build()
 {
 
@@ -442,6 +462,8 @@ ss_build()
             libev_build
         #fi
         # echo ================ running configure for ss
+
+            obfs_build
         
         cd $TRAVIS_BUILD_DIR/shadowsocks-libev
     
