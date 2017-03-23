@@ -17,7 +17,7 @@ export PCRE_VER=8.40
 export LIBSODIUM_VER=1.0.11
 export MBEDTLS_VER=2.4.2
 export UDNS_VER=0.4
-export OBFS_VER=0.0.2
+export OBFS_VER=0.0.3
 
 # using the same ver as in entware 02/14/2017
 # libev - 4.20-1 - A full-featured and high-performance event loop that is loosely modelled after libevent, but without its limitations and bugs.
@@ -287,7 +287,7 @@ obfs_build()
     git checkout v$ver -b v$ver
     git submodule init && git submodule update
     ./autogen.sh
-    LIBS="-lpthread -lm" LDFLAGS="-L$HOME/libsodium-install/lib -L$HOME/src/udns-$UDNS_VER -L$HOME/libev-install/lib" CFLAGS="-I$HOME/libsodium-install/include -I$HOME/src/udns-$UDNS_VER -I$HOME/libev-install/include" ./configure --host=mipsel-uclibc-linux --prefix=$HOME/obfs-install --disable-ssp --disable-documentation
+    LIBS="-lpthread -lm" LDFLAGS="-L$HOME/libsodium-install/lib -L$HOME/src/udns-$UDNS_VER -L$HOME/libev-install/lib" CFLAGS="-I$HOME/libsodium-install/include -I$HOME/src/udns-$UDNS_VER -I$HOME/libev-install/include" CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --host=mipsel-uclibc-linux --prefix=$HOME/obfs-install --disable-ssp --disable-documentation
     make && make install
 
     echo ========$HOME/obfs-install=========
@@ -571,6 +571,12 @@ ss_build()
     # mipsel-unknown-linux-uclibc-strip $HOME/ss-install/bin/*
     find $HOME/ss-install/bin -type f \( ! -iname "ss-nat" \) -execdir mipsel-unknown-linux-uclibc-strip {} \;
     
+
+    if [ "$SS_VER_INT" = 263 ] then;
+        find $HOME/obfs-install/bin -type f -execdir mipsel-unknown-linux-uclibc-strip {} \;
+    fi
+
+
     # upx files
     printf "upx files ...\r"
     rm -rf $HOME/src/upx-*
@@ -588,8 +594,13 @@ ss_build()
 
     # ./upx $HOME/ss-install/bin/*
     find $HOME/ss-install/bin -type f \( ! -iname "ss-nat" \) -exec ./upx {} \;
-    cd $HOME/ss-install/bin/
+    
 
+    if [ "$SS_VER_INT" = 263 ] then;
+        find $HOME/obfs-install/bin -type f ./upx {} \;
+    fi
+
+    cd $HOME/ss-install/bin/
 
     # copy so files
     if [ "$SS_VER_INT" -ge 263 ]; then 
@@ -597,6 +608,8 @@ ss_build()
         cp $HOME/mbedtls-install/lib/libmbedcrypto.so.0 .
         cp $HOME/libev-install/lib/libev.so.4 .
         cp $HOME/libsodium-install/lib/libsodium.so.18 .
+
+        cp $HOME/obfs-install/bin/obfs* .
 
         if [ "$SS_VER_INT" -eq 263 ] || [ "$SS_VER_INT" -eq 999 ]; then
             cp $HOME/openssl-install/lib/libcrypto.so.1.0.0 .

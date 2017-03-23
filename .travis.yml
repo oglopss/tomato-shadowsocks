@@ -59,7 +59,8 @@ before_install:
 # keep these on at all times because it is fast
 install:
     - cd crosstool-ng
-    - git checkout tomato
+    # - git checkout tomato
+    - git checkout tags/crosstool-ng-1.21.0
     - cp $TRAVIS_BUILD_DIR/ctng.config ./.config -f
     - ./bootstrap
     - ./configure --enable-local
@@ -73,6 +74,8 @@ env:
     matrix:
         # - export PATH=$HOME/x-tools/mipsel-unknown-linux-uclibc/bin:$PATH
         - SS_VER=latest
+        - SS_VER=v3.0.5
+        - SS_VER=v3.0.4
         - SS_VER=v3.0.3
         - SS_VER=v3.0.2
         - SS_VER=v3.0.1
