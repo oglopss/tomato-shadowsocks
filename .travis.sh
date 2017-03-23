@@ -572,7 +572,7 @@ ss_build()
     find $HOME/ss-install/bin -type f \( ! -iname "ss-nat" \) -execdir mipsel-unknown-linux-uclibc-strip {} \;
     
 
-    if [ "$SS_VER_INT" = 263 ]; then;
+    if [ "$SS_VER_INT" = 263 ]; then
         find $HOME/obfs-install/bin -type f -execdir mipsel-unknown-linux-uclibc-strip {} \;
     fi
 
