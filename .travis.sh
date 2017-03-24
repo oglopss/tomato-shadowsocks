@@ -265,8 +265,8 @@ libev_build()
     echo ========inside libev_build=========
     echo ========config.h=========
     cat ./config.h
-    echo ========ev_epoll.c=========
-    cat ./ev_epoll.c
+    # echo ========ev_epoll.c=========
+    # cat ./ev_epoll.c
 
 
     make
@@ -505,6 +505,8 @@ ss_build()
 
         echo -=-=-==-=-=-=-=-=-=-=
 
+        sed -i -e 's/\(#define CORK_CONFIG_HAVE_THREAD_STORAGE_CLASS  \)1/\10/' ./libcork/include/libcork/config/gcc.h
+
         echo ========inside ss_build after configure=========
         echo ======== libcork/include/libcork/config/gcc.h=========
         cat ./libcork/include/libcork/config/gcc.h
@@ -583,12 +585,12 @@ ss_build()
 
     # exclude ss-nat new in 2.4.7
 
-    # find $HOME/ss-install/bin -type f \( ! -iname "ss-nat" \) -execdir mipsel-unknown-linux-uclibc-strip {} \;
+    find $HOME/ss-install/bin -type f \( ! -iname "ss-nat" \) -execdir mipsel-unknown-linux-uclibc-strip {} \;
     
 
-    # if [ "$SS_VER_INT" = 263 ]; then
-    #     find $HOME/obfs-install/bin -type f -execdir mipsel-unknown-linux-uclibc-strip {} \;
-    # fi
+    if [ "$SS_VER_INT" -ge 263 ]; then
+        find $HOME/obfs-install/bin -type f -execdir mipsel-unknown-linux-uclibc-strip {} \;
+    fi
 
 
     # upx files
@@ -606,12 +608,12 @@ ss_build()
     ls -l
 
 
-    # find $HOME/ss-install/bin -type f \( ! -iname "ss-nat" \) -exec ./upx {} \;
+    find $HOME/ss-install/bin -type f \( ! -iname "ss-nat" \) -exec ./upx {} \;
     
 
-    # if [ "$SS_VER_INT" = 263 ]; then
-    #     find $HOME/obfs-install/bin -type f ./upx {} \;
-    # fi
+    if [ "$SS_VER_INT" -ge 263 ]; then
+        find $HOME/obfs-install/bin -type f ./upx {} \;
+    fi
 
     cd $HOME/ss-install/bin/
 
