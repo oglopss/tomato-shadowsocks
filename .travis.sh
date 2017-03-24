@@ -261,6 +261,14 @@ libev_build()
     cd libev-$LIBEV_VER
     
     CPPFLAGS="-I$HOME/src/udns-$UDNS_VER" LDFLAGS="-L$HOME/src/udns-$UDNS_VER" CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --prefix=$HOME/libev-install --host=mipsel-uclibc-linux
+
+    echo ========inside libev_build=========
+    echo ========config.h=========
+    cat ./config.h
+    echo ========ev_epoll.c=========
+    cat ./ev_epoll.c
+
+
     make
 
     rm -rf $HOME/libev-install
@@ -275,7 +283,6 @@ err_report() {
 
 trap 'err_report $LINENO' ERR
 
-
 obfs_build()
 {
     echo ========obfs_build=========
@@ -287,7 +294,9 @@ obfs_build()
     git checkout v$ver -b v$ver
     git submodule init && git submodule update
     ./autogen.sh
-    LIBS="-lpthread -lm" LDFLAGS="-L$HOME/libsodium-install/lib -L$HOME/src/udns-$UDNS_VER -L$HOME/libev-install/lib" CFLAGS="-I$HOME/libsodium-install/include -I$HOME/src/udns-$UDNS_VER -I$HOME/libev-install/include" CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --host=mipsel-uclibc-linux --prefix=$HOME/obfs-install --disable-ssp --disable-documentation
+    # LIBS="-lpthread -lm" LDFLAGS="-Wl,-rpath,/jffs/lib -L$HOME/libsodium-install/lib -L$HOME/src/udns-$UDNS_VER -L$HOME/libev-install/lib" CFLAGS="-I$HOME/libsodium-install/include -I$HOME/src/udns-$UDNS_VER -I$HOME/libev-install/include" CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --host=mipsel-uclibc-linux --prefix=$HOME/obfs-install --disable-ssp --disable-documentation
+
+    LDFLAGS="-Wl,-rpath,/jffs/lib -L$HOME/libsodium-install/lib -L$HOME/src/udns-$UDNS_VER -L$HOME/libev-install/lib" CFLAGS="-I$HOME/libsodium-install/include -I$HOME/src/udns-$UDNS_VER -I$HOME/libev-install/include" CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --host=mipsel-uclibc-linux --prefix=$HOME/obfs-install --disable-ssp --disable-documentation
     make && make install
 
     echo ========$HOME/obfs-install=========
@@ -494,6 +503,10 @@ ss_build()
         fi
 
         echo -=-=-==-=-=-=-=-=-=-=
+
+        echo ========inside ss_build after configure=========
+        echo ======== libcork/include/libcork/config/gcc.h=========
+        cat ./libcork/include/libcork/config/gcc.h
 
     else
         # for ss < 3.0
