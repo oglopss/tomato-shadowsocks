@@ -291,7 +291,8 @@ obfs_build()
     git clone https://github.com/shadowsocks/simple-obfs
 
     cd simple-obfs
-    git checkout v$ver -b v$ver
+    git pull
+    git checkout tags/v$OBFS_VER
     git submodule init && git submodule update
     ./autogen.sh
     # LIBS="-lpthread -lm" LDFLAGS="-Wl,-rpath,/jffs/lib -L$HOME/libsodium-install/lib -L$HOME/src/udns-$UDNS_VER -L$HOME/libev-install/lib" CFLAGS="-I$HOME/libsodium-install/include -I$HOME/src/udns-$UDNS_VER -I$HOME/libev-install/include" CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --host=mipsel-uclibc-linux --prefix=$HOME/obfs-install --disable-ssp --disable-documentation
@@ -581,13 +582,13 @@ ss_build()
     echo after: "$PATH"
 
     # exclude ss-nat new in 2.4.7
-    # mipsel-unknown-linux-uclibc-strip $HOME/ss-install/bin/*
-    find $HOME/ss-install/bin -type f \( ! -iname "ss-nat" \) -execdir mipsel-unknown-linux-uclibc-strip {} \;
+
+    # find $HOME/ss-install/bin -type f \( ! -iname "ss-nat" \) -execdir mipsel-unknown-linux-uclibc-strip {} \;
     
 
-    if [ "$SS_VER_INT" = 263 ]; then
-        find $HOME/obfs-install/bin -type f -execdir mipsel-unknown-linux-uclibc-strip {} \;
-    fi
+    # if [ "$SS_VER_INT" = 263 ]; then
+    #     find $HOME/obfs-install/bin -type f -execdir mipsel-unknown-linux-uclibc-strip {} \;
+    # fi
 
 
     # upx files
@@ -605,13 +606,12 @@ ss_build()
     ls -l
 
 
-    # ./upx $HOME/ss-install/bin/*
-    find $HOME/ss-install/bin -type f \( ! -iname "ss-nat" \) -exec ./upx {} \;
+    # find $HOME/ss-install/bin -type f \( ! -iname "ss-nat" \) -exec ./upx {} \;
     
 
-    if [ "$SS_VER_INT" = 263 ]; then
-        find $HOME/obfs-install/bin -type f ./upx {} \;
-    fi
+    # if [ "$SS_VER_INT" = 263 ]; then
+    #     find $HOME/obfs-install/bin -type f ./upx {} \;
+    # fi
 
     cd $HOME/ss-install/bin/
 
