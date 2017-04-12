@@ -623,7 +623,7 @@ ss_build()
         cp $HOME/mbedtls-install/lib/libmbedcrypto.so.0 .
         cp $HOME/libev-install/lib/libev.so.4 .
         cp $HOME/libsodium-install/lib/libsodium.so.18 .
-
+        cp $HOME/pcre-install/lib/libpcre.so.1 .
         cp $HOME/obfs-install/bin/obfs* .
 
         if [ "$SS_VER_INT" -eq 263 ] || [ "$SS_VER_INT" -eq 999 ]; then
