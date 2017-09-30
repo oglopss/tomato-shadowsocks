@@ -450,7 +450,7 @@ ss_build()
 
     echo ====== "$SS_VER_INT"
     
-    if [ "$SS_VER_INT" -ge 263 ]; then 
+    # if [ "$SS_VER_INT" -ge 263 ]; then 
     
         echo ========new build v3 =========
         #echo current dir 
@@ -505,22 +505,22 @@ ss_build()
 
 
 
-        if [ "$SS_VER_INT" = 263 ] || [ "$SS_VER_INT" = 999 ]; then
+        # if [ "$SS_VER_INT" = 263 ] || [ "$SS_VER_INT" = 999 ]; then
 
-            echo 263 or 999 use openssl
+        #     echo 263 or 999 use openssl
 
-            openssl_build
+        #     openssl_build
             
-            cd $TRAVIS_BUILD_DIR/shadowsocks-libev
+        #     cd $TRAVIS_BUILD_DIR/shadowsocks-libev
 
-            CPPFLAGS="-I$HOME/src/udns-$UDNS_VER -I$HOME/libev-install/include -I$HOME/zlib-install/include -I$HOME/openssl-install/include " LDFLAGS="-Wl,-rpath,/jffs/lib -L$HOME/src/udns-$UDNS_VER -L$HOME/libev-install/lib -L$HOME/zlib-install/lib -L$HOME/openssl-install/lib" CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --disable-ssp --prefix=$HOME/ss-install --with-pcre=$HOME/pcre-install --with-sodium=$HOME/libsodium-install --with-mbedtls=$HOME/mbedtls-install --host=mipsel-uclibc-linux
+        #     CPPFLAGS="-I$HOME/src/udns-$UDNS_VER -I$HOME/libev-install/include -I$HOME/zlib-install/include -I$HOME/openssl-install/include " LDFLAGS="-Wl,-rpath,/jffs/lib -L$HOME/src/udns-$UDNS_VER -L$HOME/libev-install/lib -L$HOME/zlib-install/lib -L$HOME/openssl-install/lib" CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --disable-ssp --prefix=$HOME/ss-install --with-pcre=$HOME/pcre-install --with-sodium=$HOME/libsodium-install --with-mbedtls=$HOME/mbedtls-install --host=mipsel-uclibc-linux
 
-        else
+        # else
 
             echo greater or equal to 263, use mbedtls
             CPPFLAGS="-I$HOME/cares-install/include -I$HOME/libev-install/include -I$HOME/zlib-install/include" LDFLAGS="-Wl,-rpath,/jffs/lib -L$HOME/cares-install/lib -L$HOME/libev-install/lib -L$HOME/zlib-install/lib" CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --disable-ssp --prefix=$HOME/ss-install --with-pcre=$HOME/pcre-install --with-sodium=$HOME/libsodium-install --with-mbedtls=$HOME/mbedtls-install --host=mipsel-uclibc-linux
     
-        fi
+        # fi
 
         echo -=-=-==-=-=-=-=-=-=-=
 
@@ -530,34 +530,34 @@ ss_build()
         echo ======== libcork/include/libcork/config/gcc.h=========
         cat ./libcork/include/libcork/config/gcc.h
 
-    else
-        # for ss < 3.0
-        echo ========old ss build v2 =========
+#     else
+#         # for ss < 3.0
+#         echo ========old ss build v2 =========
         
-        #if [ ! -d "$HOME/zlib-install" ]; then
-            # zlib_build
-        #fi
+#         #if [ ! -d "$HOME/zlib-install" ]; then
+#             # zlib_build
+#         #fi
 
-        #if [ ! -d "$HOME/openssl-install" ]; then
-            # openssl_build
-        #fi
+#         #if [ ! -d "$HOME/openssl-install" ]; then
+#             # openssl_build
+#         #fi
 
-        openssl_build
-#         if [ "$SS_VER" == "v2.6.3" ]; then
-#             libsodium_build
-#             mbedtls_build
-#             udns_build
-#             libev_build
-#         fi
+#         openssl_build
+# #         if [ "$SS_VER" == "v2.6.3" ]; then
+# #             libsodium_build
+# #             mbedtls_build
+# #             udns_build
+# #             libev_build
+# #         fi
         
-        cd $TRAVIS_BUILD_DIR/shadowsocks-libev
+#         cd $TRAVIS_BUILD_DIR/shadowsocks-libev
 
-#         export CPPFLAGS="$CPPFLAGS -I$HOME/libsodium-install/include -I$HOME/src/udns-$UDNS_VER -I$HOME/openssl-install/include -I$HOME/libev-install/include"
-#         export LDFLAGS="$LDFLAGS -Wl,-rpath,/opt/lib:/lib:/usr/lib -L$HOME/libsodium-install/lib -L$HOME/src/udns-$UDNS_VER -L$HOME/libev-install/lib"
+# #         export CPPFLAGS="$CPPFLAGS -I$HOME/libsodium-install/include -I$HOME/src/udns-$UDNS_VER -I$HOME/openssl-install/include -I$HOME/libev-install/include"
+# #         export LDFLAGS="$LDFLAGS -Wl,-rpath,/opt/lib:/lib:/usr/lib -L$HOME/libsodium-install/lib -L$HOME/src/udns-$UDNS_VER -L$HOME/libev-install/lib"
 
-        LDFLAGS="$LDFLAGS -Wl,-rpath,/jffs/lib" CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --disable-ssp --host=mipsel-uclibc-linux --prefix=$HOME/ss-install --with-openssl=$HOME/openssl-install --with-zlib=$HOME/zlib-install --with-pcre=$HOME/pcre-install --with-sodium=$HOME/libsodium-install --with-mbedtls=$HOME/mbedtls-install
+#         LDFLAGS="$LDFLAGS -Wl,-rpath,/jffs/lib" CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --disable-ssp --host=mipsel-uclibc-linux --prefix=$HOME/ss-install --with-openssl=$HOME/openssl-install --with-zlib=$HOME/zlib-install --with-pcre=$HOME/pcre-install --with-sodium=$HOME/libsodium-install --with-mbedtls=$HOME/mbedtls-install
         
-    fi
+#     fi
 
     echo ========= ss_build make ===========
     ls -l
