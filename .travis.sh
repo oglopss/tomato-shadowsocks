@@ -246,6 +246,21 @@ udns_build()
 }
 
 
+c-ares_build()
+{
+    echo ========c-ares_build=========
+    #pushd $TRAVIS_BUILD_DIR
+    cd $HOME/src
+    git clone --depth 1 https://github.com/c-ares/c-ares.git
+    cd c-ares
+    ./buildconf
+    CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --prefix=$HOME/cares-install --host=mipsel-uclibc-linux
+
+    make
+    make install
+}
+
+
 libev_build()
 {
     echo ========libev_build=========
@@ -297,7 +312,7 @@ obfs_build()
     ./autogen.sh
     # LIBS="-lpthread -lm" LDFLAGS="-Wl,-rpath,/jffs/lib -L$HOME/libsodium-install/lib -L$HOME/src/udns-$UDNS_VER -L$HOME/libev-install/lib" CFLAGS="-I$HOME/libsodium-install/include -I$HOME/src/udns-$UDNS_VER -I$HOME/libev-install/include" CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --host=mipsel-uclibc-linux --prefix=$HOME/obfs-install --disable-ssp --disable-documentation
 
-    LDFLAGS="-Wl,-rpath,/jffs/lib -L$HOME/libsodium-install/lib -L$HOME/src/udns-$UDNS_VER -L$HOME/libev-install/lib" CFLAGS="-I$HOME/libsodium-install/include -I$HOME/src/udns-$UDNS_VER -I$HOME/libev-install/include" CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --host=mipsel-uclibc-linux --prefix=$HOME/obfs-install --disable-ssp --disable-documentation
+    LDFLAGS="-Wl,-rpath,/jffs/lib -L$HOME/libsodium-install/lib -L$HOME/cares-install/lib -L$HOME/libev-install/lib" CFLAGS="-I$HOME/libsodium-install/include -I$HOME/cares-install/include -I$HOME/libev-install/include" CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --host=mipsel-uclibc-linux --prefix=$HOME/obfs-install --disable-ssp --disable-documentation
     make && make install
 
     echo ========$HOME/obfs-install=========
@@ -465,8 +480,12 @@ ss_build()
         #fi
 
         #if [ ! -d "$HOME/src/udns-$UDNS_VER" ]; then
-            udns_build
+            # udns_build
         #fi
+
+
+        c-ares_build
+
 
         #if [ ! -d "$HOME/libev-install" ]; then
             libev_build
@@ -499,7 +518,7 @@ ss_build()
         else
 
             echo greater or equal to 263, use mbedtls
-            CPPFLAGS="-I$HOME/src/udns-$UDNS_VER -I$HOME/libev-install/include -I$HOME/zlib-install/include" LDFLAGS="-Wl,-rpath,/jffs/lib -L$HOME/src/udns-$UDNS_VER -L$HOME/libev-install/lib -L$HOME/zlib-install/lib" CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --disable-ssp --prefix=$HOME/ss-install --with-pcre=$HOME/pcre-install --with-sodium=$HOME/libsodium-install --with-mbedtls=$HOME/mbedtls-install --host=mipsel-uclibc-linux
+            CPPFLAGS="-I$HOME/cares-install/include -I$HOME/libev-install/include -I$HOME/zlib-install/include" LDFLAGS="-Wl,-rpath,/jffs/lib -L$HOME/cares-install/lib -L$HOME/libev-install/lib -L$HOME/zlib-install/lib" CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --disable-ssp --prefix=$HOME/ss-install --with-pcre=$HOME/pcre-install --with-sodium=$HOME/libsodium-install --with-mbedtls=$HOME/mbedtls-install --host=mipsel-uclibc-linux
     
         fi
 
@@ -625,6 +644,8 @@ ss_build()
         cp $HOME/libsodium-install/lib/libsodium.so.18 .
         cp $HOME/pcre-install/lib/libpcre.so.1 .
         cp $HOME/obfs-install/bin/obfs* .
+
+        cp $HOME/cares-install/lib/libcares.so.2.2.0 libcares.so.2
 
         if [ "$SS_VER_INT" -eq 263 ] || [ "$SS_VER_INT" -eq 999 ]; then
             cp $HOME/openssl-install/lib/libcrypto.so.1.0.0 .
