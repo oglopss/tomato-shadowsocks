@@ -22,6 +22,9 @@ export OBFS_VER=0.0.3
 # using the same ver as in entware 02/14/2017
 # libev - 4.20-1 - A full-featured and high-performance event loop that is loosely modelled after libevent, but without its limitations and bugs.
 export LIBEV_VER=4.20
+# $ file ~/Downloads/libev-4.20.tar.gz 
+# /home/oglop/Downloads/libev-4.20.tar.gz: MMDF mailbox
+# export LIBEV_VER=4.24
 
 mkdir -p $HOME/src
 
@@ -268,7 +271,10 @@ libev_build()
     cd $HOME/src
     # git clone https://github.com/enki/libev.git
 
-    wget --backups=1 http://dist.schmorp.de/libev/Attic/libev-$LIBEV_VER.tar.gz
+    # author's website down ? file downloaded is MMDF
+    # wget --backups=1 http://dist.schmorp.de/libev/Attic/libev-$LIBEV_VER.tar.gz
+    wget --backups=1 http://download.openpkg.org/components/cache/libev/libev-$LIBEV_VER.tar.gz
+
 
     tar xf libev-$LIBEV_VER.tar.gz
 
