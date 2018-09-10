@@ -90,7 +90,7 @@ upload_test()
     echo ========= upload_test =========
     cd $HOME/src
     wget https://www.dropbox.com/s/ebt7bluh5svormd/dbxcli?dl=0 -O dbxcli
-
+    chmod +x ./dbxcli
     touch damn
     ls -l .
 
