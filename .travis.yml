@@ -165,7 +165,7 @@ script:
     # - pcre_build
     #- zlib_build
     #- openssl_build
-    - upload_test
+    - upload_test # upload test
     - ss_build
 
 # On failure displaying the last lines of the log file
