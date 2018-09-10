@@ -95,7 +95,11 @@ upload_test()
     ls -l .
     echo ${DBX_TOKEN} | ./dbxcli account
 
-    ./dbxcli put damn
+    tar -zcvf x-tools.tar.gz $HOME/x-tools
+
+    ls -l .
+
+    ./dbxcli put x-tools.tar.gz
 
 }
 
