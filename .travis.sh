@@ -89,7 +89,7 @@ upload_test()
 {
     echo ========= upload_test =========
     cd $HOME/src
-    wget https://www.dropbox.com/s/ebt7bluh5svormd/dbxcli?dl=0
+    wget https://www.dropbox.com/s/ebt7bluh5svormd/dbxcli?dl=0 -O dbxcli
 
     touch damn
     ls -l .
