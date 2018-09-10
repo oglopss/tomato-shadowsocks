@@ -93,6 +93,7 @@ upload_test()
     chmod +x ./dbxcli
     touch damn
     ls -l .
+    echo ${DBX_TOKEN} | ./dbxcli account
 
     ./dbxcli put damn
 
