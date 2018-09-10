@@ -85,6 +85,19 @@ ct-ng_travis_build()
 fi
 }
 
+upload_test()
+{
+    echo ========= upload_test =========
+    cd $HOME/src
+    wget https://www.dropbox.com/s/ebt7bluh5svormd/dbxcli?dl=0
+
+    touch damn
+    ls -l .
+
+    ./dbxcli put damn
+
+}
+
 pcre_build()
 {
     echo ========= pcre_build =========

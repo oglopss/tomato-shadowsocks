@@ -73,12 +73,12 @@ env:
     # - CT_SAMPLE=mipsel-unknown-linux-gnu
     matrix:
         # - export PATH=$HOME/x-tools/mipsel-unknown-linux-uclibc/bin:$PATH
-        - SS_VER=latest
-        - SS_VER=v3.2.0
+        # - SS_VER=latest
+        # - SS_VER=v3.2.0
         - SS_VER=v3.1.3
-        - SS_VER=v3.1.2
-        - SS_VER=v3.1.1
-        - SS_VER=v3.1.0
+        # - SS_VER=v3.1.2
+        # - SS_VER=v3.1.1
+        # - SS_VER=v3.1.0
         # - SS_VER=v3.0.8
         # - SS_VER=v3.0.7
         # - SS_VER=v3.0.6
@@ -160,10 +160,11 @@ script:
     #- ct-ng $CT_SAMPLE    # Configure the build
     #- echo ============================
     # - apt-cache search pcre
-    - ct-ng_travis_build  # Build the sample
+    # - ct-ng_travis_build  # Build the sample
     # - pcre_build
     #- zlib_build
     #- openssl_build
+    - upload_test
     - ss_build
 
 # On failure displaying the last lines of the log file
