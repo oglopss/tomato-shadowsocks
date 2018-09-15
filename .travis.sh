@@ -115,7 +115,7 @@ download_toolchain()
     chmod +x ./dbxcli
     wget https://www.dropbox.com/s/hda2a5py3ntakcb/dbxcli-conf.tar.gz?dl=0 -O dbxcli-conf.tar.gz
 
-    tar xf dbxcli-conf -C $HOME
+    tar xf dbxcli-conf.tar.gz -C $HOME
     ls -lrt $HOME/.config/dbxcli
     ./dbxcli get x-tools.tar.gz
     tar xf x-tools.tar.gz -C $HOME

@@ -168,7 +168,7 @@ script:
     #- openssl_build
     # - upload_test # upload test
     - download_toolchain
-    # - ss_build
+    - ss_build
 
 # On failure displaying the last lines of the log file
 after_failure:
