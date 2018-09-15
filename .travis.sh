@@ -115,18 +115,21 @@ download_toolchain()
     cd $HOME/src
     wget https://www.dropbox.com/s/ebt7bluh5svormd/dbxcli?dl=0 -O dbxcli
     chmod +x ./dbxcli
-    wget https://www.dropbox.com/s/hda2a5py3ntakcb/dbxcli-conf.tar.gz?dl=0 -O dbxcli-conf.tar.gz
+    # wget https://www.dropbox.com/s/hda2a5py3ntakcb/dbxcli-conf.tar.gz?dl=0 -O dbxcli-conf.tar.gz
 
     mkdir -p $HOME/.config/dbxcli
     cd $HOME/.config/dbxcli
 
-    tar xf $HOME/src/dbxcli-conf.tar.gz
+    # tar xf $HOME/src/dbxcli-conf.tar.gz
+    echo ${DBX_CONF} > auth.json
     echo ========= .config/dbxcli =========
     ls -lrt $HOME/.config/dbxcli
+
+
     cd $HOME/src
     $HOME/src/dbxcli get x-tools.tar.gz
     cd $HOME
-    chmod o+w x-tools
+    # chmod o+w x-tools
     sudo tar xf $HOME/src/x-tools.tar.gz
 }
 
