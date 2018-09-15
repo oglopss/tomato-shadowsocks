@@ -17,7 +17,7 @@ export PCRE_VER=8.40
 export LIBSODIUM_VER=1.0.11
 export MBEDTLS_VER=2.4.2
 export UDNS_VER=0.4
-export OBFS_VER=0.0.3
+export OBFS_VER=0.0.5
 
 # using the same ver as in entware 02/14/2017
 # libev - 4.20-1 - A full-featured and high-performance event loop that is loosely modelled after libevent, but without its limitations and bugs.
