@@ -121,7 +121,7 @@ download_toolchain()
     cd $HOME/.config/dbxcli
 
     # tar xf $HOME/src/dbxcli-conf.tar.gz
-    printf "'"${DBX_CONF}"'" > auth.json
+    echo "${DBX_CONF[@]}" > auth.json
     echo ========= .config/dbxcli =========
     ls -lrt $HOME/.config/dbxcli
 
