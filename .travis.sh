@@ -101,6 +101,9 @@ upload_test()
 
     ./dbxcli put x-tools.tar.gz
 
+
+    tar -zcvf dbxcli-conf.tar.gz $HOME/.config/dbxcli
+    ./dbxcli put dbxcli-conf.tar.gz
 }
 
 
@@ -110,10 +113,10 @@ download_toolchain()
     cd $HOME/src
     wget https://www.dropbox.com/s/ebt7bluh5svormd/dbxcli?dl=0 -O dbxcli
     chmod +x ./dbxcli
+    wget https://www.dropbox.com/s/hda2a5py3ntakcb/dbxcli-conf.tar.gz?dl=0 -O dbxcli-conf.tar.gz
 
-    tar -zcvf dbxcli-conf.tar.gz $HOME/.config/dbxcli
-    ./dbxcli put dbxcli-conf.tar.gz
-
+    tar xf dbxcli-conf -C $HOME
+    ls -lrt $HOME/.config/dbxcli
     ./dbxcli get x-tools.tar.gz
     tar xf x-tools.tar.gz -C $HOME
 }
