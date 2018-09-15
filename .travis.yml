@@ -75,9 +75,9 @@ env:
     matrix:
         # - export PATH=$HOME/x-tools/mipsel-unknown-linux-uclibc/bin:$PATH
         # - SS_VER=latest
-        - SS_VER=v3.2.0
+        # - SS_VER=v3.2.0
         - SS_VER=v3.1.3
-        - SS_VER=v3.1.2
+        # - SS_VER=v3.1.2
         # - SS_VER=v3.1.1
         # - SS_VER=v3.1.0
         # - SS_VER=v3.0.8
@@ -168,7 +168,7 @@ script:
     #- openssl_build
     # - upload_test # upload test
     - download_toolchain
-    - ss_build
+    # - ss_build
 
 # On failure displaying the last lines of the log file
 after_failure:
