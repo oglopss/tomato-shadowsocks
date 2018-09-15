@@ -126,6 +126,7 @@ download_toolchain()
     cd $HOME/src
     $HOME/src/dbxcli get x-tools.tar.gz
     cd $HOME
+    rm -rf x-tools
     tar xf $HOME/src/x-tools.tar.gz
 }
 
@@ -530,7 +531,7 @@ ss_build()
         #fi
 
         #if [ ! -d "$HOME/src/udns-$UDNS_VER" ]; then
-            # udns_build
+            udns_build
         #fi
 
 
