@@ -103,7 +103,7 @@ upload_test()
 
     cd $HOME/.config/dbxcli
     tar -zcvf dbxcli-conf.tar.gz *
-    ./dbxcli put dbxcli-conf.tar.gz
+    $HOME/src/dbxcli put dbxcli-conf.tar.gz
 }
 
 
