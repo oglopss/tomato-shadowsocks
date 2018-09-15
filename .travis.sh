@@ -119,7 +119,7 @@ download_toolchain()
 
     mkdir -p $HOME/.config/dbxcli
     cd $HOME/.config/dbxcli
-
+    sudo rm -rf *
     # tar xf $HOME/src/dbxcli-conf.tar.gz
     sudo echo ${DBX_CONF} > auth.json
     echo ========= .config/dbxcli =========
