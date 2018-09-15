@@ -124,6 +124,7 @@ download_toolchain()
     ls -lrt $HOME/.config/dbxcli
 
     $HOME/src/dbxcli get x-tools.tar.gz
+    cd /
     tar xf x-tools.tar.gz -C $HOME
 }
 
