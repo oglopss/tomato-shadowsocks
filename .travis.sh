@@ -100,7 +100,7 @@ upload_test()
 
     ls -l .
 
-    $HOME/src/dbxcli put x-tools.tar.gz
+    $HOME/src/dbxcli put $HOME/src/x-tools.tar.gz
 
     cd $HOME/.config/dbxcli
     rm *.tar.gz
@@ -125,8 +125,8 @@ download_toolchain()
     ls -lrt $HOME/.config/dbxcli
 
     $HOME/src/dbxcli get x-tools.tar.gz
-    cd /
-    tar xf $HOME/src/x-tools.tar.gz -C $HOME
+    cd $HOME
+    tar xf $HOME/src/x-tools.tar.gz
 }
 
 pcre_build()
