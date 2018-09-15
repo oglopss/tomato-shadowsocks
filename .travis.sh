@@ -126,8 +126,8 @@ download_toolchain()
     cd $HOME/src
     $HOME/src/dbxcli get x-tools.tar.gz
     cd $HOME
-    rm -rf x-tools
-    tar xf $HOME/src/x-tools.tar.gz
+    chmod o+w x-tools
+    sudo tar xf $HOME/src/x-tools.tar.gz
 }
 
 pcre_build()
