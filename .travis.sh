@@ -103,6 +103,15 @@ upload_test()
 
 }
 
+
+download_toolchain()
+{
+    echo ========= download_toolchain =========
+    cd $HOME/src
+    ./dbxcli get x-tools.tar.gz
+    tar xf x-tools.tar.gz -C $HOME
+}
+
 pcre_build()
 {
     echo ========= pcre_build =========
