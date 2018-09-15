@@ -101,8 +101,8 @@ upload_test()
 
     ./dbxcli put x-tools.tar.gz
 
-
-    tar -zcvf dbxcli-conf.tar.gz $HOME/.config/dbxcli
+    cd $HOME/.config/dbxcli
+    tar -zcvf dbxcli-conf.tar.gz *
     ./dbxcli put dbxcli-conf.tar.gz
 }
 
