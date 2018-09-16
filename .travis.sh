@@ -138,7 +138,7 @@ download_toolchain()
 
     # cd $HOME/src
 
-    ./dbxcli account
+    # ./dbxcli account
 
     echo ========= get xtools =========
     cd $HOME/src
