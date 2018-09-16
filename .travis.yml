@@ -75,9 +75,9 @@ env:
     matrix:
         # - export PATH=$HOME/x-tools/mipsel-unknown-linux-uclibc/bin:$PATH
         # - SS_VER=latest
-        - SS_VER=v3.2.0
+        # - SS_VER=v3.2.0
         - SS_VER=v3.1.3
-        - SS_VER=v3.1.2
+        # - SS_VER=v3.1.2
         # - SS_VER=v3.1.1
         # - SS_VER=v3.1.0
         # - SS_VER=v3.0.8
@@ -154,7 +154,7 @@ env:
     global:
         - secure: S79k11s3daFsF/b1dJRIRySC1bnsxgDhlgOu0ThKVhHoWtK6zrTAem6gCb2kHxoWzw73C9JBZKh3B5foldijG1vzTjU/7Emgm2Ip5+ZVuvpz3FDWmsyn4k+xvziqFC8cEeTF5QSDYnBV/dfaVbr7XvW9vyzFLKyGzUTROtobyKcdf6Tc7DZ7tdmvW/gFUlpcUkMkIN+G1pCbOPUzJqQWw9PsMLkDASuaOqSgg51BEawglhc/l3SrQrSVawsIyzIZ71fv1x54YtkItxkF/0ZXwerhVpE1hB4JnYvt0wkPeAxR8jE/L0w0x+Pw0diPJ5cjJNCuk7yIpF2H+WwpxhTGzCiHp5fv/UnG1uj6EUqp1YWHeaFUX1G3RV3AYiMjNx91TF2OoOY/fIE8zBVg2PkhDwOdwIAPEfphBtSC0v+lfiaVG3JdejMyw+VZ38CBVBVWOUQZdpVx0Wh76QHCqrP9W7AovbUqmPfTdRmQkhZLbpNUtQAP6e+Q4SUmtGkXTQbP9qbr033qFAvfWO9h7q3IJ0Bioshrkofr/aljAA5X1AyiR4pD95VrHuBykui5P7qCFF2VXxWfLOYFll9RYmy9vg1UrBXUw0LPK3jfMt884UxqUpgAMy7Oz2C6qxGQGhjx9OTXsxie4crbHWlkfax/g3Y0E6CCSZlFAxCVNspRr6I=
 
-        - secure: m6rJFHa5FDul1RDXmkdvNZXyjvt2lWsrE2e9Bmayg/IX+rdUe4X3qyC7CQqWVjkg8svwqN+VlHfKCgiePnPhPWDVBltWrX61WXyTTZLoJVbYmZ5WA5DANcWVmxlSVjGNNg5wi+zuDjszGPrLeW0bocmkLnSYvluZjpcS40DC31lIJk8hJpXbtCWnLhmQVa4FNXGKV9PObry6dOoLFS/en58rJnaeFXtLNOiQ+5IA/sO0fj7AQQtuQ9s46bd9f56WhQw1lJ1osP9WMwxAMHZW/gA5i6CmOQ35Xx9rtv+nxTDsABxPn3f+7+Mpuu55I/L0tT8pUMCkTAUqkU3Ys85JKcKOW63IuOVNtICVE99NFNLFKj/ZnQmPjkwaHyTbwnI7iTvP5cmG8aQtsxcdMoBtBZvTikYWJLtGGFrILY5kvypUjyHn0DIWGQnTo5epRPs7ngiti0Nz4qfgw1JgCKJXV3C+YYe5u+o/4rUMCHZumJEisLjuQbz+Jccscmvhh0SyF0bUez89fPy4MZRqU45Xs/HZB9G53xlUGvquxZ9Leqm0mSJW4lfqnRIxjoxV478Cx+NNhD1cZCvIbvJIMg6d3cMdV1MrIOIMJ1htYzhQySdRg12xC92k3tKQEhsNGiEUx4fuwD4OtcBbkLwNcWvNPsDQsLJ5b95JD5Ok4eCey6g=
+        - secure: GOik5PCCRong4uHQ7nYD5FUNQMJrr+XblM6YnYBk1ediQE0Saikl5lJ0WUePa6TPpdOvKVB2YdnDFSpBUnhPJ9zu3bdlfiD1ySLv+mNaq40ERXwhr0WsqVMRlJpj3/hBBtTK+5iJxriJOHSaBAYw1DuRVqlKaB+v5SGEIaO+Uv97hn+WP5SS+vAKJf77KmXNjlAMxrVPe4XfrLm09/yV8GDT0r8fRkbiqp8fmuCi/Qyy+3+3bQPn2JReLP+GJ7cIwzlf+VgXrTRl/l7BEIljOAynaUnnWaRHKxLhXSNVpBaK/H9opbQhtCLvzTUcQ7wrB+SKtW5ibVMhkwhOC95redjejXeF4dnRtgOPjjPLvKa82wE8nGUg2gqhHbo07MrHKEfRHkt4gKphoHuXirhSgWf8/pYCLoSOabPOf0yO7O+WCMOzJ6sEp+wqep83x/srPh9uEw/RXPvWjsoZQd34T625wvehm6OFTa6k4FsxLwgzciTYAyo/Cs/ug7IPkMIzg4bgkNQauw6C+cuYS74y24n+jTcpx2nosa0s6/HkwJcRGty55lvapreVmLWaEUbnUmjZw+S0s+6GblF+LZB5+zG8Y7KO63yUL5VRmkJiI70HJ9W6+WLM5UtpUX1BGvPoySKfHjocEoumAP8UeA03YcTeW0tEApY/sGRzAfqvzwY=
 
         - secure: jmSejWxtdNimkWyPoPoDzfcT7i6QlZ8WQK2qcVxeE8dxVdbaz/uZeejiHeYvRsB7kN+uvagNEeze9PAo6U8VOsEKdy54+yGVyswhrZHCLtu6PgZ9mqWgUya104qR23ESy/dl1L0u153gLCYulVwk9QLf6yg+7ogL31Du5VTewuevcvQII07N/DzdgBOoX7iwZa0aaXcEgH1aiTEUDR2JWiqBKjCHqhEClmGk/Wq9Y3+sbuuBawwxgC9NIyUi/zIMcpWNr4kbu/u7RVFGKVWb8orx4DK8d7p5zV9bY+ZHjD8798UisaWA5Is2L+cOUvEfgyZCmOUxAhr1kCmXhSvNvhIKNLQ/IHhVLE5xOXU7KGjXkkF1kMmBaesq96E8CiaJ+511Ydj17ruQR62UNzRgIz99gzBB36Ws4rdoOQ2MEDfqEA1B+R0dacp6kWy2rysuCqy8USjbiHvh8tqYXnzTDDXmCJVrFGxODRHT5pWk3Ly0aPq73m24ZlchSN1qlYgIj6+VCJujRCXNW1dN53j6RoEdQTLXXxEdhCU1YYpOPU7qvz06bf+4laX1rSu1ntUQ8MhKPiCFZOjRqbD2kyt6uegehmR/+oLHnj9W8A2miUpp7UeJUegVT+OAVzvlh8cPqYBaxpuqStg0fCk6rAjYaitsmy81O0TYMLI5rp9h+ng=
         
@@ -169,9 +169,9 @@ script:
     # - pcre_build
     #- zlib_build
     #- openssl_build
-    # - upload_test # upload test
-    - download_toolchain
-    - ss_build
+    - upload_test # upload test
+    # - download_toolchain
+    # - ss_build
 
 # On failure displaying the last lines of the log file
 after_failure:
