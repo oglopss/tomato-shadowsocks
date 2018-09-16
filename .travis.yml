@@ -156,7 +156,7 @@ env:
 
         - secure: GOik5PCCRong4uHQ7nYD5FUNQMJrr+XblM6YnYBk1ediQE0Saikl5lJ0WUePa6TPpdOvKVB2YdnDFSpBUnhPJ9zu3bdlfiD1ySLv+mNaq40ERXwhr0WsqVMRlJpj3/hBBtTK+5iJxriJOHSaBAYw1DuRVqlKaB+v5SGEIaO+Uv97hn+WP5SS+vAKJf77KmXNjlAMxrVPe4XfrLm09/yV8GDT0r8fRkbiqp8fmuCi/Qyy+3+3bQPn2JReLP+GJ7cIwzlf+VgXrTRl/l7BEIljOAynaUnnWaRHKxLhXSNVpBaK/H9opbQhtCLvzTUcQ7wrB+SKtW5ibVMhkwhOC95redjejXeF4dnRtgOPjjPLvKa82wE8nGUg2gqhHbo07MrHKEfRHkt4gKphoHuXirhSgWf8/pYCLoSOabPOf0yO7O+WCMOzJ6sEp+wqep83x/srPh9uEw/RXPvWjsoZQd34T625wvehm6OFTa6k4FsxLwgzciTYAyo/Cs/ug7IPkMIzg4bgkNQauw6C+cuYS74y24n+jTcpx2nosa0s6/HkwJcRGty55lvapreVmLWaEUbnUmjZw+S0s+6GblF+LZB5+zG8Y7KO63yUL5VRmkJiI70HJ9W6+WLM5UtpUX1BGvPoySKfHjocEoumAP8UeA03YcTeW0tEApY/sGRzAfqvzwY=
 
-        - secure: jmSejWxtdNimkWyPoPoDzfcT7i6QlZ8WQK2qcVxeE8dxVdbaz/uZeejiHeYvRsB7kN+uvagNEeze9PAo6U8VOsEKdy54+yGVyswhrZHCLtu6PgZ9mqWgUya104qR23ESy/dl1L0u153gLCYulVwk9QLf6yg+7ogL31Du5VTewuevcvQII07N/DzdgBOoX7iwZa0aaXcEgH1aiTEUDR2JWiqBKjCHqhEClmGk/Wq9Y3+sbuuBawwxgC9NIyUi/zIMcpWNr4kbu/u7RVFGKVWb8orx4DK8d7p5zV9bY+ZHjD8798UisaWA5Is2L+cOUvEfgyZCmOUxAhr1kCmXhSvNvhIKNLQ/IHhVLE5xOXU7KGjXkkF1kMmBaesq96E8CiaJ+511Ydj17ruQR62UNzRgIz99gzBB36Ws4rdoOQ2MEDfqEA1B+R0dacp6kWy2rysuCqy8USjbiHvh8tqYXnzTDDXmCJVrFGxODRHT5pWk3Ly0aPq73m24ZlchSN1qlYgIj6+VCJujRCXNW1dN53j6RoEdQTLXXxEdhCU1YYpOPU7qvz06bf+4laX1rSu1ntUQ8MhKPiCFZOjRqbD2kyt6uegehmR/+oLHnj9W8A2miUpp7UeJUegVT+OAVzvlh8cPqYBaxpuqStg0fCk6rAjYaitsmy81O0TYMLI5rp9h+ng=
+        - secure: CsXfTdZCCmNzVi10NUH1LQqbY6ZFfQovbxqT96/e1cG7Ei6rFhEAb1CbW9tvZkmBXMcVO2eT/znmPNcTRV5o/K6yo2d+dtWbyXiczjGL47vKqUvyZ3JNd7FpxkV3rUs6cC0A3vVCd1At7vuPgwrtJt40Pk/FRMnox1BwkwYO7JxxsJRVfAdNpHuWmr/9UzVzw+g8W/kt3HWq130MGrdvNGbfW7v1LKvRktfYUiombibuOoy0+TuEvcZWlTdRaIs2zgxFNutkThrk1/KeuuEaZ0K02vmc24WdPoS7E13W6hNLEwOhK+yU8xoJ7JPnZEZYwOfhkfE3GwRCocoTYRNomz9yDTqiYP1+0M9pOyY0l17wOsPcbGBxM5uFWvQsxTw4roga3PRTxeAY2e3t40jVeTohSY52Xq1hzFwRjnAL3GnMaQEF/lMy52iUTYjNE4O3ulKDMsahUN5Dy/OE4X5vBYja1W6O5mBM34n5R6pl97A0BikxlCXnC6wrZCPdQWJMncncH+w1r8YL0wkL1QYu/PZxp8SOdNj2AC9NLDJJCl1GcZyLfpnEC6qd8KjvlyanZzRxpmsAVIvtkqhLevazAmWIlULDu/xHVp3ibTa4RpYFBwQ2YPOSnpSTA7Tjl0E6W3rgo2TIQLxR1bTNty9eijPIhTRwym/1g0vwx9KZqgE=
         
 # Building the standard samples
 script:
@@ -169,9 +169,9 @@ script:
     # - pcre_build
     #- zlib_build
     #- openssl_build
-    - upload_test # upload test
-    # - download_toolchain
-    # - ss_build
+    # - upload_test # upload test
+    - download_toolchain
+    - ss_build
 
 # On failure displaying the last lines of the log file
 after_failure:
