@@ -125,13 +125,15 @@ download_toolchain()
 
     echo ${DBX_CONF} > auth.json
     chmod 600 auth.json
+    chmod 700 ~/.config/dbxcli
+    
     echo ========= .config/dbxcli =========
     echo $HOME
     ls -lrt $HOME/.config -d
     ls -lrt $HOME/.config/dbxcli
     # cat auth.json
 
-    chmod 700 ~/.config/dbxcli
+    
 
     cd $HOME/src
 
