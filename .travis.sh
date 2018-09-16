@@ -129,6 +129,8 @@ download_toolchain()
     ls -lrt $HOME/.config/dbxcli
     # cat auth.json
 
+    chmod 700 ~/.config/dbxcli
+
     cd $HOME/src
     ./dbxcli get x-tools.tar.gz
     cd $HOME
