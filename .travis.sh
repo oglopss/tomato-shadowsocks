@@ -132,6 +132,11 @@ download_toolchain()
     chmod 700 ~/.config/dbxcli
 
     cd $HOME/src
+
+    ./dbxcli account
+
+    echo ========= get xtools =========
+    cd $HOME/src
     ./dbxcli get x-tools.tar.gz
     cd $HOME
     # chmod o+w x-tools
