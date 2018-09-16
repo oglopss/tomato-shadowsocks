@@ -117,18 +117,21 @@ download_toolchain()
     chmod +x ./dbxcli
     # wget https://www.dropbox.com/s/hda2a5py3ntakcb/dbxcli-conf.tar.gz?dl=0 -O dbxcli-conf.tar.gz
 
-    mkdir -p $HOME/.config/dbxcli
-    cd $HOME/.config/dbxcli
-    sudo rm -rf *
+    # mkdir -p $HOME/.config/dbxcli
+    # cd $HOME/.config/dbxcli
+    # sudo rm -rf *
     # tar xf $HOME/src/dbxcli-conf.tar.gz
     # echo xxx ${DBX_CONF}
 
-    echo ${DBX_CONF} > auth.json
-    chmod 600 auth.json
-    chmod 700 ~/.config/dbxcli
-    
+    # echo ${DBX_CONF} > auth.json
+    # chmod 600 auth.json
+    # chmod 700 ~/.config/dbxcli
+
     echo ========= .config/dbxcli =========
     echo $HOME
+
+    echo ${DBX_TOKEN} | ./dbxcli account
+
     ls -lrt $HOME/.config -d
     ls -lrt $HOME/.config/dbxcli
     # cat auth.json

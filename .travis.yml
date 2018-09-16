@@ -76,8 +76,8 @@ env:
         # - export PATH=$HOME/x-tools/mipsel-unknown-linux-uclibc/bin:$PATH
         # - SS_VER=latest
         # - SS_VER=v3.2.0
-        - SS_VER=v3.1.3
-        # - SS_VER=v3.1.2
+        # - SS_VER=v3.1.3
+        - SS_VER=v3.1.2
         # - SS_VER=v3.1.1
         # - SS_VER=v3.1.0
         # - SS_VER=v3.0.8
@@ -154,10 +154,8 @@ env:
     global:
         - secure: S79k11s3daFsF/b1dJRIRySC1bnsxgDhlgOu0ThKVhHoWtK6zrTAem6gCb2kHxoWzw73C9JBZKh3B5foldijG1vzTjU/7Emgm2Ip5+ZVuvpz3FDWmsyn4k+xvziqFC8cEeTF5QSDYnBV/dfaVbr7XvW9vyzFLKyGzUTROtobyKcdf6Tc7DZ7tdmvW/gFUlpcUkMkIN+G1pCbOPUzJqQWw9PsMLkDASuaOqSgg51BEawglhc/l3SrQrSVawsIyzIZ71fv1x54YtkItxkF/0ZXwerhVpE1hB4JnYvt0wkPeAxR8jE/L0w0x+Pw0diPJ5cjJNCuk7yIpF2H+WwpxhTGzCiHp5fv/UnG1uj6EUqp1YWHeaFUX1G3RV3AYiMjNx91TF2OoOY/fIE8zBVg2PkhDwOdwIAPEfphBtSC0v+lfiaVG3JdejMyw+VZ38CBVBVWOUQZdpVx0Wh76QHCqrP9W7AovbUqmPfTdRmQkhZLbpNUtQAP6e+Q4SUmtGkXTQbP9qbr033qFAvfWO9h7q3IJ0Bioshrkofr/aljAA5X1AyiR4pD95VrHuBykui5P7qCFF2VXxWfLOYFll9RYmy9vg1UrBXUw0LPK3jfMt884UxqUpgAMy7Oz2C6qxGQGhjx9OTXsxie4crbHWlkfax/g3Y0E6CCSZlFAxCVNspRr6I=
 
-        - secure: GOik5PCCRong4uHQ7nYD5FUNQMJrr+XblM6YnYBk1ediQE0Saikl5lJ0WUePa6TPpdOvKVB2YdnDFSpBUnhPJ9zu3bdlfiD1ySLv+mNaq40ERXwhr0WsqVMRlJpj3/hBBtTK+5iJxriJOHSaBAYw1DuRVqlKaB+v5SGEIaO+Uv97hn+WP5SS+vAKJf77KmXNjlAMxrVPe4XfrLm09/yV8GDT0r8fRkbiqp8fmuCi/Qyy+3+3bQPn2JReLP+GJ7cIwzlf+VgXrTRl/l7BEIljOAynaUnnWaRHKxLhXSNVpBaK/H9opbQhtCLvzTUcQ7wrB+SKtW5ibVMhkwhOC95redjejXeF4dnRtgOPjjPLvKa82wE8nGUg2gqhHbo07MrHKEfRHkt4gKphoHuXirhSgWf8/pYCLoSOabPOf0yO7O+WCMOzJ6sEp+wqep83x/srPh9uEw/RXPvWjsoZQd34T625wvehm6OFTa6k4FsxLwgzciTYAyo/Cs/ug7IPkMIzg4bgkNQauw6C+cuYS74y24n+jTcpx2nosa0s6/HkwJcRGty55lvapreVmLWaEUbnUmjZw+S0s+6GblF+LZB5+zG8Y7KO63yUL5VRmkJiI70HJ9W6+WLM5UtpUX1BGvPoySKfHjocEoumAP8UeA03YcTeW0tEApY/sGRzAfqvzwY=
+        - secure: l/V9y87A1WE4FjqAa8tJw3NQ+Irddr6okeMIhoTBp73gIuEow4xUwQw5AkoxIcpNiTb8Z3IwOOvCNh3UuVtP74dxzpbq9UCai5uR1jU4x+wytOXkmUOUfWIr7hfTQuPAr6VvKdElzDqBqWrs6iRgsE78CKCuHZFCMs9iNYw+yrr9OudvB9DFeiEeE3OZzIi8a/zUc7T8P4F/rBI9M7siEBImn+jJ5CGE5ddG20pYhMnzqh+THXaZ6DmtvS75zo+aU3tXocmzRntHtemH/l/lX29612GUNupC6e1vvbtNGUyPVfX2oOQ9wV6fr4pHWglULR9OQdgjHBspYFsDQxCFgPTP6VjRhMDAKXTpDY9rbgZMo2RBTBDtwvXKV3dPuy4s+EKo9ez3ekBs2nuKsOC+kgRCXTaWxkddW76kzFkwOJt8qoHt0gfWU6A5H80fkPhPOxsid18WWHS21BuK6oLt9XW3wWqNxAFPpi8F1Wri0DgcwyHPGxvzPYg+Jb4xWGNhSnF+K6vjRrWnLtI8ysWnfzjgm7fQlGpHNTGQDOXbHmxLgRCgG2Nkae3z2wsGt83r+BCTiSynPOQxTGNm6bZEOLsd/xNtVNEc2nnqlbHDmSOx7JlGBGS7uXUASf5LT/7mSnBoiV0ExwzvsAqLRD+/H3mSeOkoV07Z1YOHvDsBdl0=
 
-        - secure: CsXfTdZCCmNzVi10NUH1LQqbY6ZFfQovbxqT96/e1cG7Ei6rFhEAb1CbW9tvZkmBXMcVO2eT/znmPNcTRV5o/K6yo2d+dtWbyXiczjGL47vKqUvyZ3JNd7FpxkV3rUs6cC0A3vVCd1At7vuPgwrtJt40Pk/FRMnox1BwkwYO7JxxsJRVfAdNpHuWmr/9UzVzw+g8W/kt3HWq130MGrdvNGbfW7v1LKvRktfYUiombibuOoy0+TuEvcZWlTdRaIs2zgxFNutkThrk1/KeuuEaZ0K02vmc24WdPoS7E13W6hNLEwOhK+yU8xoJ7JPnZEZYwOfhkfE3GwRCocoTYRNomz9yDTqiYP1+0M9pOyY0l17wOsPcbGBxM5uFWvQsxTw4roga3PRTxeAY2e3t40jVeTohSY52Xq1hzFwRjnAL3GnMaQEF/lMy52iUTYjNE4O3ulKDMsahUN5Dy/OE4X5vBYja1W6O5mBM34n5R6pl97A0BikxlCXnC6wrZCPdQWJMncncH+w1r8YL0wkL1QYu/PZxp8SOdNj2AC9NLDJJCl1GcZyLfpnEC6qd8KjvlyanZzRxpmsAVIvtkqhLevazAmWIlULDu/xHVp3ibTa4RpYFBwQ2YPOSnpSTA7Tjl0E6W3rgo2TIQLxR1bTNty9eijPIhTRwym/1g0vwx9KZqgE=
-        
 # Building the standard samples
 script:
     # - . ls -l $HOME
