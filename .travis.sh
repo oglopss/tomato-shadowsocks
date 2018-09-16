@@ -130,21 +130,21 @@ download_toolchain()
     echo ========= .config/dbxcli =========
     echo $HOME
 
-    echo ${DBX_TOKEN} | ./dbxcli account
+    # echo ${DBX_TOKEN} | ./dbxcli account
 
-    ls -lrt $HOME/.config -d
-    ls -lrt $HOME/.config/dbxcli
+    # ls -lrt $HOME/.config -d
+    # ls -lrt $HOME/.config/dbxcli
     # cat auth.json
 
-    
-
-    cd $HOME/src
+    # cd $HOME/src
 
     ./dbxcli account
 
     echo ========= get xtools =========
     cd $HOME/src
-    ./dbxcli get x-tools.tar.gz
+    # ./dbxcli get x-tools.tar.gz
+
+    wget https://www.dropbox.com/s/ihmwyqbpd8xt3tq/x-tools.tar.gz?dl=0
     cd $HOME
     # chmod o+w x-tools
     sudo tar xf $HOME/src/x-tools.tar.gz
