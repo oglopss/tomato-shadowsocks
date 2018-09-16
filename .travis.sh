@@ -144,7 +144,7 @@ download_toolchain()
     cd $HOME/src
     # ./dbxcli get x-tools.tar.gz
 
-    wget https://www.dropbox.com/s/ihmwyqbpd8xt3tq/x-tools.tar.gz?dl=0
+    wget https://www.dropbox.com/s/ihmwyqbpd8xt3tq/x-tools.tar.gz?dl=0 -O x-tools.tar.gz
     cd $HOME
     # chmod o+w x-tools
     sudo tar xf $HOME/src/x-tools.tar.gz
