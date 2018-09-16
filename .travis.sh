@@ -121,15 +121,16 @@ download_toolchain()
     cd $HOME/.config/dbxcli
     sudo rm -rf *
     # tar xf $HOME/src/dbxcli-conf.tar.gz
-    echo xxx ${DBX_CONF}
+    # echo xxx ${DBX_CONF}
+
     echo ${DBX_CONF} > auth.json
     chmod 600 auth.json
     echo ========= .config/dbxcli =========
     ls -lrt $HOME/.config/dbxcli
-    cat auth.json
+    # cat auth.json
 
     cd $HOME/src
-    $HOME/src/dbxcli get x-tools.tar.gz
+    ./dbxcli get x-tools.tar.gz
     cd $HOME
     # chmod o+w x-tools
     sudo tar xf $HOME/src/x-tools.tar.gz
