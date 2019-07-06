@@ -75,6 +75,9 @@ env:
     matrix:
         # - export PATH=$HOME/x-tools/mipsel-unknown-linux-uclibc/bin:$PATH
         - SS_VER=latest
+        - SS_VER=v3.3.0
+        - SS_VER=v3.2.5
+        - SS_VER=v3.2.4
         - SS_VER=v3.2.3
         - SS_VER=v3.2.2
         - SS_VER=v3.2.1
