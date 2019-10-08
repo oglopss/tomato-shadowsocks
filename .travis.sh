@@ -719,7 +719,7 @@ ss_build()
         cp $HOME/pcre-install/lib/libpcre.so.1 .
         cp $HOME/obfs-install/bin/obfs* .
 
-        cp $HOME/cares-install/lib/libcares.so.2.2.0 libcares.so.2
+        cp $HOME/cares-install/lib/libcares.so.2.3.0 libcares.so.2
 
         if [ "$SS_VER_INT" -eq 263 ] || [ "$SS_VER_INT" -eq 999 ]; then
             cp $HOME/openssl-install/lib/libcrypto.so.1.0.0 .
