@@ -13,7 +13,7 @@ export OUT="> /dev/null 2>&1"
 export ZLIB_VER=1.2.11
 
 # openssl is replace by Mbed TLS though, and is not used
-export OPENSSL_VER=1.0.2t
+# export OPENSSL_VER=1.0.2t
 
 export PCRE_VER=8.43
 export LIBSODIUM_VER=1.0.18
@@ -24,7 +24,7 @@ export OBFS_VER=0.0.5
 
 # using the same ver as in entware 02/14/2017
 # libev - 4.20-1 - A full-featured and high-performance event loop that is loosely modelled after libevent, but without its limitations and bugs.
-export LIBEV_VER=4.24
+# export LIBEV_VER=4.24
 # $ file ~/Downloads/libev-4.20.tar.gz 
 # /home/oglop/Downloads/libev-4.20.tar.gz: MMDF mailbox
 # export LIBEV_VER=4.24
