@@ -247,7 +247,7 @@ libsodium_build()
     make install  > /dev/null 2>&1
         
     echo ========= after libsodium_build =========
-    ls -lrt $HOME/libsodium-install
+    tree $HOME/libsodium-install
     # popd
     # popd
 
