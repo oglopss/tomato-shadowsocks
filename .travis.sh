@@ -11,11 +11,14 @@ export PATH=$HOME/x-tools/mipsel-unknown-linux-uclibc/bin:$PATH
 export OUT="> /dev/null 2>&1"
 
 export ZLIB_VER=1.2.11
-export OPENSSL_VER=1.0.2k
+
+# openssl is replace by Mbed TLS though, and is not used
+export OPENSSL_VER=1.0.2t
 
 export PCRE_VER=8.43
-export LIBSODIUM_VER=1.0.11
-export MBEDTLS_VER=2.4.2
+export LIBSODIUM_VER=1.0.18
+export MBEDTLS_VER=2.16.3
+
 export UDNS_VER=0.4
 export OBFS_VER=0.0.5
 
@@ -227,8 +230,11 @@ libsodium_build()
     #wget http://download.libsodium.org/libsodium/releases/libsodium-$LIBSODIUM_VER.tar.gz
 
     # http://stackoverflow.com/questions/30418188/how-to-force-wget-to-overwrite-an-existing-file-ignoring-timestamp
-    wget --backups=1 https://github.com/jedisct1/libsodium/releases/download/$LIBSODIUM_VER/libsodium-$LIBSODIUM_VER.tar.gz
-
+    if [ "$LIBSODIUM_VER" == "1.0.18" ]; then 
+        wget --backups=1 https://github.com/jedisct1/libsodium/releases/download/$LIBSODIUM_VER-RELEASE/libsodium-$LIBSODIUM_VER.tar.gz
+    else
+        wget --backups=1 https://github.com/jedisct1/libsodium/releases/download/$LIBSODIUM_VER/libsodium-$LIBSODIUM_VER.tar.gz
+    fi
 
     tar xf libsodium-$LIBSODIUM_VER.tar.gz
     cd libsodium-$LIBSODIUM_VER
