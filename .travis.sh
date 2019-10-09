@@ -16,6 +16,7 @@ export LIBSODIUM_VER=1.0.11
 export MBEDTLS_VER=2.4.0
 export UDNS_VER=0.4
 
+export LIBEV_VER=4.24
 
 
 mkdir -p $HOME/src
@@ -225,8 +226,13 @@ libev_build()
     echo ========libev_build=========
     cd $TRAVIS_BUILD_DIR
     cd $HOME/src
-    git clone https://github.com/enki/libev.git
-    cd libev
+#     git clone https://github.com/enki/libev.git
+    wget --backups=1 http://download.openpkg.org/components/cache/libev/libev-$LIBEV_VER.tar.gz
+    
+    tar xf libev-$LIBEV_VER.tar.gz
+    # cd libev
+    cd libev-$LIBEV_VER
+    
     CPPFLAGS="$CPPFLAGS -I$HOME/src/udns-$UDNS_VER" LDFLAGS="$LDFLAGS -L$HOME/src/udns-$UDNS_VER" CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --prefix=$HOME/libev-install --host=mipsel-uclibc-linux
     make
     make install
