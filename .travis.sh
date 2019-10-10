@@ -535,7 +535,7 @@ ss_build()
       
 
     # force disable TLS
-    sed -e '/set(TLS __thread)/ s/^#*/#/' cmake/configure.cmake
+    sed -e '/set(TLS __thread)/ s/^#*/#/' -i cmake/configure.cmake
 
 
     if [ -f "autogen.sh" ]; then
