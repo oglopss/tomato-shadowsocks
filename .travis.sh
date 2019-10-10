@@ -255,6 +255,9 @@ libsodium_build()
     sed -e '/AX_TLS(\[AC_MSG_RESULT(thread local storage is supported)/,+3 s/^/#/' -i ./configure.ac
     sed -e '/AX_TLS(\[AC_MSG_RESULT(thread local storage is supported)/i ])' -i ./configure.ac
     
+    # configure is already provided in release tar.gz
+    sed -e '/checking for thread local storage (TLS) class/,+29 s/^/#/' ./configure 
+    
     echo ==hack configure.ac==
     cat configure.ac
 
