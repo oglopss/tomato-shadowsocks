@@ -241,8 +241,12 @@ libsodium_build()
     fi
     # sudo apt-get purge libsodium-dev
     
-    tar xf libsodium-$LIBSODIUM_VER.tar.gz
-    cd libsodium-$LIBSODIUM_VER
+    # tar xf libsodium-$LIBSODIUM_VER.tar.gz
+    # cd libsodium-$LIBSODIUM_VER
+
+    git clone --single-branch --branch stable https://github.com/jedisct1/libsodium.git
+
+    cd libsodium
 
     echo libsodium configure options
     LDFLAGS="-Wl,-rpath,/jffs/lib" CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib  ./configure -h
