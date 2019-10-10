@@ -235,7 +235,8 @@ libsodium_build()
     else
         wget --backups=1 https://github.com/jedisct1/libsodium/releases/download/$LIBSODIUM_VER/libsodium-$LIBSODIUM_VER.tar.gz
     fi
-
+    sudo apt-get purge libsodium-dev
+    
     tar xf libsodium-$LIBSODIUM_VER.tar.gz
     cd libsodium-$LIBSODIUM_VER
 
