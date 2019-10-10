@@ -247,6 +247,16 @@ libsodium_build()
     # git clone --single-branch --branch stable https://github.com/jedisct1/libsodium.git
 
     # cd libsodium
+    
+    # remove TLS check
+    # https://stackoverflow.com/questions/11703900/sed-comment-a-matching-line-and-x-lines-after-it
+    # sed -e '/myprocess/,+4 s/^/#/' -i ./configure.ac
+    # comment out patter and 3 lines after it
+    sed -e '/AX_TLS(\[AC_MSG_RESULT(thread local storage is supported)/,+3 s/^/#/' -i ./configure.ac
+    sed -e '/AX_TLS(\[AC_MSG_RESULT(thread local storage is supported)/i ])' -i ./configure.ac
+    
+    echo ==hack configure.ac==
+    cat configure.ac
 
     echo libsodium configure options
     LDFLAGS="-Wl,-rpath,/jffs/lib" CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib  ./configure -h
@@ -536,8 +546,6 @@ ss_build()
 
     # force disable TLS
     # sed -e '/AX_TLS([:], [:])/ s/^#*/#/' -i ./configure.ac
-    sed -e '/AX_TLS([:], [:])/ s/^#*/#/' -i ./configure.ac
-
 
     if [ -f "autogen.sh" ]; then
         echo running autogen
