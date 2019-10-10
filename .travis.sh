@@ -252,12 +252,12 @@ libsodium_build()
     # https://stackoverflow.com/questions/11703900/sed-comment-a-matching-line-and-x-lines-after-it
     # sed -e '/myprocess/,+4 s/^/#/' -i ./configure.ac
     # comment out patter and 3 lines after it
-    sed -e '/AX_TLS(\[AC_MSG_RESULT(thread local storage is supported)/,+3 s/^/#/' -i ./configure.ac
+    sed -e '/AX_TLS(\[AC_MSG_RESULT(thread local storage is supported)/,+3 s/^/# /' -i ./configure.ac
     sed -e '/AX_TLS(\[AC_MSG_RESULT(thread local storage is supported)/i ])' -i ./configure.ac
     
     # configure is already provided in release tar.gz
     # +28 so that ac_cv_tls=none is uncommented
-    sed -e '/checking for thread local storage (TLS) class/,+28 s/^/#/' ./configure 
+    sed -e '/checking for thread local storage (TLS) class/,+28 s/^/# /' -i ./configure 
     
     echo ==hack configure.ac==
     cat configure.ac
