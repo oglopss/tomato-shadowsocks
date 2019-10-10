@@ -16,7 +16,7 @@ export ZLIB_VER=1.2.11
 # export OPENSSL_VER=1.0.2t
 
 export PCRE_VER=8.43
-export LIBSODIUM_VER=1.0.11
+export LIBSODIUM_VER=1.0.18
 export MBEDTLS_VER=2.16.3
 
 export UDNS_VER=0.4
@@ -238,6 +238,9 @@ libsodium_build()
 
     tar xf libsodium-$LIBSODIUM_VER.tar.gz
     cd libsodium-$LIBSODIUM_VER
+
+    echo libsodium configure options
+    LDFLAGS="-Wl,-rpath,/jffs/lib" CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib  ./configure 
  
     LDFLAGS="-Wl,-rpath,/jffs/lib" CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib  ./configure --prefix=$HOME/libsodium-install --host=mipsel-uclibc-linux
  
