@@ -291,7 +291,7 @@ libsodium_build()
     # ac_cv_tls=no
     # fi
     
-    stay_alive()     
+    stay_alive 
     
     #echo ==hack configure.ac==
     #cat configure.ac
