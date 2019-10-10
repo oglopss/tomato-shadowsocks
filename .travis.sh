@@ -619,6 +619,9 @@ ss_build()
 
         echo ss_build autoconf log
         cat config.log
+        echo == config.h ==
+        cat config.h
+
 
         # fi
 
