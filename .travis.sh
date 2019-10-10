@@ -235,7 +235,7 @@ libsodium_build()
     else
         wget --backups=1 https://github.com/jedisct1/libsodium/releases/download/$LIBSODIUM_VER/libsodium-$LIBSODIUM_VER.tar.gz
     fi
-    sudo apt-get purge libsodium-dev
+    # sudo apt-get purge libsodium-dev
     
     tar xf libsodium-$LIBSODIUM_VER.tar.gz
     cd libsodium-$LIBSODIUM_VER
@@ -245,7 +245,8 @@ libsodium_build()
  
     LDFLAGS="-Wl,-rpath,/jffs/lib" CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib  ./configure --prefix=$HOME/libsodium-install --host=mipsel-uclibc-linux
  
-    make  > /dev/null 2>&1
+    # make  > /dev/null 2>&1
+    make
 
     rm -rf $HOME/libsodium-install
     make install  > /dev/null 2>&1
