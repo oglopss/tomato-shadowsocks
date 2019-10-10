@@ -271,11 +271,11 @@ libsodium_build()
     
     
     
-    echo ==hack configure.ac==
-    cat configure.ac
+    #echo ==hack configure.ac==
+    #cat configure.ac
 
-    echo libsodium configure options
-    LDFLAGS="-Wl,-rpath,/jffs/lib" CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib  ./configure -h
+    #echo libsodium configure options
+    #LDFLAGS="-Wl,-rpath,/jffs/lib" CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib  ./configure -h
  
     LDFLAGS="-Wl,-rpath,/jffs/lib" CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib  ./configure --prefix=$HOME/libsodium-install --host=mipsel-uclibc-linux
  
@@ -646,13 +646,13 @@ ss_build()
         
             CPPFLAGS="-I$HOME/cares-install/include -I$HOME/libev-install/include -I$HOME/zlib-install/include" LDFLAGS="-Wl,-rpath,/jffs/lib -L$HOME/cares-install/lib -L$HOME/libev-install/lib -L$HOME/zlib-install/lib" CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --disable-ssp --prefix=$HOME/ss-install --with-pcre=$HOME/pcre-install --with-sodium=$HOME/libsodium-install --with-mbedtls=$HOME/mbedtls-install --host=mipsel-uclibc-linux
 
-        echo ss_build autoconf log
-        cat config.log
+        # echo ss_build autoconf log
+        # cat config.log
 
         # fi
 
-        echo ==configure==
-        cat ./configure
+        # echo ==configure==
+        # cat ./configure
 
         echo -=-=-==-=-=-=-=-=-=-=
 
