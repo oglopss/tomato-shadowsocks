@@ -221,8 +221,30 @@ zlib_build()
 
 }
 
-# new builds for ss 3.0 or above
+stay_alive()
+{    # Start a runner task to print a "still running" line every 5 minutes
+    # to avoid travis to think that the build is stuck
+    {
+        while true
+        do
+            sleep 300
+            printf "task is still running ...\r"
+        done
+    } &
+    local runner_pid=$!
 
+    # Wait for the build to finish and get the result
+    wait $build_pid 2>/dev/null 
+    local result=$?
+
+    # Stop the runner task
+    kill $runner_pid
+    wait $runner_pid 2>/dev/null
+
+}
+
+
+# new builds for ss 3.0 or above
 libsodium_build()
 {
 
@@ -269,7 +291,7 @@ libsodium_build()
     # ac_cv_tls=no
     # fi
     
-    
+    stay_alive()     
     
     #echo ==hack configure.ac==
     #cat configure.ac
