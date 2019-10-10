@@ -545,7 +545,7 @@ ss_build()
       
 
     # force disable TLS
-    sed -e '/AX_TLS([:], [:])/ s/^#*/#/' -i ./configure.ac
+    sed -e '/AX_TLS(\[:\], \[:\])/ s/^#*/# /' -i ./configure.ac
 
     if [ -f "autogen.sh" ]; then
         echo running autogen
