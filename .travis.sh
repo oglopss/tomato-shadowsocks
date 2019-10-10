@@ -16,7 +16,11 @@ export ZLIB_VER=1.2.11
 # export OPENSSL_VER=1.0.2t
 
 export PCRE_VER=8.43
-export LIBSODIUM_VER=1.0.17
+
+# starting 1.0.16
+# checking for sodium_init in -lsodium... no
+# configure: error: The Sodium crypto library libraries not found.
+export LIBSODIUM_VER=1.0.18
 export MBEDTLS_VER=2.16.3
 
 export UDNS_VER=0.4
