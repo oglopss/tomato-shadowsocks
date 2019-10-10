@@ -535,6 +535,7 @@ ss_build()
       
 
     # force disable TLS
+    # sed -e '/AX_TLS([:], [:])/ s/^#*/#/' -i ./configure.ac
     sed -e '/AX_TLS([:], [:])/ s/^#*/#/' -i ./configure.ac
 
 
@@ -625,6 +626,9 @@ ss_build()
         cat config.log
 
         # fi
+
+        echo ==configure==
+        cat ./configure
 
         echo -=-=-==-=-=-=-=-=-=-=
 
