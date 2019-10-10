@@ -40,6 +40,7 @@ addons:
             - help2man
             - asciidoc
             - xmlto
+            - tree
             # - libpcre3
             # - libpcre3-dev
             # - openssl
