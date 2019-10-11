@@ -266,6 +266,10 @@ libsodium_build()
     tar xf libsodium-$LIBSODIUM_VER.tar.gz
     cd libsodium-$LIBSODIUM_VER
 
+    
+    
+
+
     # git clone --single-branch --branch stable https://github.com/jedisct1/libsodium.git
 
     # cd libsodium
@@ -286,7 +290,9 @@ libsodium_build()
     sed -e '/checking for thread local storage (TLS) class/a ac_cv_tls=none' -i ./configure 
     # sed -e '/checking for thread local storage (TLS) class/a ac_cv_tls=__thread' -i ./configure
     
-    
+    rm ./configure
+    autoreconf --install --force
+
     # so it end up as:
     # if test "x$with_threads" = "xyes"; then :
     # ac_cv_tls=no
