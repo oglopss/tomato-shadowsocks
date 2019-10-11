@@ -279,7 +279,7 @@ libsodium_build()
     
     # configure is already provided in release tar.gz
     # +28 so that ac_cv_tls=none is uncommented
-    sed -e '/checking for thread local storage (TLS) class/,+90 s/^/# /' -i ./configure 
+    sed -e '/checking for thread local storage (TLS) class/,+88 s/^/# /' -i ./configure 
     # insert after first matching
     # sed -e '0,/orange/s//orange\nxxx/' a
     # it ends up appending twice but it's ok, it will break anyway next time this file changes
