@@ -283,7 +283,8 @@ libsodium_build()
     # insert after first matching
     # sed -e '0,/orange/s//orange\nxxx/' a
     # it ends up appending twice but it's ok, it will break anyway next time this file changes
-    sed -e '/checking for thread local storage (TLS) class/a ac_cv_tls=none' -i ./configure 
+    # sed -e '/checking for thread local storage (TLS) class/a ac_cv_tls=none' -i ./configure 
+    sed -e '/checking for thread local storage (TLS) class/a ac_cv_tls=__thread' -i ./configure
     
     
     # so it end up as:
