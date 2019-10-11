@@ -673,8 +673,8 @@ ss_build()
 
         # fi
 
-        # echo ==configure==
-        # cat ./configure
+        echo ==configure==
+        cat ./configure
 
         echo -=-=-==-=-=-=-=-=-=-=
 
