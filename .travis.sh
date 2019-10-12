@@ -20,7 +20,8 @@ export PCRE_VER=8.43
 # starting 1.0.16
 # checking for sodium_init in -lsodium... no
 # configure: error: The Sodium crypto library libraries not found.
-export LIBSODIUM_VER=1.0.18
+# last working version is 1.0.15, newer versions need toolchain fixed
+export LIBSODIUM_VER=1.0.15
 export MBEDTLS_VER=2.16.3
 
 export UDNS_VER=0.4
@@ -686,7 +687,7 @@ ss_build()
 
         echo -=-=-==-=-=-=-=-=-=-=
 
-        #sed -i -e 's/\(#define CORK_CONFIG_HAVE_THREAD_STORAGE_CLASS  \)1/\10/' ./libcork/include/libcork/config/gcc.h
+        sed -i -e 's/\(#define CORK_CONFIG_HAVE_THREAD_STORAGE_CLASS  \)1/\10/' ./libcork/include/libcork/config/gcc.h
 
         echo ========inside ss_build after configure=========
         echo ======== libcork/include/libcork/config/gcc.h=========
