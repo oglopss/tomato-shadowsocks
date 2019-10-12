@@ -21,7 +21,7 @@ export PCRE_VER=8.43
 # checking for sodium_init in -lsodium... no
 # configure: error: The Sodium crypto library libraries not found.
 # last working version is 1.0.15, newer versions need toolchain fixed
-export LIBSODIUM_VER=1.0.15
+export LIBSODIUM_VER=1.0.18
 export MBEDTLS_VER=2.16.3
 
 export UDNS_VER=0.4
