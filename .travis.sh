@@ -152,7 +152,7 @@ download_toolchain()
     cd $HOME/src
     # ./dbxcli get x-tools.tar.gz
 
-    wget https://www.dropbox.com/s/ihmwyqbpd8xt3tq/x-tools.tar.gz?dl=0 -O x-tools.tar.gz
+    wget https://www.dropbox.com/s/xn1hudg4wloq79i/x-tools.tar.gz?dl=0 -O x-tools.tar.gz
     cd $HOME
     # chmod o+w x-tools
     sudo tar xf $HOME/src/x-tools.tar.gz
@@ -687,7 +687,7 @@ ss_build()
 
         echo -=-=-==-=-=-=-=-=-=-=
 
-        sed -i -e 's/\(#define CORK_CONFIG_HAVE_THREAD_STORAGE_CLASS  \)1/\10/' ./libcork/include/libcork/config/gcc.h
+        # sed -i -e 's/\(#define CORK_CONFIG_HAVE_THREAD_STORAGE_CLASS  \)1/\10/' ./libcork/include/libcork/config/gcc.h
 
         echo ========inside ss_build after configure=========
         echo ======== libcork/include/libcork/config/gcc.h=========
