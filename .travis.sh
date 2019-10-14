@@ -21,7 +21,7 @@ export PCRE_VER=8.43
 # checking for sodium_init in -lsodium... no
 # configure: error: The Sodium crypto library libraries not found.
 # last working version is 1.0.15, newer versions need toolchain fixed
-export LIBSODIUM_VER=1.0.15
+export LIBSODIUM_VER=1.0.18
 export MBEDTLS_VER=2.16.3
 
 export UDNS_VER=0.4
@@ -152,7 +152,8 @@ download_toolchain()
     cd $HOME/src
     # ./dbxcli get x-tools.tar.gz
 
-    wget https://www.dropbox.com/s/60bzzqfa0ern3on/x-tools.old.tar.gz?dl=0 -O x-tools.tar.gz
+    # new tool china has --disable-tls in gcc compile options
+    wget https://www.dropbox.com/s/65la1164yh3py5m/x-tools.new.gz?dl=0 -O x-tools.tar.gz
     cd $HOME
     # chmod o+w x-tools
     sudo tar xf $HOME/src/x-tools.tar.gz
