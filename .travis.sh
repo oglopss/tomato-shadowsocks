@@ -802,7 +802,7 @@ ss_build()
     # copy so files
     if [ "$SS_VER_INT" -ge 263 ]; then 
 
-        cp $HOME/mbedtls-install/lib/libmbedcrypto.so.0 .
+        cp $HOME/mbedtls-install/lib/libmbedcrypto.so.3 .
         cp $HOME/libev-install/lib/libev.so.4 .
         cp $HOME/libsodium-install/lib/libsodium.so.23 .
         cp $HOME/pcre-install/lib/libpcre.so.1 .
