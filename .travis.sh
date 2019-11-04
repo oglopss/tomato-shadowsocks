@@ -11,11 +11,19 @@ export PATH=$HOME/x-tools/mipsel-unknown-linux-uclibc/bin:$PATH
 export OUT="> /dev/null 2>&1"
 
 export ZLIB_VER=1.2.11
-export OPENSSL_VER=1.0.2k
 
-export PCRE_VER=8.40
-export LIBSODIUM_VER=1.0.11
-export MBEDTLS_VER=2.4.2
+# openssl is replace by Mbed TLS though, and is not used
+# export OPENSSL_VER=1.0.2t
+
+export PCRE_VER=8.43
+
+# starting 1.0.16
+# checking for sodium_init in -lsodium... no
+# configure: error: The Sodium crypto library libraries not found.
+# last working version is 1.0.15, newer versions need toolchain fixed
+export LIBSODIUM_VER=1.0.18
+export MBEDTLS_VER=2.16.3
+
 export UDNS_VER=0.4
 export OBFS_VER=0.0.5
 
@@ -144,7 +152,8 @@ download_toolchain()
     cd $HOME/src
     # ./dbxcli get x-tools.tar.gz
 
-    wget https://www.dropbox.com/s/ihmwyqbpd8xt3tq/x-tools.tar.gz?dl=0 -O x-tools.tar.gz
+    # new tool china has --disable-tls in gcc compile options
+    wget https://www.dropbox.com/s/65la1164yh3py5m/x-tools.new.gz?dl=0 -O x-tools.tar.gz
     cd $HOME
     # chmod o+w x-tools
     sudo tar xf $HOME/src/x-tools.tar.gz
@@ -159,7 +168,8 @@ pcre_build()
     # export PCRE_VER=8.40
     # wget --no-passive-ftp ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-$PCRE_VER.tar.gz
 
-    wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-$PCRE_VER.tar.gz
+    # wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-$PCRE_VER.tar.gz
+    wget ftp://ftp.pcre.org/pub/pcre/pcre-$PCRE_VER.tar.gz
     tar xf pcre-$PCRE_VER.tar.gz
     cd pcre-$PCRE_VER
 
@@ -213,8 +223,30 @@ zlib_build()
 
 }
 
-# new builds for ss 3.0 or above
+stay_alive()
+{    # Start a runner task to print a "still running" line every 5 minutes
+    # to avoid travis to think that the build is stuck
+    {
+        while true
+        do
+            sleep 300
+            printf "task is still running ...\r"
+        done
+    } &
+    local runner_pid=$!
 
+    # Wait for the build to finish and get the result
+    wait $build_pid 2>/dev/null 
+    local result=$?
+
+    # Stop the runner task
+    kill $runner_pid
+    wait $runner_pid 2>/dev/null
+
+}
+
+
+# new builds for ss 3.0 or above
 libsodium_build()
 {
 
@@ -226,20 +258,67 @@ libsodium_build()
     #wget http://download.libsodium.org/libsodium/releases/libsodium-$LIBSODIUM_VER.tar.gz
 
     # http://stackoverflow.com/questions/30418188/how-to-force-wget-to-overwrite-an-existing-file-ignoring-timestamp
-    wget --backups=1 https://github.com/jedisct1/libsodium/releases/download/$LIBSODIUM_VER/libsodium-$LIBSODIUM_VER.tar.gz
-
-
+    if [ "$LIBSODIUM_VER" == "1.0.18" ]; then 
+        wget --backups=1 https://github.com/jedisct1/libsodium/releases/download/$LIBSODIUM_VER-RELEASE/libsodium-$LIBSODIUM_VER.tar.gz
+    else
+        wget --backups=1 https://github.com/jedisct1/libsodium/releases/download/$LIBSODIUM_VER/libsodium-$LIBSODIUM_VER.tar.gz
+    fi
+    # sudo apt-get purge libsodium-dev
+    
     tar xf libsodium-$LIBSODIUM_VER.tar.gz
     cd libsodium-$LIBSODIUM_VER
+
+    
+    
+
+
+    # git clone --single-branch --branch stable https://github.com/jedisct1/libsodium.git
+
+    # cd libsodium
+    
+    # remove TLS check
+    # https://stackoverflow.com/questions/11703900/sed-comment-a-matching-line-and-x-lines-after-it
+    # sed -e '/myprocess/,+4 s/^/#/' -i ./configure.ac
+    # comment out patter and 3 lines after it
+    #sed -e '/AX_TLS(\[AC_MSG_RESULT(thread local storage is supported)/,+3 s/^/# /' -i ./configure.ac
+    #sed -e '/AX_TLS(\[AC_MSG_RESULT(thread local storage is supported)/i ])' -i ./configure.ac
+    
+    # configure is already provided in release tar.gz
+    # +28 so that ac_cv_tls=none is uncommented
+    #sed -e '/checking for thread local storage (TLS) class/,+88 s/^/# /' -i ./configure 
+    # insert after first matching
+    # sed -e '0,/orange/s//orange\nxxx/' a
+    # it ends up appending twice but it's ok, it will break anyway next time this file changes
+    #sed -e '/checking for thread local storage (TLS) class/a ac_cv_tls=none' -i ./configure 
+    # sed -e '/checking for thread local storage (TLS) class/a ac_cv_tls=__thread' -i ./configure
+    
+    #rm ./configure
+    #autoreconf --install --force
+
+    # so it end up as:
+    # if test "x$with_threads" = "xyes"; then :
+    # ac_cv_tls=no
+    # ac_cv_tls=no
+    # fi
+    
+    # stay_alive 
+    
+    #echo ==hack configure.ac==
+    #cat configure.ac
+
+    #echo libsodium configure options
+    #LDFLAGS="-Wl,-rpath,/jffs/lib" CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib  ./configure -h
  
     LDFLAGS="-Wl,-rpath,/jffs/lib" CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib  ./configure --prefix=$HOME/libsodium-install --host=mipsel-uclibc-linux
  
-    make  > /dev/null 2>&1
+    # make  > /dev/null 2>&1
+    make
 
     rm -rf $HOME/libsodium-install
     make install  > /dev/null 2>&1
-
- 
+        
+    echo ========= after libsodium_build =========
+    tree $HOME/libsodium-install
     # popd
     # popd
 
@@ -511,7 +590,10 @@ ss_build()
         git diff 5b122d4^ 5b122d4 | git apply
         
     fi
+      
 
+    # force disable TLS
+    # sed -e '/AX_TLS(\[:\], \[:\])/ s/^#*/# /' -i ./configure.ac
 
     if [ -f "autogen.sh" ]; then
         echo running autogen
@@ -591,13 +673,22 @@ ss_build()
         # else
 
             echo greater or equal to 263, use mbedtls
+            CPPFLAGS="-I$HOME/cares-install/include -I$HOME/libev-install/include -I$HOME/zlib-install/include" LDFLAGS="-Wl,-rpath,/jffs/lib -L$HOME/cares-install/lib -L$HOME/libev-install/lib -L$HOME/zlib-install/lib" CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure  -h
+
+            echo ==ss_build run configure==
             CPPFLAGS="-I$HOME/cares-install/include -I$HOME/libev-install/include -I$HOME/zlib-install/include" LDFLAGS="-Wl,-rpath,/jffs/lib -L$HOME/cares-install/lib -L$HOME/libev-install/lib -L$HOME/zlib-install/lib" CC=mipsel-unknown-linux-uclibc-gcc CXX=mipsel-unknown-linux-uclibc-g++ AR=mipsel-unknown-linux-uclibc-ar RANLIB=mipsel-unknown-linux-uclibc-ranlib ./configure --disable-ssp --prefix=$HOME/ss-install --with-pcre=$HOME/pcre-install --with-sodium=$HOME/libsodium-install --with-mbedtls=$HOME/mbedtls-install --host=mipsel-uclibc-linux
-    
+
+        echo ==ss_build autoconf log==
+        cat config.log
+
         # fi
+
+        echo ==configure==
+        cat ./configure
 
         echo -=-=-==-=-=-=-=-=-=-=
 
-        sed -i -e 's/\(#define CORK_CONFIG_HAVE_THREAD_STORAGE_CLASS  \)1/\10/' ./libcork/include/libcork/config/gcc.h
+        # sed -i -e 's/\(#define CORK_CONFIG_HAVE_THREAD_STORAGE_CLASS  \)1/\10/' ./libcork/include/libcork/config/gcc.h
 
         echo ========inside ss_build after configure=========
         echo ======== libcork/include/libcork/config/gcc.h=========
@@ -712,13 +803,13 @@ ss_build()
     # copy so files
     if [ "$SS_VER_INT" -ge 263 ]; then 
 
-        cp $HOME/mbedtls-install/lib/libmbedcrypto.so.0 .
+        cp $HOME/mbedtls-install/lib/libmbedcrypto.so.3 .
         cp $HOME/libev-install/lib/libev.so.4 .
-        cp $HOME/libsodium-install/lib/libsodium.so.18 .
+        cp $HOME/libsodium-install/lib/libsodium.so.23 .
         cp $HOME/pcre-install/lib/libpcre.so.1 .
         cp $HOME/obfs-install/bin/obfs* .
 
-        cp $HOME/cares-install/lib/libcares.so.2.2.0 libcares.so.2
+        cp $HOME/cares-install/lib/libcares.so.2.3.0 libcares.so.2
 
         if [ "$SS_VER_INT" -eq 263 ] || [ "$SS_VER_INT" -eq 999 ]; then
             cp $HOME/openssl-install/lib/libcrypto.so.1.0.0 .
