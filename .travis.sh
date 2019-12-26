@@ -687,8 +687,9 @@ ss_build()
         cat ./configure
 
         echo -=-=-==-=-=-=-=-=-=-=
-
-        # sed -i -e 's/\(#define CORK_CONFIG_HAVE_THREAD_STORAGE_CLASS  \)1/\10/' ./libcork/include/libcork/config/gcc.h
+        
+        # still needed to avoid error can't resolve symbol '__emutls_get_address' in lib
+        sed -i -e 's/\(#define CORK_CONFIG_HAVE_THREAD_STORAGE_CLASS  \)1/\10/' ./libcork/include/libcork/config/gcc.h
 
         echo ========inside ss_build after configure=========
         echo ======== libcork/include/libcork/config/gcc.h=========
